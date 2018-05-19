@@ -1,0 +1,1263 @@
+<?xml version="1.0" encoding="gb2312"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xml:lang="zh" lang="zh" xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html;charset=GB2312" />
+    <meta http-equiv="Content-Style-Type" content="text/css" />
+    <!-- MOTW-DISABLED saved from url=(0014)about:internet -->
+    <title>范例</title>
+    <link rel="StyleSheet" href="css/03_SSLVPN_Client_UG_CN-ios.css" type="text/css" media="all" />
+    <link rel="StyleSheet" href="css/webworks.css" type="text/css" media="all" />
+    <script type="text/javascript" language="JavaScript1.2" src="scripts/expand.js"></script>
+    <script type="text/javascript" language="JavaScript1.2">
+      <!--
+        var  WebWorksRootPath = "";
+      // -->
+    </script>
+  </head>
+  <body style="background-color: GhostWhite">
+    <div style="text-align: left;">
+      <table cellspacing="0" summary="">
+        <tr>
+          <td>
+            <a href="03_SSLVPN_Client_UG_CN-ios.1.5.html"><img src="prev.gif" alt="上一个" border="0" /></a>
+          </td>
+          <td>
+            <img src="nextx.gif" alt="下一个" border="0" />
+          </td>
+        </tr>
+      </table>
+    </div>
+    <br />
+    <div class="WebWorks_Breadcrumbs" style="text-align: left;">6 范例</div>
+    <hr align="left" />
+    <blockquote>
+      <div class="N1h_1Heading">6 <a name="2524139">范例</a></div>
+      <div class="b1_body"><a name="2524140">基本需求</a></div>
+      <div class="b1_body"><a name="2524141">远程用户需要使用iOS设备访问公司内网资源，并要求保证数据传输安全。</a></div>
+      <div class="b1_body"><a name="2524142">解决方案</a></div>
+      <div class="b1_body"><a name="2524143">远程用户可以在iOS设备上安装SSL VPN 客户端，通过SSL VPN客户端，可以与SSL VPN服务器之间建立一条SSL VPN 隧道。同时，在SSL VPN服务器上开启双向认证功能，要求对客户端进行用户名/密码和证书认证。</a><span style="font-family: &quot;Times New Roman&quot;; font-weight: bold"><img class="Default" src="03_SSLVPN_Client_UG_CN-ios.1.6.1.jpg" width="200" height="351" style="display: block; float: none; left: 0.0; top: 0.0" alt="" /></span></div>
+      <div class="b1_body"><a name="2524148">配置要点</a></div>
+      <div class="b1_body"><a name="2524149">在SSL VPN服务器上进行以下配置：</a></div>
+      <div class="bu1_bullets_outer" style="margin-left: 0pt; vertical-align: baseline">
+        <table border="0" cellspacing="0" cellpadding="0" summary="" role="presentation">
+          <tr style="vertical-align: baseline">
+            <td>
+              <div class="bu1_bullets_inner" style="width: 18pt; white-space: nowrap; color: #000000; font-size: 11.0pt; font-style: normal; font-variant: normal; font-weight: normal; text-transform: none">
+                <img src="bullet.png" alt="*" border="0" width="21" height="19" />
+              </div>
+            </td>
+            <td width="100%">
+              <div class="bu1_bullets_inner" style="color: #000000; font-size: 11.0pt; font-style: normal; font-variant: normal; font-weight: normal; text-transform: none"><span class="l_link"><a href="#2524186" title="范例" name="2524153"> 配置接口</a></span></div>
+            </td>
+          </tr>
+        </table>
+      </div>
+      <div class="bu1_bullets_outer" style="margin-left: 0pt; vertical-align: baseline">
+        <table border="0" cellspacing="0" cellpadding="0" summary="" role="presentation">
+          <tr style="vertical-align: baseline">
+            <td>
+              <div class="bu1_bullets_inner" style="width: 18pt; white-space: nowrap; color: #000000; font-size: 11.0pt; font-style: normal; font-variant: normal; font-weight: normal; text-transform: none">
+                <img src="bullet.png" alt="*" border="0" width="21" height="19" />
+              </div>
+            </td>
+            <td width="100%">
+              <div class="bu1_bullets_inner" style="color: #000000; font-size: 11.0pt; font-style: normal; font-variant: normal; font-weight: normal; text-transform: none"><span class="l_link"><a href="#2524198" title="范例" name="2524157"> 创建IP地址池</a></span></div>
+            </td>
+          </tr>
+        </table>
+      </div>
+      <div class="bu1_bullets_outer" style="margin-left: 0pt; vertical-align: baseline">
+        <table border="0" cellspacing="0" cellpadding="0" summary="" role="presentation">
+          <tr style="vertical-align: baseline">
+            <td>
+              <div class="bu1_bullets_inner" style="width: 18pt; white-space: nowrap; color: #000000; font-size: 11.0pt; font-style: normal; font-variant: normal; font-weight: normal; text-transform: none">
+                <img src="bullet.png" alt="*" border="0" width="21" height="19" />
+              </div>
+            </td>
+            <td width="100%">
+              <div class="bu1_bullets_inner" style="color: #000000; font-size: 11.0pt; font-style: normal; font-variant: normal; font-weight: normal; text-transform: none"><span class="l_link"><a href="#2524207" title="范例" name="2524161"> 创建SSL VPN用户</a></span></div>
+            </td>
+          </tr>
+        </table>
+      </div>
+      <div class="bu1_bullets_outer" style="margin-left: 0pt; vertical-align: baseline">
+        <table border="0" cellspacing="0" cellpadding="0" summary="" role="presentation">
+          <tr style="vertical-align: baseline">
+            <td>
+              <div class="bu1_bullets_inner" style="width: 18pt; white-space: nowrap; color: #000000; font-size: 11.0pt; font-style: normal; font-variant: normal; font-weight: normal; text-transform: none">
+                <img src="bullet.png" alt="*" border="0" width="21" height="19" />
+              </div>
+            </td>
+            <td width="100%">
+              <div class="bu1_bullets_inner" style="color: #000000; font-size: 11.0pt; font-style: normal; font-variant: normal; font-weight: normal; text-transform: none"><span class="l_link"><a href="#2524218" title="范例" name="2524165"> 创建SSL VPN用户组</a></span></div>
+            </td>
+          </tr>
+        </table>
+      </div>
+      <div class="bu1_bullets_outer" style="margin-left: 0pt">
+        <table border="0" cellspacing="0" cellpadding="0" summary="" role="presentation">
+          <tr style="vertical-align: baseline">
+            <td>
+              <div class="bu1_bullets_inner" style="width: 18pt; white-space: nowrap">
+                <img src="bullet.png" alt="*" border="0" width="21" height="19" />
+              </div>
+            </td>
+            <td width="100%">
+              <div class="bu1_bullets_inner"><span class="l_link"><a href="#2529943" title="范例" name="2530088"> 创建SSL VPN资源</a></span></div>
+            </td>
+          </tr>
+        </table>
+      </div>
+      <div class="bu1_bullets_outer" style="margin-left: 0pt; vertical-align: baseline">
+        <table border="0" cellspacing="0" cellpadding="0" summary="" role="presentation">
+          <tr style="vertical-align: baseline">
+            <td>
+              <div class="bu1_bullets_inner" style="width: 18pt; white-space: nowrap; color: #000000; font-size: 11.0pt; font-style: normal; font-variant: normal; font-weight: normal; text-transform: none">
+                <img src="bullet.png" alt="*" border="0" width="21" height="19" />
+              </div>
+            </td>
+            <td width="100%">
+              <div class="bu1_bullets_inner" style="color: #000000; font-size: 11.0pt; font-style: normal; font-variant: normal; font-weight: normal; text-transform: none"><span class="l_link"><a href="#2524226" title="范例" name="2524169"> 创建SSL VPN隧道</a></span></div>
+            </td>
+          </tr>
+        </table>
+      </div>
+      <div class="bu1_bullets_outer" style="margin-left: 0pt; vertical-align: baseline">
+        <table border="0" cellspacing="0" cellpadding="0" summary="" role="presentation">
+          <tr style="vertical-align: baseline">
+            <td>
+              <div class="bu1_bullets_inner" style="width: 18pt; white-space: nowrap; color: #000000; font-size: 11.0pt; font-style: normal; font-variant: normal; font-weight: normal; text-transform: none">
+                <img src="bullet.png" alt="*" border="0" width="21" height="19" />
+              </div>
+            </td>
+            <td width="100%">
+              <div class="bu1_bullets_inner" style="color: #000000; font-size: 11.0pt; font-style: normal; font-variant: normal; font-weight: normal; text-transform: none"><span class="l_link"><a href="#2524237" title="范例" name="2524173"> 创建访问策略</a></span></div>
+            </td>
+          </tr>
+        </table>
+      </div>
+      <div class="b1_body"><a name="2524174">在远程用户设备上进行以下配置：</a></div>
+      <div class="bu1_bullets_outer" style="margin-left: 0pt; vertical-align: baseline">
+        <table border="0" cellspacing="0" cellpadding="0" summary="" role="presentation">
+          <tr style="vertical-align: baseline">
+            <td>
+              <div class="bu1_bullets_inner" style="width: 18pt; white-space: nowrap; color: #000000; font-size: 11.0pt; font-style: normal; font-variant: normal; font-weight: normal; text-transform: none">
+                <img src="bullet.png" alt="*" border="0" width="21" height="19" />
+              </div>
+            </td>
+            <td width="100%">
+              <div class="bu1_bullets_inner" style="color: #000000; font-size: 11.0pt; font-style: normal; font-variant: normal; font-weight: normal; text-transform: none"><span class="l_link"><a href="#2524247" title="范例" name="2524178"> 导入个人证书</a></span></div>
+            </td>
+          </tr>
+        </table>
+      </div>
+      <div class="bu1_bullets_outer" style="margin-left: 0pt; vertical-align: baseline">
+        <table border="0" cellspacing="0" cellpadding="0" summary="" role="presentation">
+          <tr style="vertical-align: baseline">
+            <td>
+              <div class="bu1_bullets_inner" style="width: 18pt; white-space: nowrap; color: #000000; font-size: 11.0pt; font-style: normal; font-variant: normal; font-weight: normal; text-transform: none">
+                <img src="bullet.png" alt="*" border="0" width="21" height="19" />
+              </div>
+            </td>
+            <td width="100%">
+              <div class="bu1_bullets_inner" style="color: #000000; font-size: 11.0pt; font-style: normal; font-variant: normal; font-weight: normal; text-transform: none"><span class="l_link"><a href="#2524261" title="范例" name="2524182"> 创建SSL VPN连接</a></span></div>
+            </td>
+          </tr>
+        </table>
+      </div>
+      <div class="b1_body"><a name="2524183">配置步骤</a></div>
+      <div class="b1_body"><a name="2524184">请根据以下步骤中提供的信息配置SSL VPN服务器，对于其他没有给出的参数信息，请使用缺省配置。</a></div>
+      <div class="N4h_4Heading" style="font-size: 12.0pt; font-style: normal; font-variant: normal; font-weight: bold; text-transform: none; vertical-align: baseline"><span style="color: #000000; font-family: 宋体; font-size: 12.0pt; font-style: normal; font-variant: normal; font-weight: bold; text-transform: none; vertical-align: baseline"><a name="2524186">配置接口</a></span></div>
+      <div class="s1_step_first_outer" style="margin-left: 0pt; vertical-align: baseline">
+        <table border="0" cellspacing="0" cellpadding="0" summary="" role="presentation">
+          <tr style="vertical-align: baseline">
+            <td>
+              <div class="s1_step_first_inner" style="width: 18pt; white-space: nowrap; color: #000000; font-size: 11.0pt; font-style: normal; font-variant: normal; font-weight: normal; text-transform: none">
+                <span class="zz_step_number">1.	</span>
+              </div>
+            </td>
+            <td width="100%">
+              <div class="s1_step_first_inner" style="color: #000000; font-size: 11.0pt; font-style: normal; font-variant: normal; font-weight: normal; text-transform: none"><span style="color: #000000; font-family: 宋体; font-size: 11.0pt; font-style: normal; font-variant: normal; font-weight: normal; text-transform: none; vertical-align: baseline"><a name="2524187">登录到服务器的WebUI上，选择</a></span><span class="b_bold">网络</span>&gt;<span class="b_bold">接口</span>，将接口eth-s1p1和eth-s1p2配置为如下：</div>
+            </td>
+          </tr>
+        </table>
+      </div>
+      <div class="bu2_bullets2_outer" style="margin-left: 18pt; vertical-align: baseline">
+        <table border="0" cellspacing="0" cellpadding="0" summary="" role="presentation">
+          <tr style="vertical-align: baseline">
+            <td>
+              <div class="bu2_bullets2_inner" style="width: 14.399999999999998pt; white-space: nowrap; color: #000000; font-size: 11.0pt; font-style: normal; font-variant: normal; font-weight: normal; text-transform: none">
+                <img src="bullet.png" alt="*" border="0" width="21" height="19" />
+              </div>
+            </td>
+            <td width="100%">
+              <div class="bu2_bullets2_inner" style="color: #000000; font-size: 11.0pt; font-style: normal; font-variant: normal; font-weight: normal; text-transform: none"><a name="2524188">eth-s1p1</a></div>
+            </td>
+          </tr>
+        </table>
+      </div>
+      <div class="bu3_bullets3_outer" style="margin-left: 32.4pt; vertical-align: baseline">
+        <table border="0" cellspacing="0" cellpadding="0" summary="" role="presentation">
+          <tr style="vertical-align: baseline">
+            <td>
+              <div class="bu3_bullets3_inner" style="width: 14.399999999999998pt; white-space: nowrap; color: #000000; font-size: 11.0pt; font-style: normal; font-variant: normal; font-weight: normal; text-transform: none">
+                <img src="bullet.png" alt="*" border="0" width="21" height="19" />
+              </div>
+            </td>
+            <td width="100%">
+              <div class="bu3_bullets3_inner" style="color: #000000; font-size: 11.0pt; font-style: normal; font-variant: normal; font-weight: normal; text-transform: none"><span style="color: #000000; font-family: 宋体; font-size: 11.0pt; font-style: normal; font-variant: normal; font-weight: normal; text-transform: none; vertical-align: baseline"><a name="2524189">接口状态：开</a></span></div>
+            </td>
+          </tr>
+        </table>
+      </div>
+      <div class="bu3_bullets3_outer" style="margin-left: 32.4pt; vertical-align: baseline">
+        <table border="0" cellspacing="0" cellpadding="0" summary="" role="presentation">
+          <tr style="vertical-align: baseline">
+            <td>
+              <div class="bu3_bullets3_inner" style="width: 14.399999999999998pt; white-space: nowrap; color: #000000; font-size: 11.0pt; font-style: normal; font-variant: normal; font-weight: normal; text-transform: none">
+                <img src="bullet.png" alt="*" border="0" width="21" height="19" />
+              </div>
+            </td>
+            <td width="100%">
+              <div class="bu3_bullets3_inner" style="color: #000000; font-size: 11.0pt; font-style: normal; font-variant: normal; font-weight: normal; text-transform: none"><span style="color: #000000; font-family: 宋体; font-size: 11.0pt; font-style: normal; font-variant: normal; font-weight: normal; text-transform: none; vertical-align: baseline"><a name="2524190">模式：三层</a></span></div>
+            </td>
+          </tr>
+        </table>
+      </div>
+      <div class="bu3_bullets3_outer" style="margin-left: 32.4pt; vertical-align: baseline">
+        <table border="0" cellspacing="0" cellpadding="0" summary="" role="presentation">
+          <tr style="vertical-align: baseline">
+            <td>
+              <div class="bu3_bullets3_inner" style="width: 14.399999999999998pt; white-space: nowrap; color: #000000; font-size: 11.0pt; font-style: normal; font-variant: normal; font-weight: normal; text-transform: none">
+                <img src="bullet.png" alt="*" border="0" width="21" height="19" />
+              </div>
+            </td>
+            <td width="100%">
+              <div class="bu3_bullets3_inner" style="color: #000000; font-size: 11.0pt; font-style: normal; font-variant: normal; font-weight: normal; text-transform: none"><span style="color: #000000; font-family: 宋体; font-size: 11.0pt; font-style: normal; font-variant: normal; font-weight: normal; text-transform: none; vertical-align: baseline"><a name="2524191">静态IP：192.168.1.1/24</a></span></div>
+            </td>
+          </tr>
+        </table>
+      </div>
+      <div class="bu2_bullets2_outer" style="margin-left: 18pt; vertical-align: baseline">
+        <table border="0" cellspacing="0" cellpadding="0" summary="" role="presentation">
+          <tr style="vertical-align: baseline">
+            <td>
+              <div class="bu2_bullets2_inner" style="width: 14.399999999999998pt; white-space: nowrap; color: #000000; font-size: 11.0pt; font-style: normal; font-variant: normal; font-weight: normal; text-transform: none">
+                <img src="bullet.png" alt="*" border="0" width="21" height="19" />
+              </div>
+            </td>
+            <td width="100%">
+              <div class="bu2_bullets2_inner" style="color: #000000; font-size: 11.0pt; font-style: normal; font-variant: normal; font-weight: normal; text-transform: none"><a name="2524192">eth-s1p2</a></div>
+            </td>
+          </tr>
+        </table>
+      </div>
+      <div class="bu3_bullets3_outer" style="margin-left: 32.4pt; vertical-align: baseline">
+        <table border="0" cellspacing="0" cellpadding="0" summary="" role="presentation">
+          <tr style="vertical-align: baseline">
+            <td>
+              <div class="bu3_bullets3_inner" style="width: 14.399999999999998pt; white-space: nowrap; color: #000000; font-size: 11.0pt; font-style: normal; font-variant: normal; font-weight: normal; text-transform: none">
+                <img src="bullet.png" alt="*" border="0" width="21" height="19" />
+              </div>
+            </td>
+            <td width="100%">
+              <div class="bu3_bullets3_inner" style="color: #000000; font-size: 11.0pt; font-style: normal; font-variant: normal; font-weight: normal; text-transform: none"><span style="color: #000000; font-family: 宋体; font-size: 11.0pt; font-style: normal; font-variant: normal; font-weight: normal; text-transform: none; vertical-align: baseline"><a name="2524193">接口状态：开</a></span></div>
+            </td>
+          </tr>
+        </table>
+      </div>
+      <div class="bu3_bullets3_outer" style="margin-left: 32.4pt; vertical-align: baseline">
+        <table border="0" cellspacing="0" cellpadding="0" summary="" role="presentation">
+          <tr style="vertical-align: baseline">
+            <td>
+              <div class="bu3_bullets3_inner" style="width: 14.399999999999998pt; white-space: nowrap; color: #000000; font-size: 11.0pt; font-style: normal; font-variant: normal; font-weight: normal; text-transform: none">
+                <img src="bullet.png" alt="*" border="0" width="21" height="19" />
+              </div>
+            </td>
+            <td width="100%">
+              <div class="bu3_bullets3_inner" style="color: #000000; font-size: 11.0pt; font-style: normal; font-variant: normal; font-weight: normal; text-transform: none"><span style="color: #000000; font-family: 宋体; font-size: 11.0pt; font-style: normal; font-variant: normal; font-weight: normal; text-transform: none; vertical-align: baseline"><a name="2524194">模式：三层</a></span></div>
+            </td>
+          </tr>
+        </table>
+      </div>
+      <div class="bu3_bullets3_outer" style="margin-left: 32.4pt; vertical-align: baseline">
+        <table border="0" cellspacing="0" cellpadding="0" summary="" role="presentation">
+          <tr style="vertical-align: baseline">
+            <td>
+              <div class="bu3_bullets3_inner" style="width: 14.399999999999998pt; white-space: nowrap; color: #000000; font-size: 11.0pt; font-style: normal; font-variant: normal; font-weight: normal; text-transform: none">
+                <img src="bullet.png" alt="*" border="0" width="21" height="19" />
+              </div>
+            </td>
+            <td width="100%">
+              <div class="bu3_bullets3_inner" style="color: #000000; font-size: 11.0pt; font-style: normal; font-variant: normal; font-weight: normal; text-transform: none"><span style="color: #000000; font-family: 宋体; font-size: 11.0pt; font-style: normal; font-variant: normal; font-weight: normal; text-transform: none; vertical-align: baseline"><a name="2524195">静态IP：</a></span>202.118.1.1/24</div>
+            </td>
+          </tr>
+        </table>
+      </div>
+      <div class="s2_step_next_outer" style="margin-left: 0pt; vertical-align: baseline">
+        <table border="0" cellspacing="0" cellpadding="0" summary="" role="presentation">
+          <tr style="vertical-align: baseline">
+            <td>
+              <div class="s2_step_next_inner" style="width: 18pt; white-space: nowrap; color: #000000; font-size: 11.0pt; font-style: normal; font-variant: normal; font-weight: normal; text-transform: none">
+                <span class="zz_step_number">2.	</span>
+              </div>
+            </td>
+            <td width="100%">
+              <div class="s2_step_next_inner" style="color: #000000; font-size: 11.0pt; font-style: normal; font-variant: normal; font-weight: normal; text-transform: none"><span style="color: #000000; font-family: 宋体; font-size: 11.0pt; font-style: normal; font-variant: normal; font-weight: normal; text-transform: none; vertical-align: baseline"><a name="2524196">点击</a></span><span class="b_bold">保存</span><span class="b_bold" style="font-weight: normal">按钮</span>。</div>
+            </td>
+          </tr>
+        </table>
+      </div>
+      <div class="N4h_4Heading" style="font-size: 12.0pt; font-style: normal; font-variant: normal; font-weight: bold; text-transform: none; vertical-align: baseline"><span class="b_bold"><a name="2524198">创建IP地址池</a></span></div>
+      <div class="s1_step_first_outer" style="margin-left: 0pt; vertical-align: baseline">
+        <table border="0" cellspacing="0" cellpadding="0" summary="" role="presentation">
+          <tr style="vertical-align: baseline">
+            <td>
+              <div class="s1_step_first_inner" style="width: 18pt; white-space: nowrap; color: #000000; font-size: 11.0pt; font-style: normal; font-variant: normal; font-weight: normal; text-transform: none">
+                <span class="zz_step_number">1.	</span>
+              </div>
+            </td>
+            <td width="100%">
+              <div class="s1_step_first_inner" style="color: #000000; font-size: 11.0pt; font-style: normal; font-variant: normal; font-weight: normal; text-transform: none"><span style="color: #000000; font-family: 宋体; font-size: 11.0pt; font-style: normal; font-variant: normal; font-weight: normal; text-transform: none; vertical-align: baseline"><a name="2524199">选择</a></span><span class="b_bold">VPN </span>&gt;<span class="b_bold"> IP地址池</span>。</div>
+            </td>
+          </tr>
+        </table>
+      </div>
+      <div class="s2_step_next_outer" style="margin-left: 0pt; vertical-align: baseline">
+        <table border="0" cellspacing="0" cellpadding="0" summary="" role="presentation">
+          <tr style="vertical-align: baseline">
+            <td>
+              <div class="s2_step_next_inner" style="width: 18pt; white-space: nowrap; color: #000000; font-size: 11.0pt; font-style: normal; font-variant: normal; font-weight: normal; text-transform: none">
+                <span class="zz_step_number">2.	</span>
+              </div>
+            </td>
+            <td width="100%">
+              <div class="s2_step_next_inner" style="color: #000000; font-size: 11.0pt; font-style: normal; font-variant: normal; font-weight: normal; text-transform: none"><span style="color: #000000; font-family: 宋体; font-size: 11.0pt; font-style: normal; font-variant: normal; font-weight: normal; text-transform: none; vertical-align: baseline"><a name="2524200">点击</a></span><span class="b_bold">新建</span>，创建以下地址池：</div>
+            </td>
+          </tr>
+        </table>
+      </div>
+      <div class="bu2_bullets2_outer" style="margin-left: 18pt; vertical-align: baseline">
+        <table border="0" cellspacing="0" cellpadding="0" summary="" role="presentation">
+          <tr style="vertical-align: baseline">
+            <td>
+              <div class="bu2_bullets2_inner" style="width: 14.399999999999998pt; white-space: nowrap; color: #000000; font-size: 11.0pt; font-style: normal; font-variant: normal; font-weight: normal; text-transform: none">
+                <img src="bullet.png" alt="*" border="0" width="21" height="19" />
+              </div>
+            </td>
+            <td width="100%">
+              <div class="bu2_bullets2_inner" style="color: #000000; font-size: 11.0pt; font-style: normal; font-variant: normal; font-weight: normal; text-transform: none"><span style="color: #000000; font-family: 宋体; font-size: 11.0pt; font-style: normal; font-variant: normal; font-weight: normal; text-transform: none; vertical-align: baseline"><a name="2524201">名称：pool</a></span></div>
+            </td>
+          </tr>
+        </table>
+      </div>
+      <div class="bu2_bullets2_outer" style="margin-left: 18pt; vertical-align: baseline">
+        <table border="0" cellspacing="0" cellpadding="0" summary="" role="presentation">
+          <tr style="vertical-align: baseline">
+            <td>
+              <div class="bu2_bullets2_inner" style="width: 14.399999999999998pt; white-space: nowrap; color: #000000; font-size: 11.0pt; font-style: normal; font-variant: normal; font-weight: normal; text-transform: none">
+                <img src="bullet.png" alt="*" border="0" width="21" height="19" />
+              </div>
+            </td>
+            <td width="100%">
+              <div class="bu2_bullets2_inner" style="color: #000000; font-size: 11.0pt; font-style: normal; font-variant: normal; font-weight: normal; text-transform: none"><span style="color: #000000; font-family: 宋体; font-size: 11.0pt; font-style: normal; font-variant: normal; font-weight: normal; text-transform: none; vertical-align: baseline"><a name="2524202">起始IP地址：30.1.1.1</a></span></div>
+            </td>
+          </tr>
+        </table>
+      </div>
+      <div class="bu2_bullets2_outer" style="margin-left: 18pt; vertical-align: baseline">
+        <table border="0" cellspacing="0" cellpadding="0" summary="" role="presentation">
+          <tr style="vertical-align: baseline">
+            <td>
+              <div class="bu2_bullets2_inner" style="width: 14.399999999999998pt; white-space: nowrap; color: #000000; font-size: 11.0pt; font-style: normal; font-variant: normal; font-weight: normal; text-transform: none">
+                <img src="bullet.png" alt="*" border="0" width="21" height="19" />
+              </div>
+            </td>
+            <td width="100%">
+              <div class="bu2_bullets2_inner" style="color: #000000; font-size: 11.0pt; font-style: normal; font-variant: normal; font-weight: normal; text-transform: none"><span style="color: #000000; font-family: 宋体; font-size: 11.0pt; font-style: normal; font-variant: normal; font-weight: normal; text-transform: none; vertical-align: baseline"><a name="2524203">终止IP地址：30.1.1.100</a></span></div>
+            </td>
+          </tr>
+        </table>
+      </div>
+      <div class="b2_body2" style="color: #000000; font-size: 11.0pt; font-style: normal; font-variant: normal; font-weight: normal; text-transform: none; vertical-align: baseline"><span style="color: #000000; font-family: 宋体; font-size: 11.0pt; font-style: normal; font-variant: normal; font-weight: normal; text-transform: none; vertical-align: baseline"><a name="2524204">SSL VPN服务器将从该地址池中为远程用户分配一个IP地址。远程用户使用此IP地址与服务器建立SSL VPN连接。 IP 地址池包含的IP 不能与服务器后的子网IP 重合。</a></span></div>
+      <div class="s2_step_next_outer" style="margin-left: 0pt; vertical-align: baseline">
+        <table border="0" cellspacing="0" cellpadding="0" summary="" role="presentation">
+          <tr style="vertical-align: baseline">
+            <td>
+              <div class="s2_step_next_inner" style="width: 18pt; white-space: nowrap; color: #000000; font-size: 11.0pt; font-style: normal; font-variant: normal; font-weight: normal; text-transform: none">
+                <span class="zz_step_number">3.	</span>
+              </div>
+            </td>
+            <td width="100%">
+              <div class="s2_step_next_inner" style="color: #000000; font-size: 11.0pt; font-style: normal; font-variant: normal; font-weight: normal; text-transform: none"><span style="color: #000000; font-family: 宋体; font-size: 11.0pt; font-style: normal; font-variant: normal; font-weight: normal; text-transform: none; vertical-align: baseline"><a name="2524205">点击</a></span><span class="b_bold">保存</span><span class="b_bold" style="font-weight: normal">按钮</span>。</div>
+            </td>
+          </tr>
+        </table>
+      </div>
+      <div class="N4h_4Heading" style="font-size: 12.0pt; font-style: normal; font-variant: normal; font-weight: bold; text-transform: none; vertical-align: baseline"><span style="color: #000000; font-family: 宋体; font-size: 12.0pt; font-style: normal; font-variant: normal; font-weight: bold; text-transform: none; vertical-align: baseline"><a name="2524207">创建SSL VPN用户</a></span></div>
+      <div class="s1_step_first_outer" style="margin-left: 0pt; vertical-align: baseline">
+        <table border="0" cellspacing="0" cellpadding="0" summary="" role="presentation">
+          <tr style="vertical-align: baseline">
+            <td>
+              <div class="s1_step_first_inner" style="width: 18pt; white-space: nowrap; color: #000000; font-size: 11.0pt; font-style: normal; font-variant: normal; font-weight: normal; text-transform: none">
+                <span class="zz_step_number">1.	</span>
+              </div>
+            </td>
+            <td width="100%">
+              <div class="s1_step_first_inner" style="color: #000000; font-size: 11.0pt; font-style: normal; font-variant: normal; font-weight: normal; text-transform: none"><span style="color: #000000; font-family: 宋体; font-size: 11.0pt; font-style: normal; font-variant: normal; font-weight: normal; text-transform: none; vertical-align: baseline"><a name="2524208">选择</a></span><span class="b_bold">系统</span>&gt;<span class="b_bold">认证</span>&gt;<span class="b_bold">网络用户</span>。</div>
+            </td>
+          </tr>
+        </table>
+      </div>
+      <div class="s2_step_next_outer" style="margin-left: 0pt; vertical-align: baseline">
+        <table border="0" cellspacing="0" cellpadding="0" summary="" role="presentation">
+          <tr style="vertical-align: baseline">
+            <td>
+              <div class="s2_step_next_inner" style="width: 18pt; white-space: nowrap; color: #000000; font-size: 11.0pt; font-style: normal; font-variant: normal; font-weight: normal; text-transform: none">
+                <span class="zz_step_number">2.	</span>
+              </div>
+            </td>
+            <td width="100%">
+              <div class="s2_step_next_inner" style="color: #000000; font-size: 11.0pt; font-style: normal; font-variant: normal; font-weight: normal; text-transform: none"><span style="color: #000000; font-family: 宋体; font-size: 11.0pt; font-style: normal; font-variant: normal; font-weight: normal; text-transform: none; vertical-align: baseline"><a name="2524209">点击</a></span><span class="b_bold">新建</span>，创建名为Alice的SSL VPN用户。当与服务器建立SSL VPN连接时，远程用户使用此用户名登录。</div>
+            </td>
+          </tr>
+        </table>
+      </div>
+      <div class="bu2_bullets2_outer" style="margin-left: 18pt; vertical-align: baseline">
+        <table border="0" cellspacing="0" cellpadding="0" summary="" role="presentation">
+          <tr style="vertical-align: baseline">
+            <td>
+              <div class="bu2_bullets2_inner" style="width: 14.399999999999998pt; white-space: nowrap; color: #000000; font-size: 11.0pt; font-style: normal; font-variant: normal; font-weight: normal; text-transform: none">
+                <img src="bullet.png" alt="*" border="0" width="21" height="19" />
+              </div>
+            </td>
+            <td width="100%">
+              <div class="bu2_bullets2_inner" style="color: #000000; font-size: 11.0pt; font-style: normal; font-variant: normal; font-weight: normal; text-transform: none"><span style="color: #000000; font-family: 宋体; font-size: 11.0pt; font-style: normal; font-variant: normal; font-weight: normal; text-transform: none; vertical-align: baseline"><a name="2524210">名称：Alice</a></span></div>
+            </td>
+          </tr>
+        </table>
+      </div>
+      <div class="bu2_bullets2_outer" style="margin-left: 18pt; vertical-align: baseline">
+        <table border="0" cellspacing="0" cellpadding="0" summary="" role="presentation">
+          <tr style="vertical-align: baseline">
+            <td>
+              <div class="bu2_bullets2_inner" style="width: 14.399999999999998pt; white-space: nowrap; color: #000000; font-size: 11.0pt; font-style: normal; font-variant: normal; font-weight: normal; text-transform: none">
+                <img src="bullet.png" alt="*" border="0" width="21" height="19" />
+              </div>
+            </td>
+            <td width="100%">
+              <div class="bu2_bullets2_inner" style="color: #000000; font-size: 11.0pt; font-style: normal; font-variant: normal; font-weight: normal; text-transform: none"><span style="color: #000000; font-family: 宋体; font-size: 11.0pt; font-style: normal; font-variant: normal; font-weight: normal; text-transform: none; vertical-align: baseline"><a name="2524211">SSL VPN：勾选</a></span></div>
+            </td>
+          </tr>
+        </table>
+      </div>
+      <div class="bu2_bullets2_outer" style="margin-left: 18pt; vertical-align: baseline">
+        <table border="0" cellspacing="0" cellpadding="0" summary="" role="presentation">
+          <tr style="vertical-align: baseline">
+            <td>
+              <div class="bu2_bullets2_inner" style="width: 14.399999999999998pt; white-space: nowrap; color: #000000; font-size: 11.0pt; font-style: normal; font-variant: normal; font-weight: normal; text-transform: none">
+                <img src="bullet.png" alt="*" border="0" width="21" height="19" />
+              </div>
+            </td>
+            <td width="100%">
+              <div class="bu2_bullets2_inner" style="color: #000000; font-size: 11.0pt; font-style: normal; font-variant: normal; font-weight: normal; text-transform: none"><span style="color: #000000; font-family: 宋体; font-size: 11.0pt; font-style: normal; font-variant: normal; font-weight: normal; text-transform: none; vertical-align: baseline"><a name="2524212">密码：123456</a></span></div>
+            </td>
+          </tr>
+        </table>
+      </div>
+      <div class="bu2_bullets2_outer" style="margin-left: 18pt; vertical-align: baseline">
+        <table border="0" cellspacing="0" cellpadding="0" summary="" role="presentation">
+          <tr style="vertical-align: baseline">
+            <td>
+              <div class="bu2_bullets2_inner" style="width: 14.399999999999998pt; white-space: nowrap; color: #000000; font-size: 11.0pt; font-style: normal; font-variant: normal; font-weight: normal; text-transform: none">
+                <img src="bullet.png" alt="*" border="0" width="21" height="19" />
+              </div>
+            </td>
+            <td width="100%">
+              <div class="bu2_bullets2_inner" style="color: #000000; font-size: 11.0pt; font-style: normal; font-variant: normal; font-weight: normal; text-transform: none"><span style="color: #000000; font-family: 宋体; font-size: 11.0pt; font-style: normal; font-variant: normal; font-weight: normal; text-transform: none; vertical-align: baseline"><a name="2524213">确认密码：123456</a></span></div>
+            </td>
+          </tr>
+        </table>
+      </div>
+      <div class="bu2_bullets2_outer" style="margin-left: 18pt">
+        <table border="0" cellspacing="0" cellpadding="0" summary="" role="presentation">
+          <tr style="vertical-align: baseline">
+            <td>
+              <div class="bu2_bullets2_inner" style="width: 14.399999999999998pt; white-space: nowrap">
+                <img src="bullet.png" alt="*" border="0" width="21" height="19" />
+              </div>
+            </td>
+            <td width="100%">
+              <div class="bu2_bullets2_inner"><a name="2536745">IP地址池：pool</a></div>
+            </td>
+          </tr>
+        </table>
+      </div>
+      <div class="b2_body2" style="color: #000000; font-size: 11.0pt; font-style: normal; font-variant: normal; font-weight: normal; text-transform: none; vertical-align: baseline"><span style="color: #000000; font-family: 宋体; font-size: 11.0pt; font-style: normal; font-variant: normal; font-weight: normal; text-transform: none; vertical-align: baseline"><a name="2524214">如果已购买OTP令牌并需要使用OTP认证，请先选择</a></span><span class="b_bold">系统</span>&gt;<span class="b_bold">认证</span>&gt;<span style="font-weight: bold"> OTP令牌</span>，创建OTP令牌。然后在创建用户Alice时，勾选<span style="font-weight: bold">OTP认证</span>并绑定已创建的OTP令牌。当远程用户与服务器建立SSL VPN连接时，还需要输入OTP密码。</div>
+      <div class="s2_step_next_outer" style="margin-left: 0pt; vertical-align: baseline">
+        <table border="0" cellspacing="0" cellpadding="0" summary="" role="presentation">
+          <tr style="vertical-align: baseline">
+            <td>
+              <div class="s2_step_next_inner" style="width: 18pt; white-space: nowrap; color: #000000; font-size: 11.0pt; font-style: normal; font-variant: normal; font-weight: normal; text-transform: none">
+                <span class="zz_step_number">3.	</span>
+              </div>
+            </td>
+            <td width="100%">
+              <div class="s2_step_next_inner" style="color: #000000; font-size: 11.0pt; font-style: normal; font-variant: normal; font-weight: normal; text-transform: none"><span style="color: #000000; font-family: 宋体; font-size: 11.0pt; font-style: normal; font-variant: normal; font-weight: normal; text-transform: none; vertical-align: baseline"><a name="2524215">点击</a></span><span class="b_bold">确定</span>。</div>
+            </td>
+          </tr>
+        </table>
+      </div>
+      <div class="s2_step_next_outer" style="margin-left: 0pt; vertical-align: baseline">
+        <table border="0" cellspacing="0" cellpadding="0" summary="" role="presentation">
+          <tr style="vertical-align: baseline">
+            <td>
+              <div class="s2_step_next_inner" style="width: 18pt; white-space: nowrap; color: #000000; font-size: 11.0pt; font-style: normal; font-variant: normal; font-weight: normal; text-transform: none">
+                <span class="zz_step_number">4.	</span>
+              </div>
+            </td>
+            <td width="100%">
+              <div class="s2_step_next_inner" style="color: #000000; font-size: 11.0pt; font-style: normal; font-variant: normal; font-weight: normal; text-transform: none"><span style="color: #000000; font-family: 宋体; font-size: 11.0pt; font-style: normal; font-variant: normal; font-weight: normal; text-transform: none; vertical-align: baseline"><a name="2524216">点击</a></span><span class="b_bold">保存</span><span class="b_bold" style="font-weight: normal">按钮。</span></div>
+            </td>
+          </tr>
+        </table>
+      </div>
+      <div class="N4h_4Heading" style="font-size: 12.0pt; font-style: normal; font-variant: normal; font-weight: bold; text-transform: none; vertical-align: baseline"><span class="b_bold"><a name="2524218">创建SSL VPN用户组</a></span></div>
+      <div class="s1_step_first_outer" style="margin-left: 0pt; vertical-align: baseline">
+        <table border="0" cellspacing="0" cellpadding="0" summary="" role="presentation">
+          <tr style="vertical-align: baseline">
+            <td>
+              <div class="s1_step_first_inner" style="width: 18pt; white-space: nowrap; color: #000000; font-size: 11.0pt; font-style: normal; font-variant: normal; font-weight: normal; text-transform: none">
+                <span class="zz_step_number">1.	</span>
+              </div>
+            </td>
+            <td width="100%">
+              <div class="s1_step_first_inner" style="color: #000000; font-size: 11.0pt; font-style: normal; font-variant: normal; font-weight: normal; text-transform: none"><span style="color: #000000; font-family: 宋体; font-size: 11.0pt; font-style: normal; font-variant: normal; font-weight: normal; text-transform: none; vertical-align: baseline"><a name="2524219">选择</a></span><span class="b_bold">VPN </span>&gt; <span class="b_bold">SSL VPN</span> &gt;<span class="b_bold">用户组</span>。</div>
+            </td>
+          </tr>
+        </table>
+      </div>
+      <div class="s2_step_next_outer" style="margin-left: 0pt; vertical-align: baseline">
+        <table border="0" cellspacing="0" cellpadding="0" summary="" role="presentation">
+          <tr style="vertical-align: baseline">
+            <td>
+              <div class="s2_step_next_inner" style="width: 18pt; white-space: nowrap; color: #000000; font-size: 11.0pt; font-style: normal; font-variant: normal; font-weight: normal; text-transform: none">
+                <span class="zz_step_number">2.	</span>
+              </div>
+            </td>
+            <td width="100%">
+              <div class="s2_step_next_inner" style="color: #000000; font-size: 11.0pt; font-style: normal; font-variant: normal; font-weight: normal; text-transform: none"><span style="color: #000000; font-family: 宋体; font-size: 11.0pt; font-style: normal; font-variant: normal; font-weight: normal; text-transform: none; vertical-align: baseline"><a name="2524220">点击</a></span><span class="b_bold">新建</span>，创建一个用户组并将SSL VPN用户Alice划分到此用户组。</div>
+            </td>
+          </tr>
+        </table>
+      </div>
+      <div class="bu2_bullets2_outer" style="margin-left: 18pt; vertical-align: baseline">
+        <table border="0" cellspacing="0" cellpadding="0" summary="" role="presentation">
+          <tr style="vertical-align: baseline">
+            <td>
+              <div class="bu2_bullets2_inner" style="width: 14.399999999999998pt; white-space: nowrap; color: #000000; font-size: 11.0pt; font-style: normal; font-variant: normal; font-weight: normal; text-transform: none">
+                <img src="bullet.png" alt="*" border="0" width="21" height="19" />
+              </div>
+            </td>
+            <td width="100%">
+              <div class="bu2_bullets2_inner" style="color: #000000; font-size: 11.0pt; font-style: normal; font-variant: normal; font-weight: normal; text-transform: none"><span style="color: #000000; font-family: 宋体; font-size: 11.0pt; font-style: normal; font-variant: normal; font-weight: normal; text-transform: none; vertical-align: baseline"><a name="2524221">名称：group</a></span></div>
+            </td>
+          </tr>
+        </table>
+      </div>
+      <div class="bu2_bullets2_outer" style="margin-left: 18pt; vertical-align: baseline">
+        <table border="0" cellspacing="0" cellpadding="0" summary="" role="presentation">
+          <tr style="vertical-align: baseline">
+            <td>
+              <div class="bu2_bullets2_inner" style="width: 14.399999999999998pt; white-space: nowrap; color: #000000; font-size: 11.0pt; font-style: normal; font-variant: normal; font-weight: normal; text-transform: none">
+                <img src="bullet.png" alt="*" border="0" width="21" height="19" />
+              </div>
+            </td>
+            <td width="100%">
+              <div class="bu2_bullets2_inner" style="color: #000000; font-size: 11.0pt; font-style: normal; font-variant: normal; font-weight: normal; text-transform: none"><span style="color: #000000; font-family: 宋体; font-size: 11.0pt; font-style: normal; font-variant: normal; font-weight: normal; text-transform: none; vertical-align: baseline"><a name="2524222">已选用户：Alice</a></span></div>
+            </td>
+          </tr>
+        </table>
+      </div>
+      <div class="s2_step_next_outer" style="margin-left: 0pt; vertical-align: baseline">
+        <table border="0" cellspacing="0" cellpadding="0" summary="" role="presentation">
+          <tr style="vertical-align: baseline">
+            <td>
+              <div class="s2_step_next_inner" style="width: 18pt; white-space: nowrap; color: #000000; font-size: 11.0pt; font-style: normal; font-variant: normal; font-weight: normal; text-transform: none">
+                <span class="zz_step_number">3.	</span>
+              </div>
+            </td>
+            <td width="100%">
+              <div class="s2_step_next_inner" style="color: #000000; font-size: 11.0pt; font-style: normal; font-variant: normal; font-weight: normal; text-transform: none"><span style="color: #000000; font-family: 宋体; font-size: 11.0pt; font-style: normal; font-variant: normal; font-weight: normal; text-transform: none; vertical-align: baseline"><a name="2524223">点击</a></span><span class="b_bold">确定</span>。</div>
+            </td>
+          </tr>
+        </table>
+      </div>
+      <div class="s2_step_next_outer" style="margin-left: 0pt">
+        <table border="0" cellspacing="0" cellpadding="0" summary="" role="presentation">
+          <tr style="vertical-align: baseline">
+            <td>
+              <div class="s2_step_next_inner" style="width: 18pt; white-space: nowrap">
+                <span class="zz_step_number">4.	</span>
+              </div>
+            </td>
+            <td width="100%">
+              <div class="s2_step_next_inner"><a name="2529987">点击</a><span style="font-weight: bold">认证类型</span>，点击<span style="font-weight: bold">双向认证</span>。</div>
+            </td>
+          </tr>
+        </table>
+      </div>
+      <div class="s2_step_next_outer" style="margin-left: 0pt">
+        <table border="0" cellspacing="0" cellpadding="0" summary="" role="presentation">
+          <tr style="vertical-align: baseline">
+            <td>
+              <div class="s2_step_next_inner" style="width: 18pt; white-space: nowrap">
+                <span class="zz_step_number">5.	</span>
+              </div>
+            </td>
+            <td width="100%">
+              <div class="s2_step_next_inner"><span style="font-family: 宋体"><a name="2536726">点击</a></span><span class="b_bold">确定</span><span style="font-family: 宋体">。</span></div>
+            </td>
+          </tr>
+        </table>
+      </div>
+      <div class="s2_step_next_outer" style="margin-left: 0pt; vertical-align: baseline">
+        <table border="0" cellspacing="0" cellpadding="0" summary="" role="presentation">
+          <tr style="vertical-align: baseline">
+            <td>
+              <div class="s2_step_next_inner" style="width: 18pt; white-space: nowrap; color: #000000; font-size: 11.0pt; font-style: normal; font-variant: normal; font-weight: normal; text-transform: none">
+                <span class="zz_step_number">6.	</span>
+              </div>
+            </td>
+            <td width="100%">
+              <div class="s2_step_next_inner" style="color: #000000; font-size: 11.0pt; font-style: normal; font-variant: normal; font-weight: normal; text-transform: none"><span style="color: #000000; font-family: 宋体; font-size: 11.0pt; font-style: normal; font-variant: normal; font-weight: normal; text-transform: none; vertical-align: baseline"><a name="2524224">点击</a></span><span class="b_bold">保存</span><span class="b_bold" style="font-weight: normal">按钮。</span></div>
+            </td>
+          </tr>
+        </table>
+      </div>
+      <div class="N4h_4Heading" style="font-size: 12.0pt; font-style: normal; font-variant: normal; font-weight: bold; text-transform: none; vertical-align: baseline"><span style="color: #000000; font-family: 宋体; font-size: 12.0pt; font-style: normal; font-variant: normal; font-weight: bold; text-transform: none; vertical-align: baseline"><a name="2529943">创建SSL VPN资源</a></span></div>
+      <div class="s1_step_first_outer" style="margin-left: 0pt; vertical-align: baseline">
+        <table border="0" cellspacing="0" cellpadding="0" summary="" role="presentation">
+          <tr style="vertical-align: baseline">
+            <td>
+              <div class="s1_step_first_inner" style="width: 18pt; white-space: nowrap; color: #000000; font-size: 11.0pt; font-style: normal; font-variant: normal; font-weight: normal; text-transform: none">
+                <span class="zz_step_number">1.	</span>
+              </div>
+            </td>
+            <td width="100%">
+              <div class="s1_step_first_inner" style="color: #000000; font-size: 11.0pt; font-style: normal; font-variant: normal; font-weight: normal; text-transform: none"><span style="color: #000000; font-family: 宋体; font-size: 11.0pt; font-style: normal; font-variant: normal; font-weight: normal; text-transform: none; vertical-align: baseline"><a name="2529967">选择</a></span><span class="b_bold">VPN </span>&gt; <span class="b_bold">SSL VPN</span> &gt;<span class="b_bold">资源</span>。</div>
+            </td>
+          </tr>
+        </table>
+      </div>
+      <div class="s2_step_next_outer" style="margin-left: 0pt; vertical-align: baseline">
+        <table border="0" cellspacing="0" cellpadding="0" summary="" role="presentation">
+          <tr style="vertical-align: baseline">
+            <td>
+              <div class="s2_step_next_inner" style="width: 18pt; white-space: nowrap; color: #000000; font-size: 11.0pt; font-style: normal; font-variant: normal; font-weight: normal; text-transform: none">
+                <span class="zz_step_number">2.	</span>
+              </div>
+            </td>
+            <td width="100%">
+              <div class="s2_step_next_inner" style="color: #000000; font-size: 11.0pt; font-style: normal; font-variant: normal; font-weight: normal; text-transform: none"><span style="color: #000000; font-family: 宋体; font-size: 11.0pt; font-style: normal; font-variant: normal; font-weight: normal; text-transform: none; vertical-align: baseline"><a name="2529968">点击</a></span><span class="b_bold">新建</span>，分别创建如下资源：</div>
+            </td>
+          </tr>
+        </table>
+      </div>
+      <div class="bu2_bullets2_outer" style="margin-left: 18pt; vertical-align: baseline">
+        <table border="0" cellspacing="0" cellpadding="0" summary="" role="presentation">
+          <tr style="vertical-align: baseline">
+            <td>
+              <div class="bu2_bullets2_inner" style="width: 14.399999999999998pt; white-space: nowrap; color: #000000; font-size: 11.0pt; font-style: normal; font-variant: normal; font-weight: normal; text-transform: none">
+                <img src="bullet.png" alt="*" border="0" width="21" height="19" />
+              </div>
+            </td>
+            <td width="100%">
+              <div class="bu2_bullets2_inner" style="color: #000000; font-size: 11.0pt; font-style: normal; font-variant: normal; font-weight: normal; text-transform: none"><span style="color: #000000; font-family: 宋体; font-size: 11.0pt; font-style: normal; font-variant: normal; font-weight: normal; text-transform: none; vertical-align: baseline"><a name="2529969">名称：web-http</a></span></div>
+            </td>
+          </tr>
+        </table>
+      </div>
+      <div class="bu3_bullets3_outer" style="margin-left: 32.4pt; vertical-align: baseline">
+        <table border="0" cellspacing="0" cellpadding="0" summary="" role="presentation">
+          <tr style="vertical-align: baseline">
+            <td>
+              <div class="bu3_bullets3_inner" style="width: 14.399999999999998pt; white-space: nowrap; color: #000000; font-size: 11.0pt; font-style: normal; font-variant: normal; font-weight: normal; text-transform: none">
+                <img src="bullet.png" alt="*" border="0" width="21" height="19" />
+              </div>
+            </td>
+            <td width="100%">
+              <div class="bu3_bullets3_inner" style="color: #000000; font-size: 11.0pt; font-style: normal; font-variant: normal; font-weight: normal; text-transform: none"><span style="color: #000000; font-family: 宋体; font-size: 11.0pt; font-style: normal; font-variant: normal; font-weight: normal; text-transform: none; vertical-align: baseline"><a name="2530033">类型：HTTP</a></span></div>
+            </td>
+          </tr>
+        </table>
+      </div>
+      <div class="bu3_bullets3_outer" style="margin-left: 32.4pt; vertical-align: baseline">
+        <table border="0" cellspacing="0" cellpadding="0" summary="" role="presentation">
+          <tr style="vertical-align: baseline">
+            <td>
+              <div class="bu3_bullets3_inner" style="width: 14.399999999999998pt; white-space: nowrap; color: #000000; font-size: 11.0pt; font-style: normal; font-variant: normal; font-weight: normal; text-transform: none">
+                <img src="bullet.png" alt="*" border="0" width="21" height="19" />
+              </div>
+            </td>
+            <td width="100%">
+              <div class="bu3_bullets3_inner" style="color: #000000; font-size: 11.0pt; font-style: normal; font-variant: normal; font-weight: normal; text-transform: none"><span style="color: #000000; font-family: 宋体; font-size: 11.0pt; font-style: normal; font-variant: normal; font-weight: normal; text-transform: none; vertical-align: baseline"><a name="2530040">地址：192.168.1.10</a></span></div>
+            </td>
+          </tr>
+        </table>
+      </div>
+      <div class="bu3_bullets3_outer" style="margin-left: 32.4pt; vertical-align: baseline">
+        <table border="0" cellspacing="0" cellpadding="0" summary="" role="presentation">
+          <tr style="vertical-align: baseline">
+            <td>
+              <div class="bu3_bullets3_inner" style="width: 14.399999999999998pt; white-space: nowrap; color: #000000; font-size: 11.0pt; font-style: normal; font-variant: normal; font-weight: normal; text-transform: none">
+                <img src="bullet.png" alt="*" border="0" width="21" height="19" />
+              </div>
+            </td>
+            <td width="100%">
+              <div class="bu3_bullets3_inner" style="color: #000000; font-size: 11.0pt; font-style: normal; font-variant: normal; font-weight: normal; text-transform: none"><span style="color: #000000; font-family: 宋体; font-size: 11.0pt; font-style: normal; font-variant: normal; font-weight: normal; text-transform: none; vertical-align: baseline"><a name="2530055">端口：80</a></span></div>
+            </td>
+          </tr>
+        </table>
+      </div>
+      <div class="bu2_bullets2_outer" style="margin-left: 18pt; vertical-align: baseline">
+        <table border="0" cellspacing="0" cellpadding="0" summary="" role="presentation">
+          <tr style="vertical-align: baseline">
+            <td>
+              <div class="bu2_bullets2_inner" style="width: 14.399999999999998pt; white-space: nowrap; color: #000000; font-size: 11.0pt; font-style: normal; font-variant: normal; font-weight: normal; text-transform: none">
+                <img src="bullet.png" alt="*" border="0" width="21" height="19" />
+              </div>
+            </td>
+            <td width="100%">
+              <div class="bu2_bullets2_inner" style="color: #000000; font-size: 11.0pt; font-style: normal; font-variant: normal; font-weight: normal; text-transform: none"><span style="color: #000000; font-family: 宋体; font-size: 11.0pt; font-style: normal; font-variant: normal; font-weight: normal; text-transform: none; vertical-align: baseline"><a name="2530104">名称：web-https</a></span></div>
+            </td>
+          </tr>
+        </table>
+      </div>
+      <div class="bu3_bullets3_outer" style="margin-left: 32.4pt; vertical-align: baseline">
+        <table border="0" cellspacing="0" cellpadding="0" summary="" role="presentation">
+          <tr style="vertical-align: baseline">
+            <td>
+              <div class="bu3_bullets3_inner" style="width: 14.399999999999998pt; white-space: nowrap; color: #000000; font-size: 11.0pt; font-style: normal; font-variant: normal; font-weight: normal; text-transform: none">
+                <img src="bullet.png" alt="*" border="0" width="21" height="19" />
+              </div>
+            </td>
+            <td width="100%">
+              <div class="bu3_bullets3_inner" style="color: #000000; font-size: 11.0pt; font-style: normal; font-variant: normal; font-weight: normal; text-transform: none"><span style="color: #000000; font-family: 宋体; font-size: 11.0pt; font-style: normal; font-variant: normal; font-weight: normal; text-transform: none; vertical-align: baseline"><a name="2530105">类型：HTTPS</a></span></div>
+            </td>
+          </tr>
+        </table>
+      </div>
+      <div class="bu3_bullets3_outer" style="margin-left: 32.4pt; vertical-align: baseline">
+        <table border="0" cellspacing="0" cellpadding="0" summary="" role="presentation">
+          <tr style="vertical-align: baseline">
+            <td>
+              <div class="bu3_bullets3_inner" style="width: 14.399999999999998pt; white-space: nowrap; color: #000000; font-size: 11.0pt; font-style: normal; font-variant: normal; font-weight: normal; text-transform: none">
+                <img src="bullet.png" alt="*" border="0" width="21" height="19" />
+              </div>
+            </td>
+            <td width="100%">
+              <div class="bu3_bullets3_inner" style="color: #000000; font-size: 11.0pt; font-style: normal; font-variant: normal; font-weight: normal; text-transform: none"><span style="color: #000000; font-family: 宋体; font-size: 11.0pt; font-style: normal; font-variant: normal; font-weight: normal; text-transform: none; vertical-align: baseline"><a name="2530106">地址：192.168.1.20</a></span></div>
+            </td>
+          </tr>
+        </table>
+      </div>
+      <div class="bu3_bullets3_outer" style="margin-left: 32.4pt; vertical-align: baseline">
+        <table border="0" cellspacing="0" cellpadding="0" summary="" role="presentation">
+          <tr style="vertical-align: baseline">
+            <td>
+              <div class="bu3_bullets3_inner" style="width: 14.399999999999998pt; white-space: nowrap; color: #000000; font-size: 11.0pt; font-style: normal; font-variant: normal; font-weight: normal; text-transform: none">
+                <img src="bullet.png" alt="*" border="0" width="21" height="19" />
+              </div>
+            </td>
+            <td width="100%">
+              <div class="bu3_bullets3_inner" style="color: #000000; font-size: 11.0pt; font-style: normal; font-variant: normal; font-weight: normal; text-transform: none"><span style="color: #000000; font-family: 宋体; font-size: 11.0pt; font-style: normal; font-variant: normal; font-weight: normal; text-transform: none; vertical-align: baseline"><a name="2530062">端口：443</a></span></div>
+            </td>
+          </tr>
+        </table>
+      </div>
+      <div class="bu2_bullets2_outer" style="margin-left: 18pt; vertical-align: baseline">
+        <table border="0" cellspacing="0" cellpadding="0" summary="" role="presentation">
+          <tr style="vertical-align: baseline">
+            <td>
+              <div class="bu2_bullets2_inner" style="width: 14.399999999999998pt; white-space: nowrap; color: #000000; font-size: 11.0pt; font-style: normal; font-variant: normal; font-weight: normal; text-transform: none">
+                <img src="bullet.png" alt="*" border="0" width="21" height="19" />
+              </div>
+            </td>
+            <td width="100%">
+              <div class="bu2_bullets2_inner" style="color: #000000; font-size: 11.0pt; font-style: normal; font-variant: normal; font-weight: normal; text-transform: none"><span style="color: #000000; font-family: 宋体; font-size: 11.0pt; font-style: normal; font-variant: normal; font-weight: normal; text-transform: none; vertical-align: baseline"><a name="2530188">名称：subnet</a></span></div>
+            </td>
+          </tr>
+        </table>
+      </div>
+      <div class="bu3_bullets3_outer" style="margin-left: 32.4pt; vertical-align: baseline">
+        <table border="0" cellspacing="0" cellpadding="0" summary="" role="presentation">
+          <tr style="vertical-align: baseline">
+            <td>
+              <div class="bu3_bullets3_inner" style="width: 14.399999999999998pt; white-space: nowrap; color: #000000; font-size: 11.0pt; font-style: normal; font-variant: normal; font-weight: normal; text-transform: none">
+                <img src="bullet.png" alt="*" border="0" width="21" height="19" />
+              </div>
+            </td>
+            <td width="100%">
+              <div class="bu3_bullets3_inner" style="color: #000000; font-size: 11.0pt; font-style: normal; font-variant: normal; font-weight: normal; text-transform: none"><span style="color: #000000; font-family: 宋体; font-size: 11.0pt; font-style: normal; font-variant: normal; font-weight: normal; text-transform: none; vertical-align: baseline"><a name="2530189">类型：</a></span>子网</div>
+            </td>
+          </tr>
+        </table>
+      </div>
+      <div class="bu3_bullets3_outer" style="margin-left: 32.4pt; vertical-align: baseline">
+        <table border="0" cellspacing="0" cellpadding="0" summary="" role="presentation">
+          <tr style="vertical-align: baseline">
+            <td>
+              <div class="bu3_bullets3_inner" style="width: 14.399999999999998pt; white-space: nowrap; color: #000000; font-size: 11.0pt; font-style: normal; font-variant: normal; font-weight: normal; text-transform: none">
+                <img src="bullet.png" alt="*" border="0" width="21" height="19" />
+              </div>
+            </td>
+            <td width="100%">
+              <div class="bu3_bullets3_inner" style="color: #000000; font-size: 11.0pt; font-style: normal; font-variant: normal; font-weight: normal; text-transform: none"><a name="2530190">IP地址：192.168.1.0</a></div>
+            </td>
+          </tr>
+        </table>
+      </div>
+      <div class="bu3_bullets3_outer" style="margin-left: 32.4pt; vertical-align: baseline">
+        <table border="0" cellspacing="0" cellpadding="0" summary="" role="presentation">
+          <tr style="vertical-align: baseline">
+            <td>
+              <div class="bu3_bullets3_inner" style="width: 14.399999999999998pt; white-space: nowrap; color: #000000; font-size: 11.0pt; font-style: normal; font-variant: normal; font-weight: normal; text-transform: none">
+                <img src="bullet.png" alt="*" border="0" width="21" height="19" />
+              </div>
+            </td>
+            <td width="100%">
+              <div class="bu3_bullets3_inner" style="color: #000000; font-size: 11.0pt; font-style: normal; font-variant: normal; font-weight: normal; text-transform: none"><a name="2530180">掩码长度：24</a></div>
+            </td>
+          </tr>
+        </table>
+      </div>
+      <div class="s2_step_next_outer" style="margin-left: 0pt; vertical-align: baseline">
+        <table border="0" cellspacing="0" cellpadding="0" summary="" role="presentation">
+          <tr style="vertical-align: baseline">
+            <td>
+              <div class="s2_step_next_inner" style="width: 18pt; white-space: nowrap; color: #000000; font-size: 11.0pt; font-style: normal; font-variant: normal; font-weight: normal; text-transform: none">
+                <span class="zz_step_number">3.	</span>
+              </div>
+            </td>
+            <td width="100%">
+              <div class="s2_step_next_inner" style="color: #000000; font-size: 11.0pt; font-style: normal; font-variant: normal; font-weight: normal; text-transform: none"><span style="color: #000000; font-family: 宋体; font-size: 11.0pt; font-style: normal; font-variant: normal; font-weight: normal; text-transform: none; vertical-align: baseline"><a name="2529971">点击</a></span><span class="b_bold">确定</span>。</div>
+            </td>
+          </tr>
+        </table>
+      </div>
+      <div class="s2_step_next_outer" style="margin-left: 0pt">
+        <table border="0" cellspacing="0" cellpadding="0" summary="" role="presentation">
+          <tr style="vertical-align: baseline">
+            <td>
+              <div class="s2_step_next_inner" style="width: 18pt; white-space: nowrap">
+                <span class="zz_step_number">4.	</span>
+              </div>
+            </td>
+            <td width="100%">
+              <div class="s2_step_next_inner"><a name="2530254">点击</a><span class="b_bold">保存</span><span class="b_bold" style="font-weight: normal">按钮。</span></div>
+            </td>
+          </tr>
+        </table>
+      </div>
+      <div class="N4h_4Heading" style="font-size: 12.0pt; font-style: normal; font-variant: normal; font-weight: bold; text-transform: none; vertical-align: baseline"><span style="color: #000000; font-family: 宋体; font-size: 12.0pt; font-style: normal; font-variant: normal; font-weight: bold; text-transform: none; vertical-align: baseline"><a name="2524226">创建SSL VPN隧道</a></span></div>
+      <div class="s1_step_first_outer" style="margin-left: 0pt; vertical-align: baseline">
+        <table border="0" cellspacing="0" cellpadding="0" summary="" role="presentation">
+          <tr style="vertical-align: baseline">
+            <td>
+              <div class="s1_step_first_inner" style="width: 18pt; white-space: nowrap; color: #000000; font-size: 11.0pt; font-style: normal; font-variant: normal; font-weight: normal; text-transform: none">
+                <span class="zz_step_number">1.	</span>
+              </div>
+            </td>
+            <td width="100%">
+              <div class="s1_step_first_inner" style="color: #000000; font-size: 11.0pt; font-style: normal; font-variant: normal; font-weight: normal; text-transform: none"><span style="color: #000000; font-family: 宋体; font-size: 11.0pt; font-style: normal; font-variant: normal; font-weight: normal; text-transform: none; vertical-align: baseline"><a name="2524227">选择</a></span><span class="b_bold">VPN</span> &gt; <span class="b_bold">SSL VPN</span> &gt; <span class="b_bold">SSL VPN隧道</span>&gt;<span class="b_bold">隧道</span>。</div>
+            </td>
+          </tr>
+        </table>
+      </div>
+      <div class="s2_step_next_outer" style="margin-left: 0pt; vertical-align: baseline">
+        <table border="0" cellspacing="0" cellpadding="0" summary="" role="presentation">
+          <tr style="vertical-align: baseline">
+            <td>
+              <div class="s2_step_next_inner" style="width: 18pt; white-space: nowrap; color: #000000; font-size: 11.0pt; font-style: normal; font-variant: normal; font-weight: normal; text-transform: none">
+                <span class="zz_step_number">2.	</span>
+              </div>
+            </td>
+            <td width="100%">
+              <div class="s2_step_next_inner" style="color: #000000; font-size: 11.0pt; font-style: normal; font-variant: normal; font-weight: normal; text-transform: none"><span style="color: #000000; font-family: 宋体; font-size: 11.0pt; font-style: normal; font-variant: normal; font-weight: normal; text-transform: none; vertical-align: baseline"><a name="2524228">点击</a></span><span class="b_bold">新建</span>，创建一条SSL VPN隧道。此隧道用于远程用户与服务器之间的数据传输。</div>
+            </td>
+          </tr>
+        </table>
+      </div>
+      <div class="bu2_bullets2_outer" style="margin-left: 18pt; vertical-align: baseline">
+        <table border="0" cellspacing="0" cellpadding="0" summary="" role="presentation">
+          <tr style="vertical-align: baseline">
+            <td>
+              <div class="bu2_bullets2_inner" style="width: 14.399999999999998pt; white-space: nowrap; color: #000000; font-size: 11.0pt; font-style: normal; font-variant: normal; font-weight: normal; text-transform: none">
+                <img src="bullet.png" alt="*" border="0" width="21" height="19" />
+              </div>
+            </td>
+            <td width="100%">
+              <div class="bu2_bullets2_inner" style="color: #000000; font-size: 11.0pt; font-style: normal; font-variant: normal; font-weight: normal; text-transform: none"><span style="color: #000000; font-family: 宋体; font-size: 11.0pt; font-style: normal; font-variant: normal; font-weight: normal; text-transform: none; vertical-align: baseline"><a name="2524229">名称：sslvpn-tunnel</a></span></div>
+            </td>
+          </tr>
+        </table>
+      </div>
+      <div class="bu2_bullets2_outer" style="margin-left: 18pt; vertical-align: baseline">
+        <table border="0" cellspacing="0" cellpadding="0" summary="" role="presentation">
+          <tr style="vertical-align: baseline">
+            <td>
+              <div class="bu2_bullets2_inner" style="width: 14.399999999999998pt; white-space: nowrap; color: #000000; font-size: 11.0pt; font-style: normal; font-variant: normal; font-weight: normal; text-transform: none">
+                <img src="bullet.png" alt="*" border="0" width="21" height="19" />
+              </div>
+            </td>
+            <td width="100%">
+              <div class="bu2_bullets2_inner" style="color: #000000; font-size: 11.0pt; font-style: normal; font-variant: normal; font-weight: normal; text-transform: none"><span style="color: #000000; font-family: 宋体; font-size: 11.0pt; font-style: normal; font-variant: normal; font-weight: normal; text-transform: none; vertical-align: baseline"><a name="2524230">用户组：group</a></span></div>
+            </td>
+          </tr>
+        </table>
+      </div>
+      <div class="bu2_bullets2_outer" style="margin-left: 18pt; vertical-align: baseline">
+        <table border="0" cellspacing="0" cellpadding="0" summary="" role="presentation">
+          <tr style="vertical-align: baseline">
+            <td>
+              <div class="bu2_bullets2_inner" style="width: 14.399999999999998pt; white-space: nowrap; color: #000000; font-size: 11.0pt; font-style: normal; font-variant: normal; font-weight: normal; text-transform: none">
+                <img src="bullet.png" alt="*" border="0" width="21" height="19" />
+              </div>
+            </td>
+            <td width="100%">
+              <div class="bu2_bullets2_inner" style="color: #000000; font-size: 11.0pt; font-style: normal; font-variant: normal; font-weight: normal; text-transform: none"><span style="color: #000000; font-family: 宋体; font-size: 11.0pt; font-style: normal; font-variant: normal; font-weight: normal; text-transform: none; vertical-align: baseline"><a name="2524231">出口接口：eth-s1p2（与Internet连接的SSL VPN服务器的接口）</a></span></div>
+            </td>
+          </tr>
+        </table>
+      </div>
+      <div class="bu2_bullets2_outer" style="margin-left: 18pt; vertical-align: baseline">
+        <table border="0" cellspacing="0" cellpadding="0" summary="" role="presentation">
+          <tr style="vertical-align: baseline">
+            <td>
+              <div class="bu2_bullets2_inner" style="width: 14.399999999999998pt; white-space: nowrap; color: #000000; font-size: 11.0pt; font-style: normal; font-variant: normal; font-weight: normal; text-transform: none">
+                <img src="bullet.png" alt="*" border="0" width="21" height="19" />
+              </div>
+            </td>
+            <td width="100%">
+              <div class="bu2_bullets2_inner" style="color: #000000; font-size: 11.0pt; font-style: normal; font-variant: normal; font-weight: normal; text-transform: none"><span style="color: #000000; font-family: 宋体; font-size: 11.0pt; font-style: normal; font-variant: normal; font-weight: normal; text-transform: none; vertical-align: baseline"><a name="2524232">本地IP地址：202.118.1.1（eth-s1p2的IP地址）</a></span></div>
+            </td>
+          </tr>
+        </table>
+      </div>
+      <div class="bu2_bullets2_outer" style="margin-left: 18pt; vertical-align: baseline">
+        <table border="0" cellspacing="0" cellpadding="0" summary="" role="presentation">
+          <tr style="vertical-align: baseline">
+            <td>
+              <div class="bu2_bullets2_inner" style="width: 14.399999999999998pt; white-space: nowrap; color: #000000; font-size: 11.0pt; font-style: normal; font-variant: normal; font-weight: normal; text-transform: none">
+                <img src="bullet.png" alt="*" border="0" width="21" height="19" />
+              </div>
+            </td>
+            <td width="100%">
+              <div class="bu2_bullets2_inner" style="color: #000000; font-size: 11.0pt; font-style: normal; font-variant: normal; font-weight: normal; text-transform: none"><span style="color: #000000; font-family: 宋体; font-size: 11.0pt; font-style: normal; font-variant: normal; font-weight: normal; text-transform: none; vertical-align: baseline"><a name="2524233">资源列表（允许远程用户访问的内网资源）：</a></span></div>
+            </td>
+          </tr>
+        </table>
+      </div>
+      <div class="bu3_bullets3_outer" style="margin-left: 32.4pt; vertical-align: baseline">
+        <table border="0" cellspacing="0" cellpadding="0" summary="" role="presentation">
+          <tr style="vertical-align: baseline">
+            <td>
+              <div class="bu3_bullets3_inner" style="width: 14.399999999999998pt; white-space: nowrap; color: #000000; font-size: 11.0pt; font-style: normal; font-variant: normal; font-weight: normal; text-transform: none">
+                <img src="bullet.png" alt="*" border="0" width="21" height="19" />
+              </div>
+            </td>
+            <td width="100%">
+              <div class="bu3_bullets3_inner" style="color: #000000; font-size: 11.0pt; font-style: normal; font-variant: normal; font-weight: normal; text-transform: none"><span style="color: #000000; font-family: 宋体; font-size: 11.0pt; font-style: normal; font-variant: normal; font-weight: normal; text-transform: none; vertical-align: baseline"><a name="2530279">web-http</a></span></div>
+            </td>
+          </tr>
+        </table>
+      </div>
+      <div class="bu3_bullets3_outer" style="margin-left: 32.4pt; vertical-align: baseline">
+        <table border="0" cellspacing="0" cellpadding="0" summary="" role="presentation">
+          <tr style="vertical-align: baseline">
+            <td>
+              <div class="bu3_bullets3_inner" style="width: 14.399999999999998pt; white-space: nowrap; color: #000000; font-size: 11.0pt; font-style: normal; font-variant: normal; font-weight: normal; text-transform: none">
+                <img src="bullet.png" alt="*" border="0" width="21" height="19" />
+              </div>
+            </td>
+            <td width="100%">
+              <div class="bu3_bullets3_inner" style="color: #000000; font-size: 11.0pt; font-style: normal; font-variant: normal; font-weight: normal; text-transform: none"><span style="color: #000000; font-family: 宋体; font-size: 11.0pt; font-style: normal; font-variant: normal; font-weight: normal; text-transform: none; vertical-align: baseline"><a name="2530299">web-https</a></span></div>
+            </td>
+          </tr>
+        </table>
+      </div>
+      <div class="bu3_bullets3_outer" style="margin-left: 32.4pt">
+        <table border="0" cellspacing="0" cellpadding="0" summary="" role="presentation">
+          <tr style="vertical-align: baseline">
+            <td>
+              <div class="bu3_bullets3_inner" style="width: 14.399999999999998pt; white-space: nowrap">
+                <img src="bullet.png" alt="*" border="0" width="21" height="19" />
+              </div>
+            </td>
+            <td width="100%">
+              <div class="bu3_bullets3_inner"><span style="font-family: 宋体"><a name="2530306">subnet</a></span></div>
+            </td>
+          </tr>
+        </table>
+      </div>
+      <div class="s2_step_next_outer" style="margin-left: 0pt; vertical-align: baseline">
+        <table border="0" cellspacing="0" cellpadding="0" summary="" role="presentation">
+          <tr style="vertical-align: baseline">
+            <td>
+              <div class="s2_step_next_inner" style="width: 18pt; white-space: nowrap; color: #000000; font-size: 11.0pt; font-style: normal; font-variant: normal; font-weight: normal; text-transform: none">
+                <span class="zz_step_number">3.	</span>
+              </div>
+            </td>
+            <td width="100%">
+              <div class="s2_step_next_inner" style="color: #000000; font-size: 11.0pt; font-style: normal; font-variant: normal; font-weight: normal; text-transform: none"><span style="color: #000000; font-family: 宋体; font-size: 11.0pt; font-style: normal; font-variant: normal; font-weight: normal; text-transform: none; vertical-align: baseline"><a name="2524234">点击</a></span><span class="b_bold">确定</span>。</div>
+            </td>
+          </tr>
+        </table>
+      </div>
+      <div class="s2_step_next_outer" style="margin-left: 0pt; vertical-align: baseline">
+        <table border="0" cellspacing="0" cellpadding="0" summary="" role="presentation">
+          <tr style="vertical-align: baseline">
+            <td>
+              <div class="s2_step_next_inner" style="width: 18pt; white-space: nowrap; color: #000000; font-size: 11.0pt; font-style: normal; font-variant: normal; font-weight: normal; text-transform: none">
+                <span class="zz_step_number">4.	</span>
+              </div>
+            </td>
+            <td width="100%">
+              <div class="s2_step_next_inner" style="color: #000000; font-size: 11.0pt; font-style: normal; font-variant: normal; font-weight: normal; text-transform: none"><span style="color: #000000; font-family: 宋体; font-size: 11.0pt; font-style: normal; font-variant: normal; font-weight: normal; text-transform: none; vertical-align: baseline"><a name="2524235">点击</a></span><span class="b_bold">保存</span><span class="b_bold" style="font-weight: normal">按钮。</span></div>
+            </td>
+          </tr>
+        </table>
+      </div>
+      <div class="N4h_4Heading" style="font-size: 12.0pt; font-style: normal; font-variant: normal; font-weight: bold; text-transform: none; vertical-align: baseline"><span style="color: #000000; font-family: 宋体; font-size: 12.0pt; font-style: normal; font-variant: normal; font-weight: bold; text-transform: none; vertical-align: baseline"><a name="2524237">创建访问策略</a></span></div>
+      <div class="s1_step_first_outer" style="margin-left: 0pt; vertical-align: baseline">
+        <table border="0" cellspacing="0" cellpadding="0" summary="" role="presentation">
+          <tr style="vertical-align: baseline">
+            <td>
+              <div class="s1_step_first_inner" style="width: 18pt; white-space: nowrap; color: #000000; font-size: 11.0pt; font-style: normal; font-variant: normal; font-weight: normal; text-transform: none">
+                <span class="zz_step_number">1.	</span>
+              </div>
+            </td>
+            <td width="100%">
+              <div class="s1_step_first_inner" style="color: #000000; font-size: 11.0pt; font-style: normal; font-variant: normal; font-weight: normal; text-transform: none"><span style="color: #000000; font-family: 宋体; font-size: 11.0pt; font-style: normal; font-variant: normal; font-weight: normal; text-transform: none; vertical-align: baseline"><a name="2524238">选择</a></span><span class="b_bold">防火墙</span>&gt;<span class="b_bold">访问策略</span>。</div>
+            </td>
+          </tr>
+        </table>
+      </div>
+      <div class="s2_step_next_outer" style="margin-left: 0pt; vertical-align: baseline">
+        <table border="0" cellspacing="0" cellpadding="0" summary="" role="presentation">
+          <tr style="vertical-align: baseline">
+            <td>
+              <div class="s2_step_next_inner" style="width: 18pt; white-space: nowrap; color: #000000; font-size: 11.0pt; font-style: normal; font-variant: normal; font-weight: normal; text-transform: none">
+                <span class="zz_step_number">2.	</span>
+              </div>
+            </td>
+            <td width="100%">
+              <div class="s2_step_next_inner" style="color: #000000; font-size: 11.0pt; font-style: normal; font-variant: normal; font-weight: normal; text-transform: none"><span style="color: #000000; font-family: 宋体; font-size: 11.0pt; font-style: normal; font-variant: normal; font-weight: normal; text-transform: none; vertical-align: baseline"><a name="2524239">点击</a></span><span class="b_bold">新建</span>，创建一条访问策略，允许远程用户访问公司内网。</div>
+            </td>
+          </tr>
+        </table>
+      </div>
+      <div class="bu2_bullets2_outer" style="margin-left: 18pt; vertical-align: baseline">
+        <table border="0" cellspacing="0" cellpadding="0" summary="" role="presentation">
+          <tr style="vertical-align: baseline">
+            <td>
+              <div class="bu2_bullets2_inner" style="width: 14.399999999999998pt; white-space: nowrap; color: #000000; font-size: 11.0pt; font-style: normal; font-variant: normal; font-weight: normal; text-transform: none">
+                <img src="bullet.png" alt="*" border="0" width="21" height="19" />
+              </div>
+            </td>
+            <td width="100%">
+              <div class="bu2_bullets2_inner" style="color: #000000; font-size: 11.0pt; font-style: normal; font-variant: normal; font-weight: normal; text-transform: none"><span style="color: #000000; font-family: 宋体; font-size: 11.0pt; font-style: normal; font-variant: normal; font-weight: normal; text-transform: none; vertical-align: baseline"><a name="2524240">名称：permit-alice</a></span></div>
+            </td>
+          </tr>
+        </table>
+      </div>
+      <div class="bu2_bullets2_outer" style="margin-left: 18pt; vertical-align: baseline">
+        <table border="0" cellspacing="0" cellpadding="0" summary="" role="presentation">
+          <tr style="vertical-align: baseline">
+            <td>
+              <div class="bu2_bullets2_inner" style="width: 14.399999999999998pt; white-space: nowrap; color: #000000; font-size: 11.0pt; font-style: normal; font-variant: normal; font-weight: normal; text-transform: none">
+                <img src="bullet.png" alt="*" border="0" width="21" height="19" />
+              </div>
+            </td>
+            <td width="100%">
+              <div class="bu2_bullets2_inner" style="color: #000000; font-size: 11.0pt; font-style: normal; font-variant: normal; font-weight: normal; text-transform: none"><span style="color: #000000; font-family: 宋体; font-size: 11.0pt; font-style: normal; font-variant: normal; font-weight: normal; text-transform: none; vertical-align: baseline"><a name="2524241">源IP地址：30.1.1.1-30.1.1.100（IP地址池中的地址）</a></span></div>
+            </td>
+          </tr>
+        </table>
+      </div>
+      <div class="bu2_bullets2_outer" style="margin-left: 18pt; vertical-align: baseline">
+        <table border="0" cellspacing="0" cellpadding="0" summary="" role="presentation">
+          <tr style="vertical-align: baseline">
+            <td>
+              <div class="bu2_bullets2_inner" style="width: 14.399999999999998pt; white-space: nowrap; color: #000000; font-size: 11.0pt; font-style: normal; font-variant: normal; font-weight: normal; text-transform: none">
+                <img src="bullet.png" alt="*" border="0" width="21" height="19" />
+              </div>
+            </td>
+            <td width="100%">
+              <div class="bu2_bullets2_inner" style="color: #000000; font-size: 11.0pt; font-style: normal; font-variant: normal; font-weight: normal; text-transform: none"><span style="color: #000000; font-family: 宋体; font-size: 11.0pt; font-style: normal; font-variant: normal; font-weight: normal; text-transform: none; vertical-align: baseline"><a name="2524242">目的IP地址：192.168.1.0/24（允许访问的公司内网网段）</a></span></div>
+            </td>
+          </tr>
+        </table>
+      </div>
+      <div class="bu2_bullets2_outer" style="margin-left: 18pt; vertical-align: baseline">
+        <table border="0" cellspacing="0" cellpadding="0" summary="" role="presentation">
+          <tr style="vertical-align: baseline">
+            <td>
+              <div class="bu2_bullets2_inner" style="width: 14.399999999999998pt; white-space: nowrap; color: #000000; font-size: 11.0pt; font-style: normal; font-variant: normal; font-weight: normal; text-transform: none">
+                <img src="bullet.png" alt="*" border="0" width="21" height="19" />
+              </div>
+            </td>
+            <td width="100%">
+              <div class="bu2_bullets2_inner" style="color: #000000; font-size: 11.0pt; font-style: normal; font-variant: normal; font-weight: normal; text-transform: none"><span style="color: #000000; font-family: 宋体; font-size: 11.0pt; font-style: normal; font-variant: normal; font-weight: normal; text-transform: none; vertical-align: baseline"><a name="2524243">动作：允许</a></span></div>
+            </td>
+          </tr>
+        </table>
+      </div>
+      <div class="s2_step_next_outer" style="margin-left: 0pt; vertical-align: baseline">
+        <table border="0" cellspacing="0" cellpadding="0" summary="" role="presentation">
+          <tr style="vertical-align: baseline">
+            <td>
+              <div class="s2_step_next_inner" style="width: 18pt; white-space: nowrap; color: #000000; font-size: 11.0pt; font-style: normal; font-variant: normal; font-weight: normal; text-transform: none">
+                <span class="zz_step_number">3.	</span>
+              </div>
+            </td>
+            <td width="100%">
+              <div class="s2_step_next_inner" style="color: #000000; font-size: 11.0pt; font-style: normal; font-variant: normal; font-weight: normal; text-transform: none"><span style="color: #000000; font-family: 宋体; font-size: 11.0pt; font-style: normal; font-variant: normal; font-weight: normal; text-transform: none; vertical-align: baseline"><a name="2524244">点击</a></span><span class="b_bold">确定</span>。</div>
+            </td>
+          </tr>
+        </table>
+      </div>
+      <div class="s2_step_next_outer" style="margin-left: 0pt; vertical-align: baseline">
+        <table border="0" cellspacing="0" cellpadding="0" summary="" role="presentation">
+          <tr style="vertical-align: baseline">
+            <td>
+              <div class="s2_step_next_inner" style="width: 18pt; white-space: nowrap; color: #000000; font-size: 11.0pt; font-style: normal; font-variant: normal; font-weight: normal; text-transform: none">
+                <span class="zz_step_number">4.	</span>
+              </div>
+            </td>
+            <td width="100%">
+              <div class="s2_step_next_inner" style="color: #000000; font-size: 11.0pt; font-style: normal; font-variant: normal; font-weight: normal; text-transform: none"><span style="color: #000000; font-family: 宋体; font-size: 11.0pt; font-style: normal; font-variant: normal; font-weight: normal; text-transform: none; vertical-align: baseline"><a name="2524245">点击</a></span><span class="b_bold">保存</span><span class="b_bold" style="font-weight: normal">按钮。</span></div>
+            </td>
+          </tr>
+        </table>
+      </div>
+      <div class="N4h_4Heading" style="font-size: 12.0pt; font-style: normal; font-variant: normal; font-weight: bold; text-transform: none; vertical-align: baseline"><span style="color: #000000; font-family: 宋体; font-size: 12.0pt; font-style: normal; font-variant: normal; font-weight: bold; text-transform: none; vertical-align: baseline"><a name="2524247">导入个人证书</a></span></div>
+      <div class="b1_body"><a name="2524259">将iOS设备连接到PC上，打开PC的iTunes，进入到iOS设备的</a><span style="font-weight: bold">应用</span>页面。点击<span style="font-weight: bold">文件共享</span>，点击<span style="font-weight: bold">东软SSL VPN客户端</span>，将个人证书导入到客户端。</div>
+      <div class="N4h_4Heading" style="font-size: 12.0pt; font-style: normal; font-variant: normal; font-weight: bold; text-transform: none; vertical-align: baseline"><span style="color: #000000; font-family: 宋体; font-size: 12.0pt; font-style: normal; font-variant: normal; font-weight: bold; text-transform: none; vertical-align: baseline"><a name="2524261">创建SSL VPN连接</a></span></div>
+      <div class="s1_step_first_outer" style="margin-left: 0pt; vertical-align: baseline">
+        <table border="0" cellspacing="0" cellpadding="0" summary="" role="presentation">
+          <tr style="vertical-align: baseline">
+            <td>
+              <div class="s1_step_first_inner" style="width: 18pt; white-space: nowrap; color: #000000; font-size: 11.0pt; font-style: normal; font-variant: normal; font-weight: normal; text-transform: none">
+                <span class="zz_step_number">1.	</span>
+              </div>
+            </td>
+            <td width="100%">
+              <div class="s1_step_first_inner" style="color: #000000; font-size: 11.0pt; font-style: normal; font-variant: normal; font-weight: normal; text-transform: none"><span style="color: #000000; font-family: 宋体; font-size: 11.0pt; font-style: normal; font-variant: normal; font-weight: normal; text-transform: none; vertical-align: baseline"><a name="2524262">在SSL VPN客户端登录页面，输入以下信息：</a></span></div>
+            </td>
+          </tr>
+        </table>
+      </div>
+      <div class="bu2_bullets2_outer" style="margin-left: 18pt; vertical-align: baseline">
+        <table border="0" cellspacing="0" cellpadding="0" summary="" role="presentation">
+          <tr style="vertical-align: baseline">
+            <td>
+              <div class="bu2_bullets2_inner" style="width: 14.399999999999998pt; white-space: nowrap; color: #000000; font-size: 11.0pt; font-style: normal; font-variant: normal; font-weight: normal; text-transform: none">
+                <img src="bullet.png" alt="*" border="0" width="21" height="19" />
+              </div>
+            </td>
+            <td width="100%">
+              <div class="bu2_bullets2_inner" style="color: #000000; font-size: 11.0pt; font-style: normal; font-variant: normal; font-weight: normal; text-transform: none"><span style="color: #000000; font-family: 宋体; font-size: 11.0pt; font-style: normal; font-variant: normal; font-weight: normal; text-transform: none; vertical-align: baseline"><a name="2524263">连接名：sslvpn-tunnel（SSL VPN隧道的名称）</a></span></div>
+            </td>
+          </tr>
+        </table>
+      </div>
+      <div class="bu2_bullets2_outer" style="margin-left: 18pt; vertical-align: baseline">
+        <table border="0" cellspacing="0" cellpadding="0" summary="" role="presentation">
+          <tr style="vertical-align: baseline">
+            <td>
+              <div class="bu2_bullets2_inner" style="width: 14.399999999999998pt; white-space: nowrap; color: #000000; font-size: 11.0pt; font-style: normal; font-variant: normal; font-weight: normal; text-transform: none">
+                <img src="bullet.png" alt="*" border="0" width="21" height="19" />
+              </div>
+            </td>
+            <td width="100%">
+              <div class="bu2_bullets2_inner" style="color: #000000; font-size: 11.0pt; font-style: normal; font-variant: normal; font-weight: normal; text-transform: none"><span style="color: #000000; font-family: 宋体; font-size: 11.0pt; font-style: normal; font-variant: normal; font-weight: normal; text-transform: none; vertical-align: baseline"><a name="2524264">服务器：202.118.1.1（服务器接口eth-s1p2的IP地址）</a></span></div>
+            </td>
+          </tr>
+        </table>
+      </div>
+      <div class="bu2_bullets2_outer" style="margin-left: 18pt; vertical-align: baseline">
+        <table border="0" cellspacing="0" cellpadding="0" summary="" role="presentation">
+          <tr style="vertical-align: baseline">
+            <td>
+              <div class="bu2_bullets2_inner" style="width: 14.399999999999998pt; white-space: nowrap; color: #000000; font-size: 11.0pt; font-style: normal; font-variant: normal; font-weight: normal; text-transform: none">
+                <img src="bullet.png" alt="*" border="0" width="21" height="19" />
+              </div>
+            </td>
+            <td width="100%">
+              <div class="bu2_bullets2_inner" style="color: #000000; font-size: 11.0pt; font-style: normal; font-variant: normal; font-weight: normal; text-transform: none"><span style="color: #000000; font-family: 宋体; font-size: 11.0pt; font-style: normal; font-variant: normal; font-weight: normal; text-transform: none; vertical-align: baseline"><a name="2524265">用户名：Alice（SSL VPN用户名称）</a></span></div>
+            </td>
+          </tr>
+        </table>
+      </div>
+      <div class="bu2_bullets2_outer" style="margin-left: 18pt; vertical-align: baseline">
+        <table border="0" cellspacing="0" cellpadding="0" summary="" role="presentation">
+          <tr style="vertical-align: baseline">
+            <td>
+              <div class="bu2_bullets2_inner" style="width: 14.399999999999998pt; white-space: nowrap; color: #000000; font-size: 11.0pt; font-style: normal; font-variant: normal; font-weight: normal; text-transform: none">
+                <img src="bullet.png" alt="*" border="0" width="21" height="19" />
+              </div>
+            </td>
+            <td width="100%">
+              <div class="bu2_bullets2_inner" style="color: #000000; font-size: 11.0pt; font-style: normal; font-variant: normal; font-weight: normal; text-transform: none"><span style="color: #000000; font-family: 宋体; font-size: 11.0pt; font-style: normal; font-variant: normal; font-weight: normal; text-transform: none; vertical-align: baseline"><a name="2524266">密码：123456（为Alice设置的密码）</a></span></div>
+            </td>
+          </tr>
+        </table>
+      </div>
+      <div class="s2_step_next_outer" style="margin-left: 0pt">
+        <table border="0" cellspacing="0" cellpadding="0" summary="" role="presentation">
+          <tr style="vertical-align: baseline">
+            <td>
+              <div class="s2_step_next_inner" style="width: 18pt; white-space: nowrap">
+                <span class="zz_step_number">2.	</span>
+              </div>
+            </td>
+            <td width="100%">
+              <div class="s2_step_next_inner"><a name="2524267">点击图标</a><span style="font-weight: bold">未连接</span>。输入个人证书密码。如果在服务器上启用了的OTP认证，那么还需要输入OTP密码。</div>
+            </td>
+          </tr>
+        </table>
+      </div>
+      <div class="s2_step_next_outer" style="margin-left: 0pt">
+        <table border="0" cellspacing="0" cellpadding="0" summary="" role="presentation">
+          <tr style="vertical-align: baseline">
+            <td>
+              <div class="s2_step_next_inner" style="width: 18pt; white-space: nowrap">
+                <span class="zz_step_number">3.	</span>
+              </div>
+            </td>
+            <td width="100%">
+              <div class="s2_step_next_inner"><a name="2524268">待图标变为红色</a><span style="font-weight: bold">已连接</span>时，说明SSL VPN客户端已与服务器成功建立了SSL VPN连接。此时，远程用户即可通过SSL VPN隧道访问服务器后端的内网资源。</div>
+            </td>
+          </tr>
+        </table>
+      </div>
+      <div class="s2_step_next_outer" style="margin-left: 0pt">
+        <table border="0" cellspacing="0" cellpadding="0" summary="" role="presentation">
+          <tr style="vertical-align: baseline">
+            <td>
+              <div class="s2_step_next_inner" style="width: 18pt; white-space: nowrap">
+                <span class="zz_step_number">4.	</span>
+              </div>
+            </td>
+            <td width="100%">
+              <div class="s2_step_next_inner"><a name="2530391">对于Web资源，可以在SSL客户端中点击</a><span style="font-weight: bold">资源</span>选项卡，点击<span style="font-weight: bold">资源列表</span>中相应的HTTP/HTTPS资源，即可直接访问。</div>
+            </td>
+          </tr>
+        </table>
+      </div>
+    </blockquote>
+  </body>
+</html>

@@ -1,0 +1,131 @@
+/* 
+  Localizable.strings
+  Safe Connect
+
+  Created by 陈强 on 17/2/23.
+  Copyright © 2017年 shijia. All rights reserved.
+*/
+
+"version" = "copyright © 2016-2017沈阳东软系统集成工程有限公司";
+
+"general_remind" = "提示";
+
+"general_ok" = "确定";
+"general_yes"= "是";
+"general_no"= "否";
+"general_exit"= "是否退出程序？";
+
+"reading"= "读取中...";
+"waiting"= "请稍候...";
+"no_network"= "网络服务不可用";
+"general_cancel"= "取消";
+"general_connlist"= "连接列表";
+"general_cersetting"= "证书设置";
+"bottom_tab1_txt"= "连接";
+"bottom_tab2_txt"= "资源";
+"bottom_tab3_txt"= "设置";
+"bottom_tab4_txt"= "关于";
+
+//<!-- 连接列表 -->
+
+"child_btn_del"= "删除";
+"child_btn_sel"= "选择";
+"connList_txt"= "连接历史";
+"connectlist_serverip"= "服务器";
+"connectlist_username"= "用户名";
+"del_yesORno"= "是否将此连接从本地删除？";
+"frag1_validclientCertPassWord"= "客户端证书密码错误";
+
+//<!-- frag1连接页 -->
+"frag1_filltxt"= "请完善连接信息";
+"frag1_notIP"= "服务器地址格式不正确，请填写有效IP或域名地址。";
+"frag1_dupName"= "该连接名已存在";
+
+"service_unreachable"= "目标服务器不可达或者没有响应";
+
+
+
+"ca_not_found"= "未找到CA证书";
+"service_timeout"= "连接超时";
+"vpn_timeout"= "VPN超时时间已到，请重新连接";
+"service_timeout2"= "连接超时，客户端证书无法校验通过或网络延时";
+"frag1_connect_state_1"= "未连接";
+
+"frag1_connect_state_2"= "连接中";
+
+"frag1_connect_state_3"= "已连接";
+"authentication_failed"= "认证失败";
+"VPNStartup_failed"= "启动VPN错误";
+
+"frag1_hasnodata"= "无连接记录";
+"frag1_cannotcheck"= "查看历史添加记录需断开当前连接";
+"frag1_isCancle"= "是否取消当前连接？";
+"frag1_isDisconnect"= "是否断开当前连接？";
+"frag1_Cancling"= "正在取消...";
+"frag1_Disconnectting"= "正在断开...";
+
+"frag1_CannotopenTUN"= "隧道建立失败，请尝试重启手机。";
+"frag1_importCA"= "使用前请先导入证书";
+
+"frag1_inValidCA"= "证书已失效";
+
+"frag1_VERIFYERROR"= "证书校验出错";
+
+"crt_iputOTP"= "请输入OTP口令";
+"E155073"= "认证失败";
+"E155074"= "服务器不可达";
+"E159006"= "无效的OTP密码";
+"E101014"= "用户被锁定";
+
+"frag1_rightOTP"= "请输入正确的OTP口令";
+"frag1_failconnect"= "连接失败";
+
+//<!-- frag2资源页 -->
+
+"frag2_client_ip"= "客户端IP";
+"frag2_dns_content"= "DNS服务器";
+"frag2_connection_info"= "连接信息";
+"frag2_resource_list"= "资源列表";
+"frag2_vpnnotconnect"= "请先建立VPN连接";
+"frag2_noresource"= "暂无可用资源\n下拉刷新";
+
+
+//<!-- frag3设置页 -->
+"frag3_setting"= "设置";
+"frag3_support"= "技术支持";
+"Invalid_configuration" = "配置无效";
+"reStart_program" = "重新连接后配置生效";
+"log_Message" = "日志信息";
+"log" = "日志";
+
+"write_Log" = "请先点击写入日志按钮";
+
+
+"Mail_cancel" = "邮件发送取消";
+
+
+
+"Mail_savedSuccessfully" = "邮件保存成功";
+
+
+"Mail_sentSuccessfully" = "邮件发送成功";
+
+"E-mail_failed_send"="邮件发送失败";
+"Failed_connect_server" = "未能连接到服务器";
+
+
+"Import_the_certificate"="请导入客户端证书";
+
+"verification_styleOneSide" = "单向认证";
+"verification_styleBothSide" = "双向认证";
+
+"password_for_the_certificate" = "请输入客户端证书密码";
+"Enter_the_OTP_password" = "请输入OTP密码";
+"Negotiation_fails" = "协商失败";
+
+"Network_connection_interrupted" = "网络连接已中断";
+
+//<!-- frag4证书列表页 -->
+"please_Input_PFX" = "请使用PFX格式证书";
+"Do_not_delete" = "禁止删除";
+

@@ -1,0 +1,1263 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xml:lang="en" lang="en" xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+    <meta http-equiv="Content-Style-Type" content="text/css" />
+    <!-- MOTW-DISABLED saved from url=(0014)about:internet -->
+    <title>Example</title>
+    <link rel="StyleSheet" href="css/03_SSL_VPN_Client_UG_EN-ios.css" type="text/css" media="all" />
+    <link rel="StyleSheet" href="css/webworks.css" type="text/css" media="all" />
+    <script type="text/javascript" language="JavaScript1.2" src="scripts/expand.js"></script>
+    <script type="text/javascript" language="JavaScript1.2">
+      <!--
+        var  WebWorksRootPath = "";
+      // -->
+    </script>
+  </head>
+  <body style="background-color: GhostWhite">
+    <div style="text-align: left;">
+      <table cellspacing="0" summary="">
+        <tr>
+          <td>
+            <a href="AboutEN.html"><img src="prev.gif" alt="Previous" border="0" /></a>
+          </td>
+          <td>
+            <img src="nextx.gif" alt="Next" border="0" />
+          </td>
+        </tr>
+      </table>
+    </div>
+    <br />
+    <div class="WebWorks_Breadcrumbs" style="text-align: left;">6 Example</div>
+    <hr align="left" />
+    <blockquote>
+      <div class="N1h_1Heading">6 <a name="1251593">Example</a></div>
+      <div class="b1_body" style="color: #000000; font-size: 14.0pt; font-style: normal; font-variant: normal; font-weight: bold; margin-bottom: 6.0pt; margin-top: 6.0pt; text-transform: none; vertical-align: baseline"><span style="color: #000000; font-family: &quot;Times New Roman&quot;; font-size: 14.0pt; font-style: normal; font-variant: normal; font-weight: bold; text-transform: none; vertical-align: baseline"><a name="1251594">Requirement</a></span></div>
+      <div class="b1_body"><a name="1251595">A remote user wants to access internal resources of the company using an iOS device, and data transmission is required to be secure.</a></div>
+      <div class="b1_body" style="color: #000000; font-size: 14.0pt; font-style: normal; font-variant: normal; font-weight: bold; margin-bottom: 6.0pt; margin-top: 6.0pt; text-transform: none; vertical-align: baseline"><span style="color: #000000; font-family: &quot;Times New Roman&quot;; font-size: 14.0pt; font-style: normal; font-variant: normal; font-weight: bold; text-transform: none; vertical-align: baseline"><a name="1251825">Solution</a></span></div>
+      <div class="b1_body"><a name="1258467">The remote user can install SSL VPN Client on the iOS device. Through SSL VPN Client, the user can establish an SSL VPN tunnel with the SSL VPN server. In addition, mutual authentication is enabled on the SSL VPN server which requires SSL VPN Client to pass both user name/password and certificate authentication.</a><span style="font-size: 14.0pt; font-weight: bold"><img class="Default" src="03_SSL_VPN_Client_UG_EN-ios.1.6.1.jpg" width="193" height="309" style="display: block; float: none; left: 0.0; top: 0.0" alt="" /></span></div>
+      <div class="b1_body" style="color: #000000; font-size: 14.0pt; font-style: normal; font-variant: normal; font-weight: bold; margin-bottom: 6.0pt; margin-top: 6.0pt; text-transform: none; vertical-align: baseline"><span style="color: #000000; font-family: &quot;Times New Roman&quot;; font-size: 14.0pt; font-style: normal; font-variant: normal; font-weight: bold; text-transform: none; vertical-align: baseline"><a name="1251602">Configuration Summary</a></span></div>
+      <div class="b1_body"><a name="1251603">Configure the following on the SSL VPN server:</a></div>
+      <div class="bu1_bullets_outer" style="margin-left: 0pt">
+        <table border="0" cellspacing="0" cellpadding="0" summary="" role="presentation">
+          <tr style="vertical-align: baseline">
+            <td>
+              <div class="bu1_bullets_inner" style="width: 18pt; white-space: nowrap">
+                <img src="bullet.png" alt="*" border="0" width="21" height="19" />
+              </div>
+            </td>
+            <td width="100%">
+              <div class="bu1_bullets_inner"><span class="l_link"><a href="#1251640" title="Example" name="1251607">Configure Interfaces</a></span></div>
+            </td>
+          </tr>
+        </table>
+      </div>
+      <div class="bu1_bullets_outer" style="margin-left: 0pt">
+        <table border="0" cellspacing="0" cellpadding="0" summary="" role="presentation">
+          <tr style="vertical-align: baseline">
+            <td>
+              <div class="bu1_bullets_inner" style="width: 18pt; white-space: nowrap">
+                <img src="bullet.png" alt="*" border="0" width="21" height="19" />
+              </div>
+            </td>
+            <td width="100%">
+              <div class="bu1_bullets_inner"><span class="l_link"><a href="#1251652" title="Example" name="1251611">Create an IP Address Pool</a></span></div>
+            </td>
+          </tr>
+        </table>
+      </div>
+      <div class="bu1_bullets_outer" style="margin-left: 0pt">
+        <table border="0" cellspacing="0" cellpadding="0" summary="" role="presentation">
+          <tr style="vertical-align: baseline">
+            <td>
+              <div class="bu1_bullets_inner" style="width: 18pt; white-space: nowrap">
+                <img src="bullet.png" alt="*" border="0" width="21" height="19" />
+              </div>
+            </td>
+            <td width="100%">
+              <div class="bu1_bullets_inner"><span class="l_link"><a href="#1251661" title="Example" name="1257465">Create an SSL VPN User</a></span></div>
+            </td>
+          </tr>
+        </table>
+      </div>
+      <div class="bu1_bullets_outer" style="margin-left: 0pt">
+        <table border="0" cellspacing="0" cellpadding="0" summary="" role="presentation">
+          <tr style="vertical-align: baseline">
+            <td>
+              <div class="bu1_bullets_inner" style="width: 18pt; white-space: nowrap">
+                <img src="bullet.png" alt="*" border="0" width="21" height="19" />
+              </div>
+            </td>
+            <td width="100%">
+              <div class="bu1_bullets_inner"><span class="l_link"><a href="#1251672" title="Example" name="1257469">Create an SSL VPN User Group</a></span></div>
+            </td>
+          </tr>
+        </table>
+      </div>
+      <div class="bu1_bullets_outer" style="margin-left: 0pt">
+        <table border="0" cellspacing="0" cellpadding="0" summary="" role="presentation">
+          <tr style="vertical-align: baseline">
+            <td>
+              <div class="bu1_bullets_inner" style="width: 18pt; white-space: nowrap">
+                <img src="bullet.png" alt="*" border="0" width="21" height="19" />
+              </div>
+            </td>
+            <td width="100%">
+              <div class="bu1_bullets_inner"><span class="l_link"><a href="#1257507" title="Example" name="1257478">Create SSL VPN Resources</a></span></div>
+            </td>
+          </tr>
+        </table>
+      </div>
+      <div class="bu1_bullets_outer" style="margin-left: 0pt">
+        <table border="0" cellspacing="0" cellpadding="0" summary="" role="presentation">
+          <tr style="vertical-align: baseline">
+            <td>
+              <div class="bu1_bullets_inner" style="width: 18pt; white-space: nowrap">
+                <img src="bullet.png" alt="*" border="0" width="21" height="19" />
+              </div>
+            </td>
+            <td width="100%">
+              <div class="bu1_bullets_inner"><span class="l_link"><a href="#1251680" title="Example" name="1257473">Create an SSL VPN Tunnel</a></span></div>
+            </td>
+          </tr>
+        </table>
+      </div>
+      <div class="bu1_bullets_outer" style="margin-left: 0pt">
+        <table border="0" cellspacing="0" cellpadding="0" summary="" role="presentation">
+          <tr style="vertical-align: baseline">
+            <td>
+              <div class="bu1_bullets_inner" style="width: 18pt; white-space: nowrap">
+                <img src="bullet.png" alt="*" border="0" width="21" height="19" />
+              </div>
+            </td>
+            <td width="100%">
+              <div class="bu1_bullets_inner"><span class="l_link"><a href="#1251691" title="Example" name="1251627">Create an Access Policy</a></span></div>
+            </td>
+          </tr>
+        </table>
+      </div>
+      <div class="b1_body"><a name="1251628">Configure the following on the iOS device of the remote user:</a></div>
+      <div class="bu1_bullets_outer" style="margin-left: 0pt">
+        <table border="0" cellspacing="0" cellpadding="0" summary="" role="presentation">
+          <tr style="vertical-align: baseline">
+            <td>
+              <div class="bu1_bullets_inner" style="width: 18pt; white-space: nowrap">
+                <img src="bullet.png" alt="*" border="0" width="21" height="19" />
+              </div>
+            </td>
+            <td width="100%">
+              <div class="bu1_bullets_inner"><span class="l_link"><a href="#1251701" title="Example" name="1251632">Import Personal Certificate</a></span></div>
+            </td>
+          </tr>
+        </table>
+      </div>
+      <div class="bu1_bullets_outer" style="margin-left: 0pt">
+        <table border="0" cellspacing="0" cellpadding="0" summary="" role="presentation">
+          <tr style="vertical-align: baseline">
+            <td>
+              <div class="bu1_bullets_inner" style="width: 18pt; white-space: nowrap">
+                <img src="bullet.png" alt="*" border="0" width="21" height="19" />
+              </div>
+            </td>
+            <td width="100%">
+              <div class="bu1_bullets_inner"><span class="l_link"><a href="#1251715" title="Example" name="1251636">Create an SSL VPN Connection</a></span></div>
+            </td>
+          </tr>
+        </table>
+      </div>
+      <div class="b1_body" style="color: #000000; font-size: 14.0pt; font-style: normal; font-variant: normal; font-weight: bold; margin-bottom: 6.0pt; margin-top: 6.0pt; text-transform: none; vertical-align: baseline"><span style="color: #000000; font-family: &quot;Times New Roman&quot;; font-size: 14.0pt; font-style: normal; font-variant: normal; font-weight: bold; text-transform: none; vertical-align: baseline"><a name="1251637">Configuration Steps</a></span></div>
+      <div class="b1_body"><a name="1251638">Please configure the SSL VPN server according to the following parameter information. For other parameters that are not provided, please use their default values.</a></div>
+      <div class="N4h_4Heading" style="font-size: 12.0pt; font-style: normal; font-variant: normal; font-weight: bold; margin-top: 14.0pt; text-transform: none; vertical-align: baseline"><span style="color: #000000; font-family: Arial; font-size: 12.0pt; font-style: normal; font-variant: normal; font-weight: bold; text-transform: none; vertical-align: baseline"><a name="1251640">Configure Interfaces</a></span></div>
+      <div class="s1_step_first_outer" style="margin-left: 0pt">
+        <table border="0" cellspacing="0" cellpadding="0" summary="" role="presentation">
+          <tr style="vertical-align: baseline">
+            <td>
+              <div class="s1_step_first_inner" style="width: 18pt; white-space: nowrap">
+                <span class="zz_step_number">1.	</span>
+              </div>
+            </td>
+            <td width="100%">
+              <div class="s1_step_first_inner"><a name="1251641">Log on to the server WebUI. Choose </a><span style="font-weight: bold">Network &gt; Interface</span>s and set the interfaces eth-s1p1 and eth-s1p2 as follows:</div>
+            </td>
+          </tr>
+        </table>
+      </div>
+      <div class="bu2_bullets2_outer" style="margin-left: 18pt">
+        <table border="0" cellspacing="0" cellpadding="0" summary="" role="presentation">
+          <tr style="vertical-align: baseline">
+            <td>
+              <div class="bu2_bullets2_inner" style="width: 14.399999999999998pt; white-space: nowrap">
+                <img src="bullet.png" alt="*" border="0" width="21" height="19" />
+              </div>
+            </td>
+            <td width="100%">
+              <div class="bu2_bullets2_inner"><a name="1251642">eth-s1p1</a></div>
+            </td>
+          </tr>
+        </table>
+      </div>
+      <div class="bu3_bullets3_outer" style="margin-left: 32.4pt">
+        <table border="0" cellspacing="0" cellpadding="0" summary="" role="presentation">
+          <tr style="vertical-align: baseline">
+            <td>
+              <div class="bu3_bullets3_inner" style="width: 14.399999999999998pt; white-space: nowrap">
+                <img src="bullet.png" alt="*" border="0" width="21" height="19" />
+              </div>
+            </td>
+            <td width="100%">
+              <div class="bu3_bullets3_inner"><a name="1251643">Active: On</a></div>
+            </td>
+          </tr>
+        </table>
+      </div>
+      <div class="bu3_bullets3_outer" style="margin-left: 32.4pt">
+        <table border="0" cellspacing="0" cellpadding="0" summary="" role="presentation">
+          <tr style="vertical-align: baseline">
+            <td>
+              <div class="bu3_bullets3_inner" style="width: 14.399999999999998pt; white-space: nowrap">
+                <img src="bullet.png" alt="*" border="0" width="21" height="19" />
+              </div>
+            </td>
+            <td width="100%">
+              <div class="bu3_bullets3_inner"><a name="1251644">Mode: Layer 3</a></div>
+            </td>
+          </tr>
+        </table>
+      </div>
+      <div class="bu3_bullets3_outer" style="margin-left: 32.4pt">
+        <table border="0" cellspacing="0" cellpadding="0" summary="" role="presentation">
+          <tr style="vertical-align: baseline">
+            <td>
+              <div class="bu3_bullets3_inner" style="width: 14.399999999999998pt; white-space: nowrap">
+                <img src="bullet.png" alt="*" border="0" width="21" height="19" />
+              </div>
+            </td>
+            <td width="100%">
+              <div class="bu3_bullets3_inner"><a name="1251645">Static IP: 192.168.1.1/24</a></div>
+            </td>
+          </tr>
+        </table>
+      </div>
+      <div class="bu2_bullets2_outer" style="margin-left: 18pt">
+        <table border="0" cellspacing="0" cellpadding="0" summary="" role="presentation">
+          <tr style="vertical-align: baseline">
+            <td>
+              <div class="bu2_bullets2_inner" style="width: 14.399999999999998pt; white-space: nowrap">
+                <img src="bullet.png" alt="*" border="0" width="21" height="19" />
+              </div>
+            </td>
+            <td width="100%">
+              <div class="bu2_bullets2_inner"><a name="1251646">eth-s1p2</a></div>
+            </td>
+          </tr>
+        </table>
+      </div>
+      <div class="bu3_bullets3_outer" style="margin-left: 32.4pt">
+        <table border="0" cellspacing="0" cellpadding="0" summary="" role="presentation">
+          <tr style="vertical-align: baseline">
+            <td>
+              <div class="bu3_bullets3_inner" style="width: 14.399999999999998pt; white-space: nowrap">
+                <img src="bullet.png" alt="*" border="0" width="21" height="19" />
+              </div>
+            </td>
+            <td width="100%">
+              <div class="bu3_bullets3_inner"><a name="1251647">Active: On</a></div>
+            </td>
+          </tr>
+        </table>
+      </div>
+      <div class="bu3_bullets3_outer" style="margin-left: 32.4pt">
+        <table border="0" cellspacing="0" cellpadding="0" summary="" role="presentation">
+          <tr style="vertical-align: baseline">
+            <td>
+              <div class="bu3_bullets3_inner" style="width: 14.399999999999998pt; white-space: nowrap">
+                <img src="bullet.png" alt="*" border="0" width="21" height="19" />
+              </div>
+            </td>
+            <td width="100%">
+              <div class="bu3_bullets3_inner"><a name="1251648">Mode: Layer 3</a></div>
+            </td>
+          </tr>
+        </table>
+      </div>
+      <div class="bu3_bullets3_outer" style="margin-left: 32.4pt">
+        <table border="0" cellspacing="0" cellpadding="0" summary="" role="presentation">
+          <tr style="vertical-align: baseline">
+            <td>
+              <div class="bu3_bullets3_inner" style="width: 14.399999999999998pt; white-space: nowrap">
+                <img src="bullet.png" alt="*" border="0" width="21" height="19" />
+              </div>
+            </td>
+            <td width="100%">
+              <div class="bu3_bullets3_inner"><a name="1251649">Static IP: 202.118.1.1/24</a></div>
+            </td>
+          </tr>
+        </table>
+      </div>
+      <div class="s2_step_next_outer" style="margin-left: 0pt">
+        <table border="0" cellspacing="0" cellpadding="0" summary="" role="presentation">
+          <tr style="vertical-align: baseline">
+            <td>
+              <div class="s2_step_next_inner" style="width: 18pt; white-space: nowrap">
+                <span class="zz_step_number">2.	</span>
+              </div>
+            </td>
+            <td width="100%">
+              <div class="s2_step_next_inner"><a name="1251650">Click the </a><span style="font-weight: bold">Save</span> button.</div>
+            </td>
+          </tr>
+        </table>
+      </div>
+      <div class="N4h_4Heading" style="font-size: 12.0pt; font-style: normal; font-variant: normal; font-weight: bold; margin-top: 14.0pt; text-transform: none; vertical-align: baseline"><span style="color: #000000; font-family: Arial; font-size: 12.0pt; font-style: normal; font-variant: normal; font-weight: bold; text-transform: none; vertical-align: baseline"><a name="1251652">Create an IP Address Pool</a></span></div>
+      <div class="s1_step_first_outer" style="margin-left: 0pt">
+        <table border="0" cellspacing="0" cellpadding="0" summary="" role="presentation">
+          <tr style="vertical-align: baseline">
+            <td>
+              <div class="s1_step_first_inner" style="width: 18pt; white-space: nowrap">
+                <span class="zz_step_number">1.	</span>
+              </div>
+            </td>
+            <td width="100%">
+              <div class="s1_step_first_inner"><a name="1251653">Choose </a><span style="font-weight: bold">VPN &gt; IP Address Pools</span>.</div>
+            </td>
+          </tr>
+        </table>
+      </div>
+      <div class="s2_step_next_outer" style="margin-left: 0pt">
+        <table border="0" cellspacing="0" cellpadding="0" summary="" role="presentation">
+          <tr style="vertical-align: baseline">
+            <td>
+              <div class="s2_step_next_inner" style="width: 18pt; white-space: nowrap">
+                <span class="zz_step_number">2.	</span>
+              </div>
+            </td>
+            <td width="100%">
+              <div class="s2_step_next_inner"><a name="1251654">Create </a><span style="font-weight: bold">New</span> to create the following IP address pool:</div>
+            </td>
+          </tr>
+        </table>
+      </div>
+      <div class="bu2_bullets2_outer" style="margin-left: 18pt">
+        <table border="0" cellspacing="0" cellpadding="0" summary="" role="presentation">
+          <tr style="vertical-align: baseline">
+            <td>
+              <div class="bu2_bullets2_inner" style="width: 14.399999999999998pt; white-space: nowrap">
+                <img src="bullet.png" alt="*" border="0" width="21" height="19" />
+              </div>
+            </td>
+            <td width="100%">
+              <div class="bu2_bullets2_inner"><a name="1251655">Name: pool</a></div>
+            </td>
+          </tr>
+        </table>
+      </div>
+      <div class="bu2_bullets2_outer" style="margin-left: 18pt">
+        <table border="0" cellspacing="0" cellpadding="0" summary="" role="presentation">
+          <tr style="vertical-align: baseline">
+            <td>
+              <div class="bu2_bullets2_inner" style="width: 14.399999999999998pt; white-space: nowrap">
+                <img src="bullet.png" alt="*" border="0" width="21" height="19" />
+              </div>
+            </td>
+            <td width="100%">
+              <div class="bu2_bullets2_inner"><a name="1251656">Start IP Address: 30.1.1.1</a></div>
+            </td>
+          </tr>
+        </table>
+      </div>
+      <div class="bu2_bullets2_outer" style="margin-left: 18pt">
+        <table border="0" cellspacing="0" cellpadding="0" summary="" role="presentation">
+          <tr style="vertical-align: baseline">
+            <td>
+              <div class="bu2_bullets2_inner" style="width: 14.399999999999998pt; white-space: nowrap">
+                <img src="bullet.png" alt="*" border="0" width="21" height="19" />
+              </div>
+            </td>
+            <td width="100%">
+              <div class="bu2_bullets2_inner"><a name="1251657">End IP Address: 30.1.1.100</a></div>
+            </td>
+          </tr>
+        </table>
+      </div>
+      <div class="b2_body2"><a name="1251658">From the IP address pool, the SSL VPN server will choose an IP address and allocate it to the remote user. The remote user uses this IP address to establish an SSL VPN connection with the server. The addresses in the IP address pool should not overlap with the addresses in the subnet behind the server.</a></div>
+      <div class="s2_step_next_outer" style="margin-left: 0pt">
+        <table border="0" cellspacing="0" cellpadding="0" summary="" role="presentation">
+          <tr style="vertical-align: baseline">
+            <td>
+              <div class="s2_step_next_inner" style="width: 18pt; white-space: nowrap">
+                <span class="zz_step_number">3.	</span>
+              </div>
+            </td>
+            <td width="100%">
+              <div class="s2_step_next_inner"><a name="1251659">Click the </a><span style="font-weight: bold">Save</span> button.</div>
+            </td>
+          </tr>
+        </table>
+      </div>
+      <div class="N4h_4Heading" style="font-size: 12.0pt; font-style: normal; font-variant: normal; font-weight: bold; margin-top: 14.0pt; text-transform: none; vertical-align: baseline"><span style="color: #000000; font-family: Arial; font-size: 12.0pt; font-style: normal; font-variant: normal; font-weight: bold; text-transform: none; vertical-align: baseline"><a name="1251661">Create an SSL VPN User</a></span></div>
+      <div class="s1_step_first_outer" style="margin-left: 0pt">
+        <table border="0" cellspacing="0" cellpadding="0" summary="" role="presentation">
+          <tr style="vertical-align: baseline">
+            <td>
+              <div class="s1_step_first_inner" style="width: 18pt; white-space: nowrap">
+                <span class="zz_step_number">1.	</span>
+              </div>
+            </td>
+            <td width="100%">
+              <div class="s1_step_first_inner"><a name="1251662">Choose </a><span style="font-weight: bold">System &gt; Authentication &gt; Users</span>.</div>
+            </td>
+          </tr>
+        </table>
+      </div>
+      <div class="s2_step_next_outer" style="margin-left: 0pt">
+        <table border="0" cellspacing="0" cellpadding="0" summary="" role="presentation">
+          <tr style="vertical-align: baseline">
+            <td>
+              <div class="s2_step_next_inner" style="width: 18pt; white-space: nowrap">
+                <span class="zz_step_number">2.	</span>
+              </div>
+            </td>
+            <td width="100%">
+              <div class="s2_step_next_inner"><a name="1251663">Create </a><span style="font-weight: bold">New</span> to create an SSL VPN user named Alice. When establishing an SSL VPN connection with the server, the remote user uses this name to log in.</div>
+            </td>
+          </tr>
+        </table>
+      </div>
+      <div class="bu2_bullets2_outer" style="margin-left: 18pt">
+        <table border="0" cellspacing="0" cellpadding="0" summary="" role="presentation">
+          <tr style="vertical-align: baseline">
+            <td>
+              <div class="bu2_bullets2_inner" style="width: 14.399999999999998pt; white-space: nowrap">
+                <img src="bullet.png" alt="*" border="0" width="21" height="19" />
+              </div>
+            </td>
+            <td width="100%">
+              <div class="bu2_bullets2_inner"><a name="1251664">Name: Alice</a></div>
+            </td>
+          </tr>
+        </table>
+      </div>
+      <div class="bu2_bullets2_outer" style="margin-left: 18pt">
+        <table border="0" cellspacing="0" cellpadding="0" summary="" role="presentation">
+          <tr style="vertical-align: baseline">
+            <td>
+              <div class="bu2_bullets2_inner" style="width: 14.399999999999998pt; white-space: nowrap">
+                <img src="bullet.png" alt="*" border="0" width="21" height="19" />
+              </div>
+            </td>
+            <td width="100%">
+              <div class="bu2_bullets2_inner"><a name="1251665">SSL VPN: Check</a></div>
+            </td>
+          </tr>
+        </table>
+      </div>
+      <div class="bu2_bullets2_outer" style="margin-left: 18pt">
+        <table border="0" cellspacing="0" cellpadding="0" summary="" role="presentation">
+          <tr style="vertical-align: baseline">
+            <td>
+              <div class="bu2_bullets2_inner" style="width: 14.399999999999998pt; white-space: nowrap">
+                <img src="bullet.png" alt="*" border="0" width="21" height="19" />
+              </div>
+            </td>
+            <td width="100%">
+              <div class="bu2_bullets2_inner"><a name="1251666">Password: 123456</a></div>
+            </td>
+          </tr>
+        </table>
+      </div>
+      <div class="bu2_bullets2_outer" style="margin-left: 18pt">
+        <table border="0" cellspacing="0" cellpadding="0" summary="" role="presentation">
+          <tr style="vertical-align: baseline">
+            <td>
+              <div class="bu2_bullets2_inner" style="width: 14.399999999999998pt; white-space: nowrap">
+                <img src="bullet.png" alt="*" border="0" width="21" height="19" />
+              </div>
+            </td>
+            <td width="100%">
+              <div class="bu2_bullets2_inner"><a name="1251667">Confirm Password: 123456</a></div>
+            </td>
+          </tr>
+        </table>
+      </div>
+      <div class="bu2_bullets2_outer" style="margin-left: 18pt">
+        <table border="0" cellspacing="0" cellpadding="0" summary="" role="presentation">
+          <tr style="vertical-align: baseline">
+            <td>
+              <div class="bu2_bullets2_inner" style="width: 14.399999999999998pt; white-space: nowrap">
+                <img src="bullet.png" alt="*" border="0" width="21" height="19" />
+              </div>
+            </td>
+            <td width="100%">
+              <div class="bu2_bullets2_inner"><a name="1262060">IP Address Pool: pool</a></div>
+            </td>
+          </tr>
+        </table>
+      </div>
+      <div class="b2_body2"><a name="1251668">If the remote user already bought an OTP token and the OTP authentication is required, please choose </a><span style="font-weight: bold">System &gt; Authentication &gt; OTP Tokens</span> to create an OTP token in advance. Then create the user Alice. Check <span style="font-weight: bold">OTP Authentication</span> and bind Alice to the created OTP token. When establishing an SSL VPN connection with the server, the remote user should enter the OTP password.</div>
+      <div class="s2_step_next_outer" style="margin-left: 0pt">
+        <table border="0" cellspacing="0" cellpadding="0" summary="" role="presentation">
+          <tr style="vertical-align: baseline">
+            <td>
+              <div class="s2_step_next_inner" style="width: 18pt; white-space: nowrap">
+                <span class="zz_step_number">3.	</span>
+              </div>
+            </td>
+            <td width="100%">
+              <div class="s2_step_next_inner"><a name="1251669">Click </a><span style="font-weight: bold">OK</span>.</div>
+            </td>
+          </tr>
+        </table>
+      </div>
+      <div class="s2_step_next_outer" style="margin-left: 0pt">
+        <table border="0" cellspacing="0" cellpadding="0" summary="" role="presentation">
+          <tr style="vertical-align: baseline">
+            <td>
+              <div class="s2_step_next_inner" style="width: 18pt; white-space: nowrap">
+                <span class="zz_step_number">4.	</span>
+              </div>
+            </td>
+            <td width="100%">
+              <div class="s2_step_next_inner"><a name="1251670">Click the </a><span style="font-weight: bold">Save</span> button.</div>
+            </td>
+          </tr>
+        </table>
+      </div>
+      <div class="N4h_4Heading" style="font-size: 12.0pt; font-style: normal; font-variant: normal; font-weight: bold; margin-top: 14.0pt; text-transform: none; vertical-align: baseline"><span style="color: #000000; font-family: Arial; font-size: 12.0pt; font-style: normal; font-variant: normal; font-weight: bold; text-transform: none; vertical-align: baseline"><a name="1251672">Create an SSL VPN User Group</a></span></div>
+      <div class="s1_step_first_outer" style="margin-left: 0pt">
+        <table border="0" cellspacing="0" cellpadding="0" summary="" role="presentation">
+          <tr style="vertical-align: baseline">
+            <td>
+              <div class="s1_step_first_inner" style="width: 18pt; white-space: nowrap">
+                <span class="zz_step_number">1.	</span>
+              </div>
+            </td>
+            <td width="100%">
+              <div class="s1_step_first_inner"><a name="1251673">Choose </a><span style="font-weight: bold">VPN &gt; SSL VPN &gt; User Groups</span>.</div>
+            </td>
+          </tr>
+        </table>
+      </div>
+      <div class="s2_step_next_outer" style="margin-left: 0pt">
+        <table border="0" cellspacing="0" cellpadding="0" summary="" role="presentation">
+          <tr style="vertical-align: baseline">
+            <td>
+              <div class="s2_step_next_inner" style="width: 18pt; white-space: nowrap">
+                <span class="zz_step_number">2.	</span>
+              </div>
+            </td>
+            <td width="100%">
+              <div class="s2_step_next_inner"><a name="1251674">Create </a><span style="font-weight: bold">New</span> to create an SSL VPN user group and allocate Alice to the group. </div>
+            </td>
+          </tr>
+        </table>
+      </div>
+      <div class="bu2_bullets2_outer" style="margin-left: 18pt">
+        <table border="0" cellspacing="0" cellpadding="0" summary="" role="presentation">
+          <tr style="vertical-align: baseline">
+            <td>
+              <div class="bu2_bullets2_inner" style="width: 14.399999999999998pt; white-space: nowrap">
+                <img src="bullet.png" alt="*" border="0" width="21" height="19" />
+              </div>
+            </td>
+            <td width="100%">
+              <div class="bu2_bullets2_inner"><a name="1251675">Name: group</a></div>
+            </td>
+          </tr>
+        </table>
+      </div>
+      <div class="bu2_bullets2_outer" style="margin-left: 18pt">
+        <table border="0" cellspacing="0" cellpadding="0" summary="" role="presentation">
+          <tr style="vertical-align: baseline">
+            <td>
+              <div class="bu2_bullets2_inner" style="width: 14.399999999999998pt; white-space: nowrap">
+                <img src="bullet.png" alt="*" border="0" width="21" height="19" />
+              </div>
+            </td>
+            <td width="100%">
+              <div class="bu2_bullets2_inner"><a name="1251676">Selected Users: Alice</a></div>
+            </td>
+          </tr>
+        </table>
+      </div>
+      <div class="s2_step_next_outer" style="margin-left: 0pt">
+        <table border="0" cellspacing="0" cellpadding="0" summary="" role="presentation">
+          <tr style="vertical-align: baseline">
+            <td>
+              <div class="s2_step_next_inner" style="width: 18pt; white-space: nowrap">
+                <span class="zz_step_number">3.	</span>
+              </div>
+            </td>
+            <td width="100%">
+              <div class="s2_step_next_inner"><a name="1251677">Click </a><span style="font-weight: bold">OK</span>.</div>
+            </td>
+          </tr>
+        </table>
+      </div>
+      <div class="s2_step_next_outer" style="margin-left: 0pt">
+        <table border="0" cellspacing="0" cellpadding="0" summary="" role="presentation">
+          <tr style="vertical-align: baseline">
+            <td>
+              <div class="s2_step_next_inner" style="width: 18pt; white-space: nowrap">
+                <span class="zz_step_number">4.	</span>
+              </div>
+            </td>
+            <td width="100%">
+              <div class="s2_step_next_inner"><a name="1257485">Click </a><span style="font-weight: bold">Authentication Method</span> and click <span style="font-weight: bold">Mutual Authentication</span>.</div>
+            </td>
+          </tr>
+        </table>
+      </div>
+      <div class="s2_step_next_outer" style="margin-left: 0pt">
+        <table border="0" cellspacing="0" cellpadding="0" summary="" role="presentation">
+          <tr style="vertical-align: baseline">
+            <td>
+              <div class="s2_step_next_inner" style="width: 18pt; white-space: nowrap">
+                <span class="zz_step_number">5.	</span>
+              </div>
+            </td>
+            <td width="100%">
+              <div class="s2_step_next_inner"><a name="1262067">Click </a><span style="font-weight: bold">OK</span>.</div>
+            </td>
+          </tr>
+        </table>
+      </div>
+      <div class="s2_step_next_outer" style="margin-left: 0pt">
+        <table border="0" cellspacing="0" cellpadding="0" summary="" role="presentation">
+          <tr style="vertical-align: baseline">
+            <td>
+              <div class="s2_step_next_inner" style="width: 18pt; white-space: nowrap">
+                <span class="zz_step_number">6.	</span>
+              </div>
+            </td>
+            <td width="100%">
+              <div class="s2_step_next_inner"><a name="1251678">Click the </a><span style="font-weight: bold">Save</span> button.</div>
+            </td>
+          </tr>
+        </table>
+      </div>
+      <div class="N4h_4Heading" style="font-size: 12.0pt; font-style: normal; font-variant: normal; font-weight: bold; margin-top: 14.0pt; text-transform: none; vertical-align: baseline"><span style="color: #000000; font-family: Arial; font-size: 12.0pt; font-style: normal; font-variant: normal; font-weight: bold; text-transform: none; vertical-align: baseline"><a name="1257507">Create SSL VPN Resources</a></span></div>
+      <div class="s1_step_first_outer" style="margin-left: 0pt">
+        <table border="0" cellspacing="0" cellpadding="0" summary="" role="presentation">
+          <tr style="vertical-align: baseline">
+            <td>
+              <div class="s1_step_first_inner" style="width: 18pt; white-space: nowrap">
+                <span class="zz_step_number">1.	</span>
+              </div>
+            </td>
+            <td width="100%">
+              <div class="s1_step_first_inner"><a name="1257508">Choose </a><span style="font-weight: bold">VPN &gt; SSL VPN &gt; Resources</span>.</div>
+            </td>
+          </tr>
+        </table>
+      </div>
+      <div class="s2_step_next_outer" style="margin-left: 0pt">
+        <table border="0" cellspacing="0" cellpadding="0" summary="" role="presentation">
+          <tr style="vertical-align: baseline">
+            <td>
+              <div class="s2_step_next_inner" style="width: 18pt; white-space: nowrap">
+                <span class="zz_step_number">2.	</span>
+              </div>
+            </td>
+            <td width="100%">
+              <div class="s2_step_next_inner"><a name="1257509">Create </a><span style="font-weight: bold">New</span> to create the following resources: </div>
+            </td>
+          </tr>
+        </table>
+      </div>
+      <div class="bu2_bullets2_outer" style="margin-left: 18pt">
+        <table border="0" cellspacing="0" cellpadding="0" summary="" role="presentation">
+          <tr style="vertical-align: baseline">
+            <td>
+              <div class="bu2_bullets2_inner" style="width: 14.399999999999998pt; white-space: nowrap">
+                <img src="bullet.png" alt="*" border="0" width="21" height="19" />
+              </div>
+            </td>
+            <td width="100%">
+              <div class="bu2_bullets2_inner"><a name="1257510">Name: web-http</a></div>
+            </td>
+          </tr>
+        </table>
+      </div>
+      <div class="bu3_bullets3_outer" style="margin-left: 32.4pt">
+        <table border="0" cellspacing="0" cellpadding="0" summary="" role="presentation">
+          <tr style="vertical-align: baseline">
+            <td>
+              <div class="bu3_bullets3_inner" style="width: 14.399999999999998pt; white-space: nowrap">
+                <img src="bullet.png" alt="*" border="0" width="21" height="19" />
+              </div>
+            </td>
+            <td width="100%">
+              <div class="bu3_bullets3_inner"><a name="1257560">Type: HTTP</a></div>
+            </td>
+          </tr>
+        </table>
+      </div>
+      <div class="bu3_bullets3_outer" style="margin-left: 32.4pt">
+        <table border="0" cellspacing="0" cellpadding="0" summary="" role="presentation">
+          <tr style="vertical-align: baseline">
+            <td>
+              <div class="bu3_bullets3_inner" style="width: 14.399999999999998pt; white-space: nowrap">
+                <img src="bullet.png" alt="*" border="0" width="21" height="19" />
+              </div>
+            </td>
+            <td width="100%">
+              <div class="bu3_bullets3_inner"><a name="1257567">Address: 192.168.1.10</a></div>
+            </td>
+          </tr>
+        </table>
+      </div>
+      <div class="bu3_bullets3_outer" style="margin-left: 32.4pt">
+        <table border="0" cellspacing="0" cellpadding="0" summary="" role="presentation">
+          <tr style="vertical-align: baseline">
+            <td>
+              <div class="bu3_bullets3_inner" style="width: 14.399999999999998pt; white-space: nowrap">
+                <img src="bullet.png" alt="*" border="0" width="21" height="19" />
+              </div>
+            </td>
+            <td width="100%">
+              <div class="bu3_bullets3_inner"><a name="1257574">Port: 80</a></div>
+            </td>
+          </tr>
+        </table>
+      </div>
+      <div class="bu2_bullets2_outer" style="margin-left: 18pt">
+        <table border="0" cellspacing="0" cellpadding="0" summary="" role="presentation">
+          <tr style="vertical-align: baseline">
+            <td>
+              <div class="bu2_bullets2_inner" style="width: 14.399999999999998pt; white-space: nowrap">
+                <img src="bullet.png" alt="*" border="0" width="21" height="19" />
+              </div>
+            </td>
+            <td width="100%">
+              <div class="bu2_bullets2_inner"><a name="1257592">Name: web-https</a></div>
+            </td>
+          </tr>
+        </table>
+      </div>
+      <div class="bu3_bullets3_outer" style="margin-left: 32.4pt">
+        <table border="0" cellspacing="0" cellpadding="0" summary="" role="presentation">
+          <tr style="vertical-align: baseline">
+            <td>
+              <div class="bu3_bullets3_inner" style="width: 14.399999999999998pt; white-space: nowrap">
+                <img src="bullet.png" alt="*" border="0" width="21" height="19" />
+              </div>
+            </td>
+            <td width="100%">
+              <div class="bu3_bullets3_inner"><a name="1257593">Type: HTTPS</a></div>
+            </td>
+          </tr>
+        </table>
+      </div>
+      <div class="bu3_bullets3_outer" style="margin-left: 32.4pt">
+        <table border="0" cellspacing="0" cellpadding="0" summary="" role="presentation">
+          <tr style="vertical-align: baseline">
+            <td>
+              <div class="bu3_bullets3_inner" style="width: 14.399999999999998pt; white-space: nowrap">
+                <img src="bullet.png" alt="*" border="0" width="21" height="19" />
+              </div>
+            </td>
+            <td width="100%">
+              <div class="bu3_bullets3_inner"><a name="1257594">Address: 192.168.1.20</a></div>
+            </td>
+          </tr>
+        </table>
+      </div>
+      <div class="bu3_bullets3_outer" style="margin-left: 32.4pt">
+        <table border="0" cellspacing="0" cellpadding="0" summary="" role="presentation">
+          <tr style="vertical-align: baseline">
+            <td>
+              <div class="bu3_bullets3_inner" style="width: 14.399999999999998pt; white-space: nowrap">
+                <img src="bullet.png" alt="*" border="0" width="21" height="19" />
+              </div>
+            </td>
+            <td width="100%">
+              <div class="bu3_bullets3_inner"><a name="1257584">Port: 443</a></div>
+            </td>
+          </tr>
+        </table>
+      </div>
+      <div class="bu2_bullets2_outer" style="margin-left: 18pt">
+        <table border="0" cellspacing="0" cellpadding="0" summary="" role="presentation">
+          <tr style="vertical-align: baseline">
+            <td>
+              <div class="bu2_bullets2_inner" style="width: 14.399999999999998pt; white-space: nowrap">
+                <img src="bullet.png" alt="*" border="0" width="21" height="19" />
+              </div>
+            </td>
+            <td width="100%">
+              <div class="bu2_bullets2_inner"><a name="1257618">Name: subnet</a></div>
+            </td>
+          </tr>
+        </table>
+      </div>
+      <div class="bu3_bullets3_outer" style="margin-left: 32.4pt">
+        <table border="0" cellspacing="0" cellpadding="0" summary="" role="presentation">
+          <tr style="vertical-align: baseline">
+            <td>
+              <div class="bu3_bullets3_inner" style="width: 14.399999999999998pt; white-space: nowrap">
+                <img src="bullet.png" alt="*" border="0" width="21" height="19" />
+              </div>
+            </td>
+            <td width="100%">
+              <div class="bu3_bullets3_inner"><a name="1257619">Type: Subnet</a></div>
+            </td>
+          </tr>
+        </table>
+      </div>
+      <div class="bu3_bullets3_outer" style="margin-left: 32.4pt">
+        <table border="0" cellspacing="0" cellpadding="0" summary="" role="presentation">
+          <tr style="vertical-align: baseline">
+            <td>
+              <div class="bu3_bullets3_inner" style="width: 14.399999999999998pt; white-space: nowrap">
+                <img src="bullet.png" alt="*" border="0" width="21" height="19" />
+              </div>
+            </td>
+            <td width="100%">
+              <div class="bu3_bullets3_inner"><a name="1257620">IP Address: 192.168.1.0</a></div>
+            </td>
+          </tr>
+        </table>
+      </div>
+      <div class="bu3_bullets3_outer" style="margin-left: 32.4pt">
+        <table border="0" cellspacing="0" cellpadding="0" summary="" role="presentation">
+          <tr style="vertical-align: baseline">
+            <td>
+              <div class="bu3_bullets3_inner" style="width: 14.399999999999998pt; white-space: nowrap">
+                <img src="bullet.png" alt="*" border="0" width="21" height="19" />
+              </div>
+            </td>
+            <td width="100%">
+              <div class="bu3_bullets3_inner"><a name="1257610">Mask Length: 24</a></div>
+            </td>
+          </tr>
+        </table>
+      </div>
+      <div class="s2_step_next_outer" style="margin-left: 0pt">
+        <table border="0" cellspacing="0" cellpadding="0" summary="" role="presentation">
+          <tr style="vertical-align: baseline">
+            <td>
+              <div class="s2_step_next_inner" style="width: 18pt; white-space: nowrap">
+                <span class="zz_step_number">3.	</span>
+              </div>
+            </td>
+            <td width="100%">
+              <div class="s2_step_next_inner"><a name="1257512">Click </a><span style="font-weight: bold">OK</span>.</div>
+            </td>
+          </tr>
+        </table>
+      </div>
+      <div class="s2_step_next_outer" style="margin-left: 0pt">
+        <table border="0" cellspacing="0" cellpadding="0" summary="" role="presentation">
+          <tr style="vertical-align: baseline">
+            <td>
+              <div class="s2_step_next_inner" style="width: 18pt; white-space: nowrap">
+                <span class="zz_step_number">4.	</span>
+              </div>
+            </td>
+            <td width="100%">
+              <div class="s2_step_next_inner"><a name="1257498">Click the </a><span style="font-weight: bold">Save</span> button.</div>
+            </td>
+          </tr>
+        </table>
+      </div>
+      <div class="N4h_4Heading" style="font-size: 12.0pt; font-style: normal; font-variant: normal; font-weight: bold; margin-top: 14.0pt; text-transform: none; vertical-align: baseline"><span style="color: #000000; font-family: Arial; font-size: 12.0pt; font-style: normal; font-variant: normal; font-weight: bold; text-transform: none; vertical-align: baseline"><a name="1251680">Create an SSL VPN Tunnel</a></span></div>
+      <div class="s1_step_first_outer" style="margin-left: 0pt">
+        <table border="0" cellspacing="0" cellpadding="0" summary="" role="presentation">
+          <tr style="vertical-align: baseline">
+            <td>
+              <div class="s1_step_first_inner" style="width: 18pt; white-space: nowrap">
+                <span class="zz_step_number">1.	</span>
+              </div>
+            </td>
+            <td width="100%">
+              <div class="s1_step_first_inner"><a name="1251681">Choose </a><span style="font-weight: bold">VPN &gt; SSL VPN &gt; SSL VPN Tunnels &gt; Tunnels</span>.</div>
+            </td>
+          </tr>
+        </table>
+      </div>
+      <div class="s2_step_next_outer" style="margin-left: 0pt">
+        <table border="0" cellspacing="0" cellpadding="0" summary="" role="presentation">
+          <tr style="vertical-align: baseline">
+            <td>
+              <div class="s2_step_next_inner" style="width: 18pt; white-space: nowrap">
+                <span class="zz_step_number">2.	</span>
+              </div>
+            </td>
+            <td width="100%">
+              <div class="s2_step_next_inner"><a name="1251682">Create </a><span style="font-weight: bold">New</span> to create an SSL VPN tunnel which is used for data transmission between the remote user and the server. </div>
+            </td>
+          </tr>
+        </table>
+      </div>
+      <div class="bu2_bullets2_outer" style="margin-left: 18pt">
+        <table border="0" cellspacing="0" cellpadding="0" summary="" role="presentation">
+          <tr style="vertical-align: baseline">
+            <td>
+              <div class="bu2_bullets2_inner" style="width: 14.399999999999998pt; white-space: nowrap">
+                <img src="bullet.png" alt="*" border="0" width="21" height="19" />
+              </div>
+            </td>
+            <td width="100%">
+              <div class="bu2_bullets2_inner"><a name="1251683">Name: sslvpn-tunnel</a></div>
+            </td>
+          </tr>
+        </table>
+      </div>
+      <div class="bu2_bullets2_outer" style="margin-left: 18pt">
+        <table border="0" cellspacing="0" cellpadding="0" summary="" role="presentation">
+          <tr style="vertical-align: baseline">
+            <td>
+              <div class="bu2_bullets2_inner" style="width: 14.399999999999998pt; white-space: nowrap">
+                <img src="bullet.png" alt="*" border="0" width="21" height="19" />
+              </div>
+            </td>
+            <td width="100%">
+              <div class="bu2_bullets2_inner"><a name="1251684">User Group: group</a></div>
+            </td>
+          </tr>
+        </table>
+      </div>
+      <div class="bu2_bullets2_outer" style="margin-left: 18pt">
+        <table border="0" cellspacing="0" cellpadding="0" summary="" role="presentation">
+          <tr style="vertical-align: baseline">
+            <td>
+              <div class="bu2_bullets2_inner" style="width: 14.399999999999998pt; white-space: nowrap">
+                <img src="bullet.png" alt="*" border="0" width="21" height="19" />
+              </div>
+            </td>
+            <td width="100%">
+              <div class="bu2_bullets2_inner"><a name="1251685">Outgoing Interface: eth-s1p2 (the server interface connecting to the Internet)</a></div>
+            </td>
+          </tr>
+        </table>
+      </div>
+      <div class="bu2_bullets2_outer" style="margin-left: 18pt">
+        <table border="0" cellspacing="0" cellpadding="0" summary="" role="presentation">
+          <tr style="vertical-align: baseline">
+            <td>
+              <div class="bu2_bullets2_inner" style="width: 14.399999999999998pt; white-space: nowrap">
+                <img src="bullet.png" alt="*" border="0" width="21" height="19" />
+              </div>
+            </td>
+            <td width="100%">
+              <div class="bu2_bullets2_inner"><a name="1251686">Local IP Address: 202.118.1.1 (the IP address of eth-s1p2)</a></div>
+            </td>
+          </tr>
+        </table>
+      </div>
+      <div class="bu2_bullets2_outer" style="margin-left: 18pt">
+        <table border="0" cellspacing="0" cellpadding="0" summary="" role="presentation">
+          <tr style="vertical-align: baseline">
+            <td>
+              <div class="bu2_bullets2_inner" style="width: 14.399999999999998pt; white-space: nowrap">
+                <img src="bullet.png" alt="*" border="0" width="21" height="19" />
+              </div>
+            </td>
+            <td width="100%">
+              <div class="bu2_bullets2_inner"><a name="1251687">Resource List (internal resources allowed to access): </a></div>
+            </td>
+          </tr>
+        </table>
+      </div>
+      <div class="bu3_bullets3_outer" style="margin-left: 32.4pt">
+        <table border="0" cellspacing="0" cellpadding="0" summary="" role="presentation">
+          <tr style="vertical-align: baseline">
+            <td>
+              <div class="bu3_bullets3_inner" style="width: 14.399999999999998pt; white-space: nowrap">
+                <img src="bullet.png" alt="*" border="0" width="21" height="19" />
+              </div>
+            </td>
+            <td width="100%">
+              <div class="bu3_bullets3_inner"><a name="1257718">web-http</a></div>
+            </td>
+          </tr>
+        </table>
+      </div>
+      <div class="bu3_bullets3_outer" style="margin-left: 32.4pt">
+        <table border="0" cellspacing="0" cellpadding="0" summary="" role="presentation">
+          <tr style="vertical-align: baseline">
+            <td>
+              <div class="bu3_bullets3_inner" style="width: 14.399999999999998pt; white-space: nowrap">
+                <img src="bullet.png" alt="*" border="0" width="21" height="19" />
+              </div>
+            </td>
+            <td width="100%">
+              <div class="bu3_bullets3_inner"><a name="1257725">web-https</a></div>
+            </td>
+          </tr>
+        </table>
+      </div>
+      <div class="bu3_bullets3_outer" style="margin-left: 32.4pt">
+        <table border="0" cellspacing="0" cellpadding="0" summary="" role="presentation">
+          <tr style="vertical-align: baseline">
+            <td>
+              <div class="bu3_bullets3_inner" style="width: 14.399999999999998pt; white-space: nowrap">
+                <img src="bullet.png" alt="*" border="0" width="21" height="19" />
+              </div>
+            </td>
+            <td width="100%">
+              <div class="bu3_bullets3_inner"><a name="1257732">subnet</a></div>
+            </td>
+          </tr>
+        </table>
+      </div>
+      <div class="s2_step_next_outer" style="margin-left: 0pt">
+        <table border="0" cellspacing="0" cellpadding="0" summary="" role="presentation">
+          <tr style="vertical-align: baseline">
+            <td>
+              <div class="s2_step_next_inner" style="width: 18pt; white-space: nowrap">
+                <span class="zz_step_number">3.	</span>
+              </div>
+            </td>
+            <td width="100%">
+              <div class="s2_step_next_inner"><a name="1251688">Click </a><span style="font-weight: bold">OK</span>.</div>
+            </td>
+          </tr>
+        </table>
+      </div>
+      <div class="s2_step_next_outer" style="margin-left: 0pt">
+        <table border="0" cellspacing="0" cellpadding="0" summary="" role="presentation">
+          <tr style="vertical-align: baseline">
+            <td>
+              <div class="s2_step_next_inner" style="width: 18pt; white-space: nowrap">
+                <span class="zz_step_number">4.	</span>
+              </div>
+            </td>
+            <td width="100%">
+              <div class="s2_step_next_inner"><a name="1251689">Click the </a><span style="font-weight: bold">Save</span> button.</div>
+            </td>
+          </tr>
+        </table>
+      </div>
+      <div class="N4h_4Heading" style="font-size: 12.0pt; font-style: normal; font-variant: normal; font-weight: bold; margin-top: 14.0pt; text-transform: none; vertical-align: baseline"><span style="color: #000000; font-family: Arial; font-size: 12.0pt; font-style: normal; font-variant: normal; font-weight: bold; text-transform: none; vertical-align: baseline"><a name="1251691">Create an Access Policy</a></span></div>
+      <div class="s1_step_first_outer" style="margin-left: 0pt">
+        <table border="0" cellspacing="0" cellpadding="0" summary="" role="presentation">
+          <tr style="vertical-align: baseline">
+            <td>
+              <div class="s1_step_first_inner" style="width: 18pt; white-space: nowrap">
+                <span class="zz_step_number">1.	</span>
+              </div>
+            </td>
+            <td width="100%">
+              <div class="s1_step_first_inner"><a name="1251692">Choose </a><span style="font-weight: bold">Firewall &gt; Access Policies</span>.</div>
+            </td>
+          </tr>
+        </table>
+      </div>
+      <div class="s2_step_next_outer" style="margin-left: 0pt">
+        <table border="0" cellspacing="0" cellpadding="0" summary="" role="presentation">
+          <tr style="vertical-align: baseline">
+            <td>
+              <div class="s2_step_next_inner" style="width: 18pt; white-space: nowrap">
+                <span class="zz_step_number">2.	</span>
+              </div>
+            </td>
+            <td width="100%">
+              <div class="s2_step_next_inner"><a name="1251693">Create </a><span style="font-weight: bold">New</span> to create an access policy allowing the remote user to access the company network. </div>
+            </td>
+          </tr>
+        </table>
+      </div>
+      <div class="bu2_bullets2_outer" style="margin-left: 18pt">
+        <table border="0" cellspacing="0" cellpadding="0" summary="" role="presentation">
+          <tr style="vertical-align: baseline">
+            <td>
+              <div class="bu2_bullets2_inner" style="width: 14.399999999999998pt; white-space: nowrap">
+                <img src="bullet.png" alt="*" border="0" width="21" height="19" />
+              </div>
+            </td>
+            <td width="100%">
+              <div class="bu2_bullets2_inner"><a name="1251694">Name: permit-alice</a></div>
+            </td>
+          </tr>
+        </table>
+      </div>
+      <div class="bu2_bullets2_outer" style="margin-left: 18pt">
+        <table border="0" cellspacing="0" cellpadding="0" summary="" role="presentation">
+          <tr style="vertical-align: baseline">
+            <td>
+              <div class="bu2_bullets2_inner" style="width: 14.399999999999998pt; white-space: nowrap">
+                <img src="bullet.png" alt="*" border="0" width="21" height="19" />
+              </div>
+            </td>
+            <td width="100%">
+              <div class="bu2_bullets2_inner"><a name="1251695">Source IP Address: 30.1.1.1-30.1.1.100 (IP addresses set in the IP address pool)</a></div>
+            </td>
+          </tr>
+        </table>
+      </div>
+      <div class="bu2_bullets2_outer" style="margin-left: 18pt">
+        <table border="0" cellspacing="0" cellpadding="0" summary="" role="presentation">
+          <tr style="vertical-align: baseline">
+            <td>
+              <div class="bu2_bullets2_inner" style="width: 14.399999999999998pt; white-space: nowrap">
+                <img src="bullet.png" alt="*" border="0" width="21" height="19" />
+              </div>
+            </td>
+            <td width="100%">
+              <div class="bu2_bullets2_inner"><a name="1251696">Destination IP Address: 192.168.1.0/24 (the company network allowed to access)</a></div>
+            </td>
+          </tr>
+        </table>
+      </div>
+      <div class="bu2_bullets2_outer" style="margin-left: 18pt">
+        <table border="0" cellspacing="0" cellpadding="0" summary="" role="presentation">
+          <tr style="vertical-align: baseline">
+            <td>
+              <div class="bu2_bullets2_inner" style="width: 14.399999999999998pt; white-space: nowrap">
+                <img src="bullet.png" alt="*" border="0" width="21" height="19" />
+              </div>
+            </td>
+            <td width="100%">
+              <div class="bu2_bullets2_inner"><a name="1251697">Action: Permit</a></div>
+            </td>
+          </tr>
+        </table>
+      </div>
+      <div class="s2_step_next_outer" style="margin-left: 0pt">
+        <table border="0" cellspacing="0" cellpadding="0" summary="" role="presentation">
+          <tr style="vertical-align: baseline">
+            <td>
+              <div class="s2_step_next_inner" style="width: 18pt; white-space: nowrap">
+                <span class="zz_step_number">3.	</span>
+              </div>
+            </td>
+            <td width="100%">
+              <div class="s2_step_next_inner"><a name="1251698">Click </a><span style="font-weight: bold">OK</span>.</div>
+            </td>
+          </tr>
+        </table>
+      </div>
+      <div class="s2_step_next_outer" style="margin-left: 0pt">
+        <table border="0" cellspacing="0" cellpadding="0" summary="" role="presentation">
+          <tr style="vertical-align: baseline">
+            <td>
+              <div class="s2_step_next_inner" style="width: 18pt; white-space: nowrap">
+                <span class="zz_step_number">4.	</span>
+              </div>
+            </td>
+            <td width="100%">
+              <div class="s2_step_next_inner"><a name="1251699">Click the </a><span style="font-weight: bold">Save</span> button.</div>
+            </td>
+          </tr>
+        </table>
+      </div>
+      <div class="N4h_4Heading" style="font-size: 12.0pt; font-style: normal; font-variant: normal; font-weight: bold; margin-top: 14.0pt; text-transform: none; vertical-align: baseline"><span style="color: #000000; font-family: Arial; font-size: 12.0pt; font-style: normal; font-variant: normal; font-weight: bold; text-transform: none; vertical-align: baseline"><a name="1251701">Import Personal Certificate</a></span></div>
+      <div class="b1_body"><a name="1251713">Connect your iOS device to your local PC. Open iTunes and click the iOS device icon. Choose </a><span style="font-weight: bold">Applications</span> on the left menu tree. At the bottom of the <span style="font-weight: bold">Applications</span> page, click the Neusoft SSL VPN software in the <span style="font-weight: bold">Share File </span>area. Click<span style="font-weight: bold"> Add</span> to import your personal certificate to the iOS device.</div>
+      <div class="N4h_4Heading" style="font-size: 12.0pt; font-style: normal; font-variant: normal; font-weight: bold; margin-top: 14.0pt; text-transform: none; vertical-align: baseline"><span style="color: #000000; font-family: Arial; font-size: 12.0pt; font-style: normal; font-variant: normal; font-weight: bold; text-transform: none; vertical-align: baseline"><a name="1251715">Create an SSL VPN Connection</a></span></div>
+      <div class="s1_step_first_outer" style="margin-left: 0pt">
+        <table border="0" cellspacing="0" cellpadding="0" summary="" role="presentation">
+          <tr style="vertical-align: baseline">
+            <td>
+              <div class="s1_step_first_inner" style="width: 18pt; white-space: nowrap">
+                <span class="zz_step_number">1.	</span>
+              </div>
+            </td>
+            <td width="100%">
+              <div class="s1_step_first_inner"><a name="1251716">In the login page of SSL VPN Client, enter the following information:</a></div>
+            </td>
+          </tr>
+        </table>
+      </div>
+      <div class="bu2_bullets2_outer" style="margin-left: 18pt">
+        <table border="0" cellspacing="0" cellpadding="0" summary="" role="presentation">
+          <tr style="vertical-align: baseline">
+            <td>
+              <div class="bu2_bullets2_inner" style="width: 14.399999999999998pt; white-space: nowrap">
+                <img src="bullet.png" alt="*" border="0" width="21" height="19" />
+              </div>
+            </td>
+            <td width="100%">
+              <div class="bu2_bullets2_inner"><a name="1251717">Connection Name: sslvpn-tunnel (SSL VPN tunnel name)</a></div>
+            </td>
+          </tr>
+        </table>
+      </div>
+      <div class="bu2_bullets2_outer" style="margin-left: 18pt">
+        <table border="0" cellspacing="0" cellpadding="0" summary="" role="presentation">
+          <tr style="vertical-align: baseline">
+            <td>
+              <div class="bu2_bullets2_inner" style="width: 14.399999999999998pt; white-space: nowrap">
+                <img src="bullet.png" alt="*" border="0" width="21" height="19" />
+              </div>
+            </td>
+            <td width="100%">
+              <div class="bu2_bullets2_inner"><a name="1251718">Server IP: 202.118.1.1 (the IP address of the server interface eth-s1p2)</a></div>
+            </td>
+          </tr>
+        </table>
+      </div>
+      <div class="bu2_bullets2_outer" style="margin-left: 18pt">
+        <table border="0" cellspacing="0" cellpadding="0" summary="" role="presentation">
+          <tr style="vertical-align: baseline">
+            <td>
+              <div class="bu2_bullets2_inner" style="width: 14.399999999999998pt; white-space: nowrap">
+                <img src="bullet.png" alt="*" border="0" width="21" height="19" />
+              </div>
+            </td>
+            <td width="100%">
+              <div class="bu2_bullets2_inner"><a name="1251719">User Name: Alice (SSL VPN user name)</a></div>
+            </td>
+          </tr>
+        </table>
+      </div>
+      <div class="bu2_bullets2_outer" style="margin-left: 18pt">
+        <table border="0" cellspacing="0" cellpadding="0" summary="" role="presentation">
+          <tr style="vertical-align: baseline">
+            <td>
+              <div class="bu2_bullets2_inner" style="width: 14.399999999999998pt; white-space: nowrap">
+                <img src="bullet.png" alt="*" border="0" width="21" height="19" />
+              </div>
+            </td>
+            <td width="100%">
+              <div class="bu2_bullets2_inner"><a name="1251720">Password: 123456 (password set for Alice)</a></div>
+            </td>
+          </tr>
+        </table>
+      </div>
+      <div class="s2_step_next_outer" style="margin-left: 0pt">
+        <table border="0" cellspacing="0" cellpadding="0" summary="" role="presentation">
+          <tr style="vertical-align: baseline">
+            <td>
+              <div class="s2_step_next_inner" style="width: 18pt; white-space: nowrap">
+                <span class="zz_step_number">2.	</span>
+              </div>
+            </td>
+            <td width="100%">
+              <div class="s2_step_next_inner"><a name="1251721">Click</a><span style="font-weight: bold"> </span>the icon<span style="font-weight: bold"> Disconnected</span>. If the OTP authentication is also required, you need to enter the OTP password.</div>
+            </td>
+          </tr>
+        </table>
+      </div>
+      <div class="s2_step_next_outer" style="margin-left: 0pt">
+        <table border="0" cellspacing="0" cellpadding="0" summary="" role="presentation">
+          <tr style="vertical-align: baseline">
+            <td>
+              <div class="s2_step_next_inner" style="width: 18pt; white-space: nowrap">
+                <span class="zz_step_number">3.	</span>
+              </div>
+            </td>
+            <td width="100%">
+              <div class="s2_step_next_inner"><a name="1251722">When the icon becomes </a><span style="font-weight: bold">Connected</span>, SSL VPN Client has successfully established an SSL VPN connection with the server. Then, the remote user can access the company resources behind the server through the SSL VPN tunnel.</div>
+            </td>
+          </tr>
+        </table>
+      </div>
+      <div class="s2_step_next_outer" style="margin-left: 0pt">
+        <table border="0" cellspacing="0" cellpadding="0" summary="" role="presentation">
+          <tr style="vertical-align: baseline">
+            <td>
+              <div class="s2_step_next_inner" style="width: 18pt; white-space: nowrap">
+                <span class="zz_step_number">4.	</span>
+              </div>
+            </td>
+            <td width="100%">
+              <div class="s2_step_next_inner"><a name="1258179">For Web resources, you can click the </a><span style="font-weight: bold">Resources</span> tab in SSL VPN Client and click a specific HTTP or HTTPS resource to access it directly.</div>
+            </td>
+          </tr>
+        </table>
+      </div>
+    </blockquote>
+  </body>
+</html>

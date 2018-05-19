@@ -1,0 +1,136 @@
+//
+//  Config.h
+//  TianjinBoHai
+//
+//  Created by 陈强 on 15/1/16.
+//  Copyright (c) 2015年 Binky Lee. All rights reserved.
+//
+
+#import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
+//#import "WNBLL.h"
+#import "ConfigUrl.h"
+//#import "User.h"
+//#import "NSDate+RMCalendarLogic.h"
+#pragma mark --------log
+
+#define Font_Size_12
+
+
+#define VOTETEXTCOLOR [UIColor colorWithRed:0.47 green:0.47 blue:0.47 alpha:1]
+//打印方法名，行数
+#ifdef DEBUG
+#   define DLOG(fmt, ...) NSLog((@"********\n%s [Line %d] " fmt), __PRETTY_FUNCTION__, __LINE__, ##__VA_ARGS__);
+#else
+#   define DLOG(...)
+#endif
+
+//debug log
+#ifdef DEBUG
+#   define DLog(fmt, ...) NSLog((@"%s [Line %d] " fmt), __PRETTY_FUNCTION__, __LINE__, ##__VA_ARGS__);
+#   define DLogRect(rect)  DLog(@"%s x=%f, y=%f, w=%f, h=%f", #rect, rect.origin.x, rect.origin.y,rect.size.width, rect.size.height)
+#   define DLogPoint(pt) DLog(@"%s x=%f, y=%f", #pt, pt.x, pt.y)
+#   define DLogSize(size) DLog(@"%s w=%f, h=%f", #size, size.width, size.height)
+#   define DLogColor(_COLOR) DLog(@"%s h=%f, s=%f, v=%f", #_COLOR, _COLOR.hue, _COLOR.saturation, _COLOR.value)
+#   define DLogSuperViews(_VIEW) { for (UIView* view = _VIEW; view; view = view.superview) { GBLog(@"%@", view); } }
+#   define DLogSubViews(_VIEW) \
+{ for (UIView* view in [_VIEW subviews]) { GBLog(@"%@", view); } }
+#   else
+#   define DLog(...)
+#   define DLogRect(rect)
+#   define DLogPoint(pt)
+#   define DLogSize(size)
+#   define DLogColor(_COLOR)
+#   define DLogSuperViews(_VIEW)
+#   define DLogSubViews(_VIEW)
+#   endif
+
+#define DOBJ(obj)  DLOG(@"%s: %@", #obj, [(obj) description])
+//当前方法和行数
+#define MARK    NSLog(@"********%@\nMARK: %s, %d",[self class] , __PRETTY_FUNCTION__, __LINE__)
+//屏幕宽度
+#define SCREENWIGTH [UIScreen mainScreen].bounds.size.width
+//屏幕高度
+#define SCREENHEIGHT [UIScreen mainScreen].bounds.size.height
+//每页条数
+#define CURRENTNUM 20
+//网络请求第一页
+#define CURRENTPAGE 0
+//字体大小
+#define Font_size_12 [UIFont systemFontOfSize:12]
+//输出日志
+#define _po(o) DLOG(@"%@", (o))
+#define _pn(o) DLOG(@"%d", (o))
+#define _pf(o) DLOG(@"%f", (o))
+#define _ps(o) DLOG(@"CGSize: {%.0f, %.0f}", (o).width, (o).height)
+#define _pr(o) DLOG(@"NSRect: {{%.0f, %.0f}, {%.0f, %.0f}}", (o).origin.x, (o).origin.x, (o).size.width, (o).size.height)
+
+
+
+
+#ifdef DEBUG
+/// DEBUG模式下进行调试打印
+
+#define DEF_DEBUG(...)   NSLog(__VA_ARGS__)
+
+#else
+
+#define DEF_DEBUG(...)   {}
+
+#endif
+//屏幕宽高
+
+
+
+/**
+ *  背景浅灰色
+ */
+extern NSString *lightGrayColor;
+/**
+ *  P3用吧字体颜色
+ */
+extern NSString *textlightGrayColor;
+@interface Config : NSObject
+/**
+ *  16进制颜色
+ *
+ *  @param hexColor 6位16进制
+ *
+ *  @return 颜色<＃UIColor＃>
+ */
+
+UIColor* getColor(NSString * hexColor);
+/**
+ *  通用红色button
+ *
+ *  @param button UIButton对象
+ */
+extern NSString * textFieldBorderGrayColor;
+/**
+ *  P3 TextField 边框颜色
+ *
+ *  @param button  UITextField 对象
+ */
+extern NSString * commonYellow;
+/**
+ *  通用黄色  颜色同按钮通用黄
+ *
+ *  @param button <#button description#>
+ */
+void commonRedButtonAttribute(UIButton* button);
+void commonYellowButtonAttribute(UIButton* button);
+void commonGrayViewAttribute(UIView* view);
+
+//是否为iphone4
+#define IS_IPHONE_4 ( fabs( ( double )[ [ UIScreen mainScreen ] bounds ].size.height - ( double )480 ) < DBL_EPSILON )
+
+//是否为iphone5
+#define IS_IPHONE_5 ( fabs( ( double )[ [ UIScreen mainScreen ] bounds ].size.height - ( double )568 ) < DBL_EPSILON )
+
+//是否为iphone6
+#define IS_IPHONE_6 ( fabs( ( double )[ [ UIScreen mainScreen ] bounds ].size.height - ( double )667 ) < DBL_EPSILON )
+
+//是否为iphone6Plus
+#define IS_IPHONE_6PLUS ( fabs( ( double )[ [ UIScreen mainScreen ] bounds ].size.height - ( double )736 ) < DBL_EPSILON )
+
+@end

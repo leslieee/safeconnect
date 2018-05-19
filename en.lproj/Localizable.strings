@@ -1,0 +1,123 @@
+/* 
+  Localizable.strings
+  Safe Connect
+
+  Created by 陈强 on 17/2/23.
+  Copyright © 2017年 shijia. All rights reserved.
+*/
+"general_remind" = "Tip";
+
+"general_ok" = "OK";
+"general_yes"= "Yes";
+"general_no"= "No";
+"general_exit"= "Exit the program?";
+
+"reading"= "Reading data...";
+"waiting"= "Please wait a minute...";
+"no_network"= "No network connection.";
+"general_cancel"= "Cancel";
+"general_connlist"= "Connection History";
+"general_cersetting"= "Certificate Setting";
+"bottom_tab1_txt"= "Connection";
+"bottom_tab2_txt"= "Resources";
+"bottom_tab3_txt"= "Settings";
+"bottom_tab4_txt"= "About";
+
+
+//<!-- 连接列表 -->
+
+"child_btn_del"= "Delete";
+"child_btn_sel"= "Select";
+"connList_txt"= "Connection History";
+"connectlist_serverip"= "Server";
+"connectlist_username"= "User Name";
+"del_yesORno"= "Delete this connection from the local?";
+
+//<!-- frag1连接页 -->
+"frag1_filltxt"= "Please complete the connection settings.";
+"frag1_notIP"= "Server address format is incorrect. Please enter a valid IP or domain address.";
+"frag1_dupName"= "This connection name already exists.";
+
+"service_unreachable"= "Destination server is unreachable or does not respond.";
+
+"VPNStartup_failed"= "Start up VPN error";
+
+"ca_not_found"= "No CA certificate is found.";
+"service_timeout"= "Connection timed out.";
+
+"vpn_timeout"= "The VPN timeout has expired. Please reconnect";
+"service_timeout2"= "Connection times out, the client certificate can not be verified by or the network latency";
+"frag1_connect_state_1"= "Disconnected";
+
+"frag1_connect_state_2"= "Connecting";
+
+"frag1_connect_state_3"= "Connected";
+"authentication_failed"= "Authentication failed.";
+"frag1_hasnodata"= "No connection history.";
+"frag1_cannotcheck"= "Please disconnect the current connection to view added connections.";
+"frag1_isCancle"= "Cancel the connection?";
+"frag1_isDisconnect"= "Disconnect the connection?";
+"frag1_Cancling"= "Cancelling the operation...";
+"frag1_Disconnectting"= "Disconnecting the connection...";
+
+"frag1_CannotopenTUN"= "隧道建立失败，请尝试重启手机。";
+"frag1_importCA"= "Please import the certificate.";
+"frag1_validclientCertPassWord" = "The client certificate password is incorrect";
+
+"frag1_inValidCA"= "The certificate is invalid.";
+
+"frag1_VERIFYERROR"= "Certificate authentication failed.";
+
+"crt_iputOTP"= "Please enter your OTP password:";
+"E155073"= "Authentication failed.";
+"E155074"= "Server unreachable.";
+"E159006"= "Invalid OTP password.";
+"E101014"= "User locked.";
+
+"frag1_rightOTP"= "Please enter the correct OTP password.";
+"frag1_failconnect"= "Connection failed.";
+
+//<!-- frag2资源页 -->
+
+"frag2_client_ip"= "Client IP";
+"frag2_dns_content"= "DNS Server";
+"frag2_connection_info"= "Connection Information";
+"frag2_resource_list"= "Resource List";
+"frag2_vpnnotconnect"= "Please establish a VPN connection first.";
+"frag2_noresource"= "No available resources,Pull down to refresh";
+
+
+//<!-- frag3设置页 -->
+"frag3_setting"= "Settings";
+"frag3_support"= "Technical Support";
+"Invalid_configuration" = "Configuration Invalid";
+"reStart_program" = "The configuration takes effect after reconnecting";
+"log_Message" = "Log Information";
+"log" = "Log";
+
+
+"write_Log" = "Please click the Write Log button first";
+"Mail_cancel" = "Undo email sent";
+"Mail_savedSuccessfully" = "Saved successfully";
+"Mail_sentSuccessfully" = "Mail sent successfully";
+"E-mail_failed_send"="Mail failed to send";
+
+"Import_the_certificate"="Please import the client certificate";
+"verification_styleOneSide" = "One-way certification";
+"verification_styleBothSide" = "Two-way authentication";
+"password_for_the_certificate" = "Enter the password for the certificate";
+"Enter_the_OTP_password" = "Plase Enter the OTP password";
+
+
+
+
+"Failed_connect_server" = "Failed to connect to the server";
+
+"Negotiation_fails" = "Negotiation failed";
+
+
+"Network_connection_interrupted" = "Network connection has been interrupted";
+
+//<!-- frag4证书列表页 -->
+"please_Input_PFX" = "Please use PFX format certificate";
+"Do_not_delete" = "Do not delete";
