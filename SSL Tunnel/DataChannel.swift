@@ -24,23 +24,23 @@ class DataChannel
         pid=1
         idRec=0
         outPacketList=[NSData]()
-        return crypto.restart(data)
+        return crypto.restart(data as Data!)
     }
     //加密
     func encryptData(packets:[NSData])->[NSData]
     {
         var dataList=[NSData]()
         for p in packets
-        {   dataList.append(encryptData(p))   }
+        {   dataList.append(encryptData(p: p))   }
         return dataList
     }
     func encryptData(p:NSData)->NSData
     {
         var pidBigEndian=pid.bigEndian
         let data:NSMutableData=NSMutableData()
-        data.appendData(NSData(bytes: &pidBigEndian, length: 4))
+        data.append(NSData(bytes: &pidBigEndian, length: 4) as Data)
         let dataEncrypt:NSMutableData=NSMutableData()
-        dataEncrypt.appendData(NSData(bytes:[SSLVPNOpcode.DataV1.opcode<<3], length:1))
+        dataEncrypt.append(NSData(bytes:[SSLVPNOpcode.DataV1.opcode<<3], length:1) as Data)
 //        //不启动压缩，防止影响速度
 //        data.appendData(dataNocompress)
 //        data.appendData(p)
@@ -48,15 +48,15 @@ class DataChannel
         //常规模式
         if(p.length<100)//不压缩
         {
-            data.appendData(dataNocompress)
-            data.appendData(p)
-            dataEncrypt.appendData(crypto.encryptData(data))
+            data.append(dataNocompress as Data)
+            data.append(p as Data)
+            dataEncrypt.append(crypto.encryptData(data as Data!))
         }
         else//压缩
         {
-            data.appendData(dataCompress)
-            data.appendData(lzo.compressNSData(p))
-            dataEncrypt.appendData(crypto.encryptData(data))
+            data.append(dataCompress as Data)
+            data.append((lzo?.compressNSData(p as Data!))!)
+            dataEncrypt.append(crypto.encryptData(data as Data!))
         }
         //
         pid += 1
@@ -68,7 +68,7 @@ class DataChannel
         var dataList=[NSData]()
         for p in packets
         {
-            let data=decryptData(p)
+			let data=decryptData(p:p)
             if(data.length>0)
             {   dataList.append(data)   }
         }
@@ -76,13 +76,14 @@ class DataChannel
     }
     func decryptData(p:NSData)->NSData
     {
-        let dataDecrypt=crypto.decryptData(p.subdataWithRange(NSMakeRange(1, p.length-1)))
-        if(dataDecrypt.length<5)
+        let dataDecrypt=crypto.decryptData(p.subdata(with: NSMakeRange(1, p.length-1)))
+		let dataForce:NSData = dataDecrypt! as NSData
+        if((dataDecrypt?.count)!<5)
         {   return NSData()    }
-        if(UnsafePointer<UInt8>(dataDecrypt.bytes+4).memory == 0xFA)
-        {   return dataDecrypt.subdataWithRange(NSMakeRange(5,dataDecrypt.length-5))   }
-        else if(UnsafePointer<UInt8>(dataDecrypt.bytes+4).memory == 0x66)
-        {   return lzo.decompressNSData(dataDecrypt.subdataWithRange(NSMakeRange(5,dataDecrypt.length-5)))  }
+        if(UnsafePointer<UInt8>(dataForce.bytes.assumingMemoryBound(to: UInt8.self)+4).pointee == 0xFA)
+        {   return dataForce.subdata(with: NSMakeRange(5,dataForce.length-5)) as NSData   }
+        else if(UnsafePointer<UInt8>(dataForce.bytes.assumingMemoryBound(to: UInt8.self)+4).pointee == 0x66)
+        {   return lzo!.decompressNSData(dataForce.subdata(with: NSMakeRange(5,dataForce.length-5)))! as NSData  }
         //
         return NSData()
     }
@@ -91,7 +92,7 @@ class DataChannel
     {
         for p in packets
         {
-            let data=decryptData(p)
+			let data=decryptData(p:p)
             if(data.length==0)
             {   continue   }
             //

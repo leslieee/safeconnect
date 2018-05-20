@@ -14,9 +14,9 @@ class PacketTunnelProvider: NEPacketTunnelProvider
 {
     var isConnected=false
     var session: NWUDPSession? = nil
-    var pendingStartCompletion: (NSError? -> Void)?
-    var pendingStopCompletion: (Void -> Void)?
-    var pendingInformationCompletion: (NSData? -> Void)?
+    var pendingStartCompletion: ((NSError?) -> Void)?
+    var pendingStopCompletion: ((Void) -> Void)?
+    var pendingInformationCompletion: ((Data?) -> Void)?
     var countSend:Int=0
     var countRec:Int=0
     var timeRec=NSDate()
@@ -24,7 +24,7 @@ class PacketTunnelProvider: NEPacketTunnelProvider
     //
     let sslVPN = SSLVPN()
     //
-    var threadConnect:NSThread? = nil
+    var threadConnect:Thread? = nil
     var timePing:UInt32=5
     var timePingRestart:UInt32=20
     let timeTLS:UInt32=20//tls握手限长
@@ -65,17 +65,17 @@ class PacketTunnelProvider: NEPacketTunnelProvider
                     let messageHeader  = "SSLVPN State : "
                     
                 
-                    self.addMessageToArray(messageHeader, message: String(sslVPN.state))
+                    self.addMessageToArray(headerMessage: messageHeader, message: String(describing: sslVPN.state))
                     
                     //没收到服务器应答,再次发送请求数据包
 //                    self.session?.writeMultipleDatagrams(self.sslVPN.readControlChannel(), completionHandler: { (error: NSError?) -> Void in})
-                     self.session?.writeMultipleDatagrams(self.sslVPN.readControlChannel(), completionHandler: { (error) in
+                     self.session?.writeMultipleDatagrams(self.sslVPN.readControlChannel() as [Data], completionHandler: { (error) in
                         
                    
-                        self.addMessageToArray("Handshake Phase : the times of request : ", message: String(nRetry))
+                        self.addMessageToArray(headerMessage: "Handshake Phase : the times of request : ", message: String(nRetry))
                         
                         if error != nil {
-                            self.addMessageToArray("ERROR : ", message: String(error.debugDescription))
+                            self.addMessageToArray(headerMessage: "ERROR : ", message: String(error.debugDescription))
                         }
 
                         
@@ -85,7 +85,7 @@ class PacketTunnelProvider: NEPacketTunnelProvider
                     
                     //logString(String(nRetry))
                     nRetry += 1
-                    sleep(1)//每隔1s重新发送请求信息
+                    let _ = Darwin.sleep(1)//每隔1s重新发送请求信息
                 }
                 else//tls阶段
                 {
@@ -93,8 +93,8 @@ class PacketTunnelProvider: NEPacketTunnelProvider
                     {
          
                         
-                        self.session?.writeMultipleDatagrams(self.sslVPN.readControlChannel(), completionHandler: { (error) in
-                          self.addMessageToArray("TLS Phase : ERROR ", message: String(error.debugDescription))
+                        self.session?.writeMultipleDatagrams(self.sslVPN.readControlChannel() as [Data], completionHandler: { (error) in
+                          self.addMessageToArray(headerMessage: "TLS Phase : ERROR ", message: String(error.debugDescription))
                          
 
                             
@@ -105,7 +105,7 @@ class PacketTunnelProvider: NEPacketTunnelProvider
                     else
                     {
                         nTLS += timeTLS
-                        sleep(timeTLS)
+                        let _ = Darwin.sleep(timeTLS)
                     }
                 }
             }
@@ -114,7 +114,7 @@ class PacketTunnelProvider: NEPacketTunnelProvider
                 //ping-restart
                 if(nPingRestart>=timePingRestart)
                 {
-                    if(UInt32(NSDate().timeIntervalSinceDate(timeRec)) >= timePingRestart) //超时，重新连接
+                    if(UInt32(NSDate().timeIntervalSince(timeRec as Date)) >= timePingRestart) //超时，重新连接
                     {
 //                      self.addMessageToArray("ERROR : ", message:"-------------------------------------------")
 //                
@@ -128,10 +128,10 @@ class PacketTunnelProvider: NEPacketTunnelProvider
                                                     nPingRestart=0
                                                     isConnected=false
                          if (autoReconnect == "reConnect" ){
-                                                    sslVPN.restart()
-                                                    self.session?.writeMultipleDatagrams(self.sslVPN.readControlChannel(), completionHandler: { (error) in
+                                                    let _ = sslVPN.restart()
+                                                    self.session?.writeMultipleDatagrams(self.sslVPN.readControlChannel() as [Data], completionHandler: { (error) in
                                                         if error != nil {
-                                                            self.addMessageToArray("ERROR : ", message: String(error.debugDescription))
+                                                            self.addMessageToArray(headerMessage: "ERROR : ", message: String(error.debugDescription))
                                                         }
                                                         })
                          
@@ -146,10 +146,10 @@ class PacketTunnelProvider: NEPacketTunnelProvider
                     {   nPingRestart=0    }
                 }
                 //ping
-                 self.session?.writeMultipleDatagrams(self.sslVPN.encryptDataChannel([dataPing]), completionHandler: { (error) in
+                 self.session?.writeMultipleDatagrams(self.sslVPN.encryptDataChannel(packets: [dataPing]) as [Data], completionHandler: { (error) in
                
                     if error != nil {
-                        self.addMessageToArray("ERROR : ", message: String(error.debugDescription))
+                        self.addMessageToArray(headerMessage: "ERROR : ", message: String(error.debugDescription))
                     }
 
                     
@@ -157,7 +157,7 @@ class PacketTunnelProvider: NEPacketTunnelProvider
                 
                
                 nPingRestart += timePing
-                sleep(timePing)
+                let _ = Darwin.sleep(timePing)
             }
             
         }
@@ -167,13 +167,13 @@ class PacketTunnelProvider: NEPacketTunnelProvider
     func addMessageToArray(headerMessage: String , message: String) -> Void{
         
         
-        let df=NSDateFormatter()
+        let df=DateFormatter()
         df.dateFormat = "yyyy-MM-dd HH:mm:ss "
-        let  strTimeConnect=df.stringFromDate(NSDate())
-        .stringByAppendingString(String(headerMessage))
+        let  strTimeConnect=df.string(from: NSDate() as Date)
+        .appendingFormat(String(headerMessage))
         
-        let message =   strTimeConnect.stringByAppendingString(String(message))
-       let endMessage  = message.stringByAppendingString(String("\n"))
+        let message =   strTimeConnect.appending(String(message))
+       let endMessage  = message.appending("\n")
         
 //        self.messageArray.append(endMessage)
 //        
@@ -187,7 +187,7 @@ class PacketTunnelProvider: NEPacketTunnelProvider
          }
     
     //开始VPN连接
-    override func startTunnelWithOptions(options: [String : NSObject]?, completionHandler: (NSError?) -> Void)
+	override func startTunnel(options: [String : NSObject]? = nil, completionHandler: @escaping (Error?) -> Void)	
     {
         
 
@@ -200,28 +200,28 @@ class PacketTunnelProvider: NEPacketTunnelProvider
        
     
        let messageHeader =  String.init(format: "User Info: username %@  password [...]", self.protocolConfiguration.username!)
-        self.addMessageToArray(messageHeader, message: String(""))
+        self.addMessageToArray(headerMessage: messageHeader, message: String(""))
         
         if(self.protocolConfiguration.username==nil || self.protocolConfiguration.passwordReference==nil)
         {
             completionHandler(NSError(domain:"PacketTunnelProviderDomain", code:-1, userInfo:[NSLocalizedDescriptionKey:"No username or password"]))
             
-            self.addMessageToArray("ERROR:No username or password", message: String(""))
+            self.addMessageToArray(headerMessage: "ERROR:No username or password", message: String(""))
             return
         }
         
         sslVPN.addMessage = {  message   in
             
-            self.addMessageToArray("SSLVPN State : ", message: String(message))
+            self.addMessageToArray(headerMessage: "SSLVPN State : ", message: String(message))
         }
         //启动OpenVPN
-        if(!sslVPN.restart(self.protocolConfiguration.username!, password:String.init(data: self.protocolConfiguration.passwordReference!, encoding: NSASCIIStringEncoding)!, configuration: (self.protocolConfiguration as! NETunnelProviderProtocol).providerConfiguration!))
+        if(!sslVPN.restart(username: self.protocolConfiguration.username!, password:String.init(data: self.protocolConfiguration.passwordReference!, encoding: String.Encoding.ascii)!, configuration: (self.protocolConfiguration as! NETunnelProviderProtocol).providerConfiguration! as [String : AnyObject]))
         {
             
          
             
             completionHandler(NSError(domain:"PacketTunnelProviderDomain", code:-1, userInfo:[NSLocalizedDescriptionKey:"OpenVPN library init wrong"]))
-            self.addMessageToArray("ERROR:OpenVPN library init wrong", message: String(""))
+            self.addMessageToArray(headerMessage: "ERROR:OpenVPN library init wrong", message: String(""))
             
             return
         }
@@ -238,19 +238,19 @@ class PacketTunnelProvider: NEPacketTunnelProvider
             
             
 
-        session = self.createUDPSessionToEndpoint(NWHostEndpoint(hostname: ipAdress!, port:"10442"), fromEndpoint: nil)
+        session = self.createUDPSession(to: NWHostEndpoint(hostname: ipAdress!, port:"10442"), from: nil)
             
             
             self.readPacketsFromUDP()
-            self.session?.writeMultipleDatagrams(self.sslVPN.readControlChannel(), completionHandler: { (error) in
+            self.session?.writeMultipleDatagrams(self.sslVPN.readControlChannel() as [Data], completionHandler: { (error) in
                 
                 if error != nil {
-                    self.addMessageToArray("ERROR : ", message: String(error.debugDescription))
+                    self.addMessageToArray(headerMessage: "ERROR : ", message: String(error.debugDescription))
                 }
 
             })
             //检测初始连接状态
-                 threadConnect=NSThread(target: self, selector: #selector(PacketTunnelProvider.testConnect(_:)), object: nil)
+			threadConnect=Thread(target: self, selector: #selector(testConnect(sender:)), object: nil)
             
             threadConnect?.start()
             
@@ -260,32 +260,31 @@ class PacketTunnelProvider: NEPacketTunnelProvider
         else
         {
             
-               self.addMessageToArray("ERROR :Configuration is missing serverAddress ", message: String(""))
+               self.addMessageToArray(headerMessage: "ERROR :Configuration is missing serverAddress ", message: String(""))
             completionHandler(NSError(domain:"PacketTunnelProviderDomain", code:-1, userInfo:[NSLocalizedDescriptionKey:"Configuration is missing serverAddress"]))
         
         }
     }
 
-     func stopTunnel(reason: NEProviderStopReason, completionHandler: () -> Void) {
-        // Add code here to start the process of stopping the tunnel.
-        
-        pendingInformationCompletion = nil
-        pendingStartCompletion=nil
-        pendingStopCompletion = completionHandler
-        session?.cancel()
-        threadConnect?.cancel()
-        
-        self.addMessageToArray("Tunnel Has stopped", message: String(""))
-        completionHandler()
-    }
-
+	override func stopTunnel(with reason: NEProviderStopReason, completionHandler: @escaping () -> Void) {
+		// Add code here to start the process of stopping the tunnel.
+		
+		pendingInformationCompletion = nil
+		pendingStartCompletion=nil
+		pendingStopCompletion = completionHandler
+		session?.cancel()
+		threadConnect?.cancel()
+		
+		self.addMessageToArray(headerMessage: "Tunnel Has stopped", message: String(""))
+		completionHandler()
+	}
     
     
     //处理IPC消息
-    override func handleAppMessage(messageData: NSData, completionHandler: ((NSData?) -> Void)?)
-    {
+	override func handleAppMessage(_ messageData: Data, completionHandler: ((Data?) -> Void)? = nil) 
+	{
        
-        guard let messageString = NSString(data: messageData, encoding: NSUTF8StringEncoding)
+        guard let messageString = NSString(data: messageData, encoding: String.Encoding.utf8.rawValue)
             else
         {   completionHandler?(nil);return  }
         //
@@ -295,30 +294,30 @@ class PacketTunnelProvider: NEPacketTunnelProvider
         switch(messageString)
         {
             
-        case "ip":if(sslVPN.netSetting.adressIpList.count>0){completionHandler?((sslVPN.netSetting.adressIpList[0] as! String).dataUsingEncoding(NSUTF8StringEncoding))} else{completionHandler?(("null").dataUsingEncoding(NSASCIIStringEncoding))}
-        case "time":completionHandler?(sslVPN.strTimeConnect.dataUsingEncoding(NSUTF8StringEncoding))
+        case "ip":if((sslVPN.netSetting?.adressIpList.count)!>0){completionHandler?((sslVPN.netSetting?.adressIpList[0] as! String).data(using: String.Encoding.utf8))} else{completionHandler?(("null").data(using: String.Encoding.ascii))}
+        case "time":completionHandler?(sslVPN.strTimeConnect.data(using: String.Encoding.utf8))
        
             
         case "DNS":
         
             
-            for  i  in 0 ..< sslVPN.netSetting.dnsList.count {
+            for  i  in 0 ..< sslVPN.netSetting!.dnsList.count {
                 
-                self.DNSString!.appendString(sslVPN.netSetting.dnsList[i] as! String)
-                self.DNSString?.appendString(",")
+                self.DNSString!.append(sslVPN.netSetting?.dnsList[i] as! String)
+                self.DNSString?.append(",")
             }
          
             
-            completionHandler?(self.DNSString!.dataUsingEncoding(NSUTF8StringEncoding))
+            completionHandler?(self.DNSString!.data(using: String.Encoding.utf8.rawValue))
    
             self.DNSString  = NSMutableString()
             
-        case "packet":completionHandler?((String(countSend)+"|"+String(countRec)).dataUsingEncoding(NSUTF8StringEncoding))
-        case "state":completionHandler?((String(sslVPN.state)).dataUsingEncoding(NSUTF8StringEncoding))
-        case "reConnecting":completionHandler?((String(sslVPN.netSetting.reConnecting)).dataUsingEncoding(NSUTF8StringEncoding))
+        case "packet":completionHandler?((String(countSend)+"|"+String(countRec)).data(using: String.Encoding.utf8))
+        case "state":completionHandler?((String(describing: sslVPN.state)).data(using: String.Encoding.utf8))
+        case "reConnecting":completionHandler?((String(sslVPN.netSetting!.reConnecting)).data(using: String.Encoding.utf8))
             
-        case "dataChannel":completionHandler?((String(sslVPN.dataChannel.pid)).dataUsingEncoding(NSUTF8StringEncoding))
-        case "debug1":completionHandler?((String(sslVPN.controlChannel.outPacketList.count)+"|"+String(sslVPN.controlChannel.inPacketList.count)).dataUsingEncoding(NSUTF8StringEncoding))
+        case "dataChannel":completionHandler?((String(sslVPN.dataChannel.pid)).data(using: String.Encoding.utf8))
+        case "debug1":completionHandler?((String(sslVPN.controlChannel.outPacketList.count)+"|"+String(sslVPN.controlChannel.inPacketList.count)).data(using: String.Encoding.utf8))
 //            case "debug2":
 //                
 //            for  i  in 0 ..< self.messageArray.count {
@@ -330,8 +329,8 @@ class PacketTunnelProvider: NEPacketTunnelProvider
 //            completionHandler?(string!.dataUsingEncoding(NSUTF8StringEncoding))
 //
             
-           case "pingRestart":completionHandler?((String(sslVPN.netSetting.pingRestart)).dataUsingEncoding(NSUTF8StringEncoding))
-        default:completionHandler?(("no answer").dataUsingEncoding(NSUTF8StringEncoding))
+           case "pingRestart":completionHandler?((String(sslVPN.netSetting!.pingRestart)).data(using: String.Encoding.utf8))
+        default:completionHandler?(("no answer").data(using: String.Encoding.utf8))
             
             
         }
@@ -342,8 +341,9 @@ class PacketTunnelProvider: NEPacketTunnelProvider
     }
     
     //休眠
-    override func sleepWithCompletionHandler(completionHandler: () -> Void)
-    {   completionHandler()     }
+	override func sleep(completionHandler: @escaping () -> Void) {
+		completionHandler()
+	}
     
     //唤醒
     override func wake()
@@ -352,16 +352,16 @@ class PacketTunnelProvider: NEPacketTunnelProvider
     //从网卡读取数据
     func readPacketsFromTUN()
     {
-        self.packetFlow.readPacketsWithCompletionHandler
+        self.packetFlow.readPackets
             { packets, protocols in
-                let dataList=self.sslVPN.encryptDataChannel(packets);
+                let dataList=self.sslVPN.encryptDataChannel(packets: packets as [NSData]);
                 //self.countSend += dataList.count
                 //self.logNsdataList(packets)
                 //self.logNsdataList(dataList)
                 //加密并通过隧道发送给服务器
-                       self.session?.writeMultipleDatagrams(dataList, completionHandler: { (error) in
+                       self.session?.writeMultipleDatagrams(dataList as [Data], completionHandler: { (error) in
                         if error != nil {
-                            self.addMessageToArray("ERROR : ", message: String(error.debugDescription))
+                            self.addMessageToArray(headerMessage: "ERROR : ", message: String(error.debugDescription))
                         }
 
                         
@@ -375,19 +375,19 @@ class PacketTunnelProvider: NEPacketTunnelProvider
     //从UDP处读取
     func readPacketsFromUDP()
     {
-        self.addMessageToArray("STAGE : Read Packets From UDP ", message: String(""))
+        self.addMessageToArray(headerMessage: "STAGE : Read Packets From UDP ", message: String(""))
         
         
         session?.setReadHandler(
-            {(newPackets: [NSData]?, error: NSError?) -> Void in
+            {(newPackets: [Data]?, error: NSError?) -> Void in
                 guard let packets = newPackets else { return }
                 //写入数据,由openvpn自行判断写入通道
-                self.sslVPN.write(packets)
+                self.sslVPN.write(packets: packets as [NSData])
                 //控制通道，发送回服务器
                 let dataControl=self.sslVPN.readControlChannel()
-                self.session?.writeMultipleDatagrams(dataControl, completionHandler: { (error ) in
+                self.session?.writeMultipleDatagrams(dataControl as [Data], completionHandler: { (error ) in
                     if error != nil {
-                        self.addMessageToArray("ERROR : ", message: String(error.debugDescription))
+                        self.addMessageToArray(headerMessage: "ERROR : ", message: String(error.debugDescription))
                      }
                     
                 
@@ -415,7 +415,7 @@ class PacketTunnelProvider: NEPacketTunnelProvider
 //                self.logNsdataList(packets)
                 //self.logNsdataList(decryptedPackets)
                 //self.debug()
-                self.packetFlow.writePackets(decryptedPackets, withProtocols: protocols)},maxDatagrams: 1024)
+                self.packetFlow.writePackets(decryptedPackets as [Data], withProtocols: protocols)} as! ([Data]?, Error?) -> Void,maxDatagrams: 1024)
     }
     
     //网络配置
@@ -424,43 +424,43 @@ class PacketTunnelProvider: NEPacketTunnelProvider
         //时间参数配置,在更新ovpn文件后加入
         //新配置
         let newSettings = NEPacketTunnelNetworkSettings(tunnelRemoteAddress: ipAdress!)
-        newSettings.IPv4Settings = NEIPv4Settings(addresses:self.sslVPN.netSetting.adressIpList as! [String], subnetMasks:self.sslVPN.netSetting.adressMasksList as! [String])
-        newSettings.MTU = 1500
+        newSettings.iPv4Settings = NEIPv4Settings(addresses:self.sslVPN.netSetting?.adressIpList as! [String], subnetMasks:self.sslVPN.netSetting?.adressMasksList as! [String])
+        newSettings.mtu = 1500
         newSettings.tunnelOverheadBytes = 150
         //路由
-        if(self.sslVPN.netSetting.routeIpList.count>0)
+        if((self.sslVPN.netSetting?.routeIpList.count)!>0)
         {
-            let routeIpList=self.sslVPN.netSetting.routeIpList as! [String]
-            let routeMasksList=self.sslVPN.netSetting.routeMasksList as! [String]
+            let routeIpList=self.sslVPN.netSetting?.routeIpList as! [String]
+            let routeMasksList=self.sslVPN.netSetting?.routeMasksList as! [String]
             var includedRoutes = [NEIPv4Route]()
             for i in 0 ..< routeIpList.count
             {   includedRoutes.append(NEIPv4Route(destinationAddress: routeIpList[i], subnetMask:routeMasksList[i]))   }
-            newSettings.IPv4Settings!.includedRoutes = includedRoutes
+            newSettings.iPv4Settings!.includedRoutes = includedRoutes
         }
         else
-        {   newSettings.IPv4Settings!.includedRoutes = [NEIPv4Route.defaultRoute()]    }
+        {   newSettings.iPv4Settings!.includedRoutes = [NEIPv4Route.default()]    }
         
         
         let ca  = (self.protocolConfiguration as! NETunnelProviderProtocol).providerConfiguration!
         let doMains =  ca["doMains"] as! NSArray
 
         //DNS
-        newSettings.DNSSettings = NEDNSSettings(servers:(self.sslVPN.netSetting.dnsList as! [String]))
-        newSettings.DNSSettings!.matchDomains  = doMains as! [String];
+        newSettings.dnsSettings = NEDNSSettings(servers:(self.sslVPN.netSetting?.dnsList as! [String]))
+        newSettings.dnsSettings!.matchDomains  = doMains as? [String];
         
         //ping
-        if(sslVPN.netSetting.ping>5)
-        {timePing=UInt32(sslVPN.netSetting.ping)}
-        if(sslVPN.netSetting.pingRestart>60)
-        {timePingRestart=UInt32(sslVPN.netSetting.pingRestart)}
+        if((sslVPN.netSetting?.ping)!>5)
+        {timePing=UInt32((sslVPN.netSetting?.ping)!)}
+        if((sslVPN.netSetting?.pingRestart)!>60)
+        {timePingRestart=UInt32((sslVPN.netSetting?.pingRestart)!)}
         //更新配置并开始从网卡读取数据
         
         self.setTunnelNetworkSettings(newSettings)
-            { (error: NSError?) -> Void in
+            { (error: Error?) -> Void in
                 if let completionHandler = self.pendingStartCompletion
                 {
                     
-                    completionHandler(error)
+                    completionHandler(error! as NSError)
                     if (error == nil)
                     {   self.readPacketsFromTUN()   }
                     else

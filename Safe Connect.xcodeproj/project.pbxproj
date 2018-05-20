@@ -1624,6 +1624,7 @@
 					D631330B1B71D3A4004A8F78 = {
 						CreatedOnToolsVersion = 7.0;
 						DevelopmentTeam = 4N7JCXKN8S;
+						LastSwiftMigration = 0830;
 						SystemCapabilities = {
 							com.apple.ApplicationGroups.iOS = {
 								enabled = 1;
@@ -1639,7 +1640,7 @@
 					D6BCC3241B6768F1001AE4AB = {
 						CreatedOnToolsVersion = 7.0;
 						DevelopmentTeam = 4N7JCXKN8S;
-						LastSwiftMigration = 0810;
+						LastSwiftMigration = 0830;
 						SystemCapabilities = {
 							com.apple.ApplicationGroups.iOS = {
 								enabled = 1;
@@ -1654,10 +1655,12 @@
 					};
 					D6BCC3381B6768F1001AE4AB = {
 						CreatedOnToolsVersion = 7.0;
+						LastSwiftMigration = 0830;
 						TestTargetID = D6BCC3241B6768F1001AE4AB;
 					};
 					D6BCC3431B6768F1001AE4AB = {
 						CreatedOnToolsVersion = 7.0;
+						LastSwiftMigration = 0830;
 						TestTargetID = D6BCC3241B6768F1001AE4AB;
 					};
 				};
@@ -2120,7 +2123,7 @@
 				SUPPORTED_PLATFORMS = "iphonesimulator iphoneos";
 				SWIFT_OBJC_BRIDGING_HEADER = "SSL Tunnel/SSL Tunnel-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
-				SWIFT_VERSION = 2.3;
+				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
@@ -2150,7 +2153,7 @@
 				SKIP_INSTALL = YES;
 				SUPPORTED_PLATFORMS = "iphonesimulator iphoneos";
 				SWIFT_OBJC_BRIDGING_HEADER = "SSL Tunnel/SSL Tunnel-Bridging-Header.h";
-				SWIFT_VERSION = 2.3;
+				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
 		};
@@ -2269,7 +2272,7 @@
 				PROVISIONING_PROFILE_SPECIFIER = "DEV-com.NISG.SSLVPN";
 				SWIFT_OBJC_BRIDGING_HEADER = "SSL VPN/Safe Connect-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 2.3;
+				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
@@ -2304,7 +2307,7 @@
 				PROVISIONING_PROFILE = "19ec02b6-9eac-45e1-b2e1-b46814e2ac18";
 				PROVISIONING_PROFILE_SPECIFIER = "DIS-com.NISG.SSLVPN";
 				SWIFT_OBJC_BRIDGING_HEADER = "SSL VPN/Safe Connect-Bridging-Header.h";
-				SWIFT_VERSION = 2.3;
+				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
 		};
@@ -2316,6 +2319,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "shijia.SSL-VPNTests";
 				PRODUCT_NAME = "Safe Connect";
+				SWIFT_VERSION = 3.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Safe Connect.app/Safe Connect";
 			};
 			name = Debug;
@@ -2328,6 +2332,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "shijia.SSL-VPNTests";
 				PRODUCT_NAME = "Safe Connect";
+				SWIFT_VERSION = 3.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Safe Connect.app/Safe Connect";
 			};
 			name = Release;
@@ -2339,6 +2344,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "shijia.SSL-VPNUITests";
 				PRODUCT_NAME = "Safe Connect";
+				SWIFT_VERSION = 3.0;
 				TEST_TARGET_NAME = "SSL VPN";
 				USES_XCTRUNNER = YES;
 			};
@@ -2351,6 +2357,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "shijia.SSL-VPNUITests";
 				PRODUCT_NAME = "Safe Connect";
+				SWIFT_VERSION = 3.0;
 				TEST_TARGET_NAME = "SSL VPN";
 				USES_XCTRUNNER = YES;
 			};

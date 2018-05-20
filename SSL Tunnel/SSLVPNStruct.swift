@@ -15,7 +15,7 @@ struct PacketControl
     var opcode:UInt8
     var id:UInt32
     var tid:UInt32
-    var timeout:NSTimeInterval
+    var timeout:TimeInterval
     var data:NSData
     var isHold:Bool
     //

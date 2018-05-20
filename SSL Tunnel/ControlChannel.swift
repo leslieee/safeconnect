@@ -7,7 +7,7 @@
 //
 
 import Foundation
-typealias ControlChannelAddMessageBlock = (message:String)->Void
+// typealias ControlChannelAddMessageBlock = (message:String)->Void
 
 class ControlChannel
 {
@@ -19,7 +19,7 @@ class ControlChannel
     var inPacketList:[PacketControl]=[PacketControl]()
     var outPacketList:[PacketControl]=[PacketControl]()
     var ackPacketList:[PacketControl]=[PacketControl]()
-    var conChannelMessage = ControlChannelAddMessageBlock?()
+	var conChannelMessage: ((String)->Void)?
     func restart(dataCa:NSDictionary)->Bool
     {
         tid=0
@@ -30,12 +30,12 @@ class ControlChannel
        
         outPacketList=[PacketControl]()
         
-        sslLayer.sslLayerMesssage = {  message   in
+        sslLayer!.sslLayerMesssage = {  message   in
             
-            self.conChannelMessage!(message: message);
+            self.conChannelMessage!(message!);
             
         }
-        return sslLayer.restart(dataCa as [NSObject : AnyObject])
+        return sslLayer!.restart(dataCa as [NSObject : AnyObject])
     }
     
     func restart()->Bool
@@ -49,41 +49,26 @@ class ControlChannel
       
         
         
-        return sslLayer.restart(NSDictionary() as [NSObject : AnyObject])
+        return sslLayer!.restart(NSDictionary() as [NSObject : AnyObject])
     }
     //完成握手
     func isHandShake()->Bool
     {
-        if(outPacketList.isEmpty && sslLayer.isHandShake())
+        if(outPacketList.isEmpty)
         {
-           
-            
-            
-            if  (self.conChannelMessage != nil) {
-                self.conChannelMessage!(message: "ControlChannel Handshake finished");
-
-            }
-            
-            
-            return true
+			if sslLayer!.isHandShake() {
+				if  (self.conChannelMessage != nil) {
+					self.conChannelMessage!("ControlChannel Handshake finished");
+					
+				}
+				return true
+			}
         
         }
-        else
-        {
-            
-     
-            
-            if  (self.conChannelMessage != nil) {
-                self.conChannelMessage!(message: "ControlChannel Handshake Failed");
-                
-            }
-            
-            
-            
-            
-            return false
-        
-        }
+		if  (self.conChannelMessage != nil) {
+			self.conChannelMessage!("ControlChannel Handshake Failed");
+		}
+		return false
     }
     //完成同步
     func isFullSync()->Bool
@@ -97,17 +82,17 @@ class ControlChannel
     
     //进行读取
     func doSSLRead()
-    {   dataToBuffer(readSSLBIO())  }
+    {   dataToBuffer(data: readSSLBIO())  }
     
     //从ssl读取控制数据
     private func readSSLBIO()->NSData
     {
         let data:NSMutableData=NSMutableData()
-        var dataRead:NSData = sslLayer.read()
+        var dataRead:NSData = sslLayer!.read()! as NSData
         while(dataRead.length>0)
         {
-            data.appendData(dataRead)
-            dataRead = sslLayer.read()
+            data.append(dataRead as Data)
+            dataRead = sslLayer!.read()! as NSData
         }
         return data
     }
@@ -120,7 +105,7 @@ class ControlChannel
             var offset=0
             while(offset < data.length)
             {
-                let dataP:NSData=data.subdataWithRange(NSMakeRange(offset,min(mtu, data.length-offset)))
+                let dataP:NSData=data.subdata(with: NSMakeRange(offset,min(mtu, data.length-offset))) as NSData
                 outPacketList.append(PacketControl(Opcode: SSLVPNOpcode.Control.opcode, ID: pid, Data: dataP))
                 pid += 1
                 tid += 1
@@ -129,13 +114,13 @@ class ControlChannel
         }
         else
         {
-            outPacketList.append(PacketControl(Opcode: SSLVPNOpcode.Control.opcode, ID: pid, TID: tid, Data: data.subdataWithRange(NSMakeRange(0,mtu))))
+            outPacketList.append(PacketControl(Opcode: SSLVPNOpcode.Control.opcode, ID: pid, TID: tid, Data: data.subdata(with: NSMakeRange(0,mtu)) as NSData))
             var offset=mtu
             pid += 1
             tid += 1
             while(offset < data.length)
             {
-                let dataP:NSData=data.subdataWithRange(NSMakeRange(offset,min(mtu, data.length-offset)))
+                let dataP:NSData=data.subdata(with: NSMakeRange(offset,min(mtu, data.length-offset))) as NSData
                 outPacketList.append(PacketControl(Opcode: SSLVPNOpcode.Control.opcode, ID: pid, Data: dataP))
                 pid += 1
                 tid += 1
@@ -154,7 +139,7 @@ class ControlChannel
     }
     
     func readAck()->[PacketControl]
-    {   return readAck(true)    }
+    {   return readAck(isClear: true)    }
     func readAck(isClear:Bool)->[PacketControl]
     {
         let r=ackPacketList
@@ -164,7 +149,7 @@ class ControlChannel
     }
     
     func readBuffer()->[PacketControl]
-    {   return readBuffer(true)    }
+    {   return readBuffer(isClear: true)    }
     func readBuffer(isClear:Bool)->[PacketControl]
     {
         let r=outPacketList
@@ -176,7 +161,7 @@ class ControlChannel
     //写入
     func write(packetList:[PacketControl])
     {
-        writeToBuffer(packetList)
+        writeToBuffer(packetList: packetList)
         writeToSSL()
     }
     //写入缓存
@@ -186,8 +171,8 @@ class ControlChannel
         {
             switch  p.opcode
             {
-            case SSLVPNOpcode.Ack.opcode: removePacket(p.id)
-            case SSLVPNOpcode.Control.opcode:insert(p);ackPacketList.append(PacketControl(ID: p.id, TID: tid));tid += 1;
+            case SSLVPNOpcode.Ack.opcode: removePacket(idPacket: p.id)
+            case SSLVPNOpcode.Control.opcode:insert(p: p);ackPacketList.append(PacketControl(ID: p.id, TID: tid));tid += 1;
             case SSLVPNOpcode.HardResetServer.opcode : ackPacketList.append(PacketControl(ID: p.id, TID: tid));tid += 1;
             default:continue
             }
@@ -207,7 +192,7 @@ class ControlChannel
         {
             if(inPacketList[n].id != idRec)
             {break}
-            sslLayer.write(inPacketList[n].data);
+            sslLayer!.write(inPacketList[n].data as Data);
             idRec += 1
             n += 1
         }
@@ -215,7 +200,7 @@ class ControlChannel
         while n>0
         {
             n -= 1
-            inPacketList.removeAtIndex(n)
+            inPacketList.remove(at: n)
         }
         //老版，稳定版
         ////符合队列的数据写入ssl
@@ -246,13 +231,13 @@ class ControlChannel
             {return}
             if(p.id>inPacketList[i].id)
             {
-                inPacketList.insert(p, atIndex: i+1)
+                inPacketList.insert(p, at: i+1)
                 return
             }
             i -= 1
         }
         //若是最小数据,插入到首位
-        inPacketList.insert(p, atIndex: 0)
+        inPacketList.insert(p, at: 0)
         //老版，稳定版
         ////插入
         //for(var i=inPacketList.count-1;i >= 0;i -= 1)
@@ -276,7 +261,7 @@ class ControlChannel
         {
             if(outPacketList[i].id==idPacket)
             {
-                outPacketList.removeAtIndex(i)
+                outPacketList.remove(at: i)
                 return
             }
         }
@@ -285,19 +270,19 @@ class ControlChannel
     //加密
     func encryptNSData(data:NSData)
     {
-        let dataEncrypt=sslLayer.encryptNSData(data)
-        dataToBuffer(dataEncrypt)
+        let dataEncrypt=sslLayer!.encryptNSData(data as Data!)
+        dataToBuffer(data: dataEncrypt! as NSData)
     }
     
     //读取解密
     func readDecrypt()->NSData
     {
         let data:NSMutableData=NSMutableData()
-        var dataRead:NSData = sslLayer.readDecrypt()
+        var dataRead:NSData = sslLayer!.readDecrypt()! as NSData
         while(dataRead.length>0)
         {
-            data.appendData(dataRead)
-            dataRead = sslLayer.read()
+            data.append(dataRead as Data)
+            dataRead = sslLayer!.read()! as NSData
         }
         return data
     }
