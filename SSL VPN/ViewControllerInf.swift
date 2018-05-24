@@ -50,7 +50,7 @@ var DNS1: UILabel!
         
 //              self.navigationController?.navigationBar.setBackgroundImage(UIImage.init(named: "navigationBar736"), forBarMetrics:UIBarMetrics(rawValue: 0)!)
         
-        self.manager =  ManagerInstance.shareSingle().manager
+        self.manager =  ManagerInstance.shared.manager
         
          
         self.headerView()
@@ -158,10 +158,10 @@ var DNS1: UILabel!
         self.ipAddress.text = ""
         self.DNS.text  =  ""
         self.DNS1.text  =  ""
-        if ManagerInstance.shareSingle().login == 1 {
+        if ManagerInstance.shared.login == 1 {
 
             
-			let loginUrl  = String(format:"https://%@:10442/e/sslvpn/resource/Resource.getUserResourceList.json?userName=%@&loginType=%@", ManagerInstance.shareSingle().IPAddress!,self.stringFomatTransfom(string: ManagerInstance.shareSingle().userName! as String),stringFomatTransfom(string: "ios"))
+			let loginUrl  = String(format:"https://%@:10442/e/sslvpn/resource/Resource.getUserResourceList.json?userName=%@&loginType=%@", ManagerInstance.shared.IPAddress!,self.stringFomatTransfom(string: ManagerInstance.shared.userName! as String),stringFomatTransfom(string: "ios"))
             
             
             HttpRequest.sourceListpost(loginUrl, params: nil, success: { json in

@@ -7,25 +7,14 @@
 //
 import Foundation
 import NetworkExtension
-class ManagerInstance: NSObject {
+final class ManagerInstance: NSObject {
     var manager:NEVPNManager?
-      var login:NSInteger?
+	var login:NSInteger?
     var IPAddress:String?
-     var userName:String?
+	var userName:String?
     var timeOutTime:NSInteger?
     //单例
-    class func shareSingle()->ManagerInstance{
-        struct Singleton{
-            static var onceToken : dispatch_once_t = 0
-            static var single:ManagerInstance?
-        }
-        dispatch_once(&Singleton.onceToken,{
-            Singleton.single=ManagerInstance()
-            
-            
-            }
-        )
-        return Singleton.single!
-    }
+	static let shared = ManagerInstance()  
+	private override init() {} 
 
 }

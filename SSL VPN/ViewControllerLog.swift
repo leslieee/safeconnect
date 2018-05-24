@@ -113,7 +113,7 @@ class ViewControllerLog: UIViewController,UITextFieldDelegate
        connect.showsTouchWhenHighlighted = true
          self.connect.backgroundColor = getColor("A7D54C")
 		connect.setTitle("frag1_connect_state_1".localized, for:UIControlState(rawValue: UInt(0)))
-        ManagerInstance.shareSingle().login = 0
+        ManagerInstance.shared.login = 0
 		connect.titleLabel?.font = UIFont.systemFont(ofSize: 14)
 		connect.setBackgroundImage(UIImage.init(named:""), for: UIControlState(rawValue: UInt(0)))
         
@@ -173,7 +173,7 @@ class ViewControllerLog: UIViewController,UITextFieldDelegate
         
         if User.sharedInstanced().autoConnect == "autoConnect" {
 
-			self.ClickbtnConnect(sender: "")
+			self.ClickbtnConnect(sender: "" as AnyObject)
         
         }
 //        print(User.sharedInstanced().autoConnect)
@@ -323,7 +323,7 @@ class ViewControllerLog: UIViewController,UITextFieldDelegate
             if(model.code  ==  0){
                 
              
-                self.conf["reConnect"]   =     User.sharedInstanced().reConnect
+				self.conf["reConnect"]   =     User.sharedInstanced().reConnect as AnyObject
                 if( model.data.verifyClient  == "no")
                     
                 {
@@ -332,25 +332,25 @@ class ViewControllerLog: UIViewController,UITextFieldDelegate
             //                  双向
                     if (FileWatcher.shared().filePath != nil ){
                         NSLog("-----%@",FileWatcher.shared().filePath)
-                        let fileManager =   NSFileManager.defaultManager()
-                        let content =   fileManager.contentsAtPath(FileWatcher.shared().filePath)! as NSData
+						let fileManager =   FileManager.default
+						let content =   fileManager.contents(atPath: FileWatcher.shared().filePath)! as NSData
                         self.conf["ca"] = content
                         
                     }else{
                         //
-                        let alertController = UIAlertController(title: "general_remind".localized, message: "Import_the_certificate".localized, preferredStyle: UIAlertControllerStyle.Alert)
+						let alertController = UIAlertController(title: "general_remind".localized, message: "Import_the_certificate".localized, preferredStyle: UIAlertControllerStyle.alert)
                         
-                        alertController.addAction(UIAlertAction(title: "general_ok".localized, style: UIAlertActionStyle.Default, handler: nil))
-                        self.presentViewController(alertController , animated: true, completion: nil)
+						alertController.addAction(UIAlertAction(title: "general_ok".localized, style: UIAlertActionStyle.default, handler: nil))
+						self.present(alertController , animated: true, completion: nil)
                         
                         self.connect.backgroundColor = getColor("A7D54C")
-                        self.connect.setTitle("frag1_connect_state_1".localized, forState:UIControlState(rawValue: UInt(0)))
-                        ManagerInstance.shareSingle().login = 0
-                        self.connect.titleLabel?.font = UIFont.systemFontOfSize(14)
+						self.connect.setTitle("frag1_connect_state_1".localized, for:UIControlState(rawValue: UInt(0)))
+                        ManagerInstance.shared.login = 0
+						self.connect.titleLabel?.font = UIFont.systemFont(ofSize: 14)
                         
-                        self.connect.setBackgroundImage(UIImage.init(named:""), forState: UIControlState(rawValue: UInt(0)))
+						self.connect.setBackgroundImage(UIImage.init(named:""), for: UIControlState(rawValue: UInt(0)))
                         animationView.dismiss()
-                    NSUserDefaults.standardUserDefaults().removeObjectForKey("caPassWord")
+						UserDefaults.standard.removeObject(forKey: "caPassWord")
                         return;
                 
                     }
@@ -358,30 +358,30 @@ class ViewControllerLog: UIViewController,UITextFieldDelegate
                     
                     
                     
-                    if (NSUserDefaults.standardUserDefaults().stringForKey("caPassWord") == ""  || NSUserDefaults.standardUserDefaults().stringForKey("caPassWord") == nil){
-                        let alertVC = UIAlertController(title: nil, message: "password_for_the_certificate".localized, preferredStyle: UIAlertControllerStyle.Alert)
+					if (UserDefaults.standard.string(forKey: "caPassWord") == ""  || UserDefaults.standard.string(forKey: "caPassWord") == nil){
+						let alertVC = UIAlertController(title: nil, message: "password_for_the_certificate".localized, preferredStyle: UIAlertControllerStyle.alert)
                         
                         // 基本输入框，显示实际输入的内容
-                        alertVC.addTextFieldWithConfigurationHandler({ (textFild) in
+						alertVC.addTextField(configurationHandler: { (textFild) in
                             
                         })
-                        let acSure = UIAlertAction(title: "general_ok".localized, style: UIAlertActionStyle.Default) {
+						let acSure = UIAlertAction(title: "general_ok".localized, style: UIAlertActionStyle.default) {
                             
                             (action: UIAlertAction!) -> Void in
                             
                             let login = (alertVC.textFields?.first)! as UITextField
                             if( login.text == "")
                             {
-                                NSUserDefaults.standardUserDefaults().setObject("NOPASSWORD", forKey: "caPassWord")
+								UserDefaults.standard.set("NOPASSWORD", forKey: "caPassWord")
                             }else{
-                                NSUserDefaults.standardUserDefaults().setObject(login.text, forKey: "caPassWord")
+								UserDefaults.standard.set(login.text, forKey: "caPassWord")
                             }
                             
-                            self.connect.setTitle("frag1_connect_state_1".localized, forState:UIControlState(rawValue: UInt(0)))
-                            ManagerInstance.shareSingle().login = 0
-                            self.connect.titleLabel?.font = UIFont.systemFontOfSize(14)
+							self.connect.setTitle("frag1_connect_state_1".localized, for:UIControlState(rawValue: UInt(0)))
+                            ManagerInstance.shared.login = 0
+							self.connect.titleLabel?.font = UIFont.systemFont(ofSize: 14)
                             self.connect.backgroundColor = getColor("A7D54C")
-                            self.connect.setBackgroundImage(UIImage.init(named:""), forState: UIControlState(rawValue: UInt(0)))
+							self.connect.setBackgroundImage(UIImage.init(named:""), for: UIControlState(rawValue: UInt(0)))
                             
                             
                             
@@ -390,77 +390,77 @@ class ViewControllerLog: UIViewController,UITextFieldDelegate
                         }
                         
                         
-                        let acCancel = UIAlertAction(title: "general_cancel".localized, style: UIAlertActionStyle.Cancel) { (UIAlertAction) -> Void in
+						let acCancel = UIAlertAction(title: "general_cancel".localized, style: UIAlertActionStyle.cancel) { (UIAlertAction) -> Void in
                             print("click Cancel")
                             self.connect.backgroundColor = getColor("A7D54C")
-                            self.connect.setTitle("frag1_connect_state_1".localized, forState:UIControlState(rawValue: UInt(0)))
-                            ManagerInstance.shareSingle().login = 0
-                            self.connect.titleLabel?.font = UIFont.systemFontOfSize(14)
+							self.connect.setTitle("frag1_connect_state_1".localized, for:UIControlState(rawValue: UInt(0)))
+                            ManagerInstance.shared.login = 0
+							self.connect.titleLabel?.font = UIFont.systemFont(ofSize: 14)
                             
                             
                         }
                         alertVC.addAction(acSure)
                         alertVC.addAction(acCancel)
-                        self.presentViewController(alertVC, animated: true, completion: nil)
+						self.present(alertVC, animated: true, completion: nil)
                         
                         animationView.dismiss()
                         return
                     }
                     
-                    let capword = NSUserDefaults.standardUserDefaults().stringForKey("caPassWord")! as String
+					let capword = UserDefaults.standard.string(forKey: "caPassWord")! as String
                     
                     
-                    if !( PrAndPu().extractEveryThingFromPKCS12File(FileWatcher.shared().filePath, passphrase:capword) ){
-                        self.showMessage("frag1_validclientCertPassWord".localized);
-                        NSUserDefaults.standardUserDefaults().setObject("", forKey: "caPassWord")
+					if !( PrAndPu().extractEveryThing(fromPKCS12File: FileWatcher.shared().filePath, passphrase:capword) ){
+						self.showMessage(message: "frag1_validclientCertPassWord".localized);
+						UserDefaults.standard.set("", forKey: "caPassWord")
                         return
                     }
                     
-                    self.conf["caPassWord"] = capword
+					self.conf["caPassWord"] = capword as AnyObject
                     
                     
                 }
                 
-                self.conf["rootCa"] = model.data.certificate
+				self.conf["rootCa"] = model.data.certificate as AnyObject
                 //                    model.data.otpAuth ==  "yes"
                 if(model.data.otpAuth != "yes"){
 
                     self.startConnect();
                 }else{
                     
-                let alertVC = UIAlertController(title: nil, message: "Enter_the_OTP_password".localized, preferredStyle: UIAlertControllerStyle.Alert)
+					let alertVC = UIAlertController(title: nil, message: "Enter_the_OTP_password".localized, preferredStyle: UIAlertControllerStyle.alert)
                     
                     // 基本输入框，显示实际输入的内容
-                    alertVC.addTextFieldWithConfigurationHandler({ (textFild) in
+					alertVC.addTextField(configurationHandler: { (textFild) in
                         
                     })
-                    let acSure = UIAlertAction(title: "general_ok".localized, style: UIAlertActionStyle.Default) {
+					let acSure = UIAlertAction(title: "general_ok".localized, style: UIAlertActionStyle.default) {
                         
                         (action: UIAlertAction!) -> Void in
                         
                         let login = (alertVC.textFields?.first)! as UITextField
                         
-                        let loginOtpUrl  = String(format:"https://%@:10442/e/sslvpn/LogInOut/LogInOut.loginOtp.json?username=%@&otpPassword=%@", self.txtAdress.text!,self.stringFomatTransfom(self.txtUserName.text!),self.stringFomatTransfom(login.text!))
-                        self.loginWithOpt(loginOtpUrl)
+						let loginOtpUrl  = String(format:"https://%@:10442/e/sslvpn/LogInOut/LogInOut.loginOtp.json?username=%@&otpPassword=%@", self.txtAdress.text!,self.stringFomatTransfom(string: self.txtUserName.text!),self.stringFomatTransfom(string: login.text!))
+						self.loginWithOpt(string: loginOtpUrl)
                         //
                     }
                     
                     
-                    let acCancel = UIAlertAction(title: "general_cancel".localized, style: UIAlertActionStyle.Cancel) { (UIAlertAction) -> Void in
+					let acCancel = UIAlertAction(title: "general_cancel".localized, style: UIAlertActionStyle.cancel) { (UIAlertAction) -> Void in
                         print("click Cancel")
                         
                         
                         
                         
                         self.connect.backgroundColor = getColor("A7D54C")
-                        self.connect.setTitle("frag1_connect_state_1".localized, forState:UIControlState(rawValue: UInt(0)))
-                        ManagerInstance.shareSingle().login = 0
-                        self.connect.titleLabel?.font = UIFont.systemFontOfSize(14)
+						self.connect.setTitle("frag1_connect_state_1".localized, for:UIControlState(rawValue: UInt(0)))
+                        ManagerInstance.shared.login = 0
+						self.connect.titleLabel?.font = UIFont.systemFont(ofSize: 14)
                         
                     }
                     alertVC.addAction(acSure)
                     alertVC.addAction(acCancel)
-                    self.presentViewController(alertVC, animated: true, completion: nil)
+					self.present(alertVC, animated: true, completion: nil)
                     
                     animationView.dismiss()
                     
@@ -471,12 +471,12 @@ class ViewControllerLog: UIViewController,UITextFieldDelegate
                 
             }else{
                 
-                self.showMessage(String(model.code))
+				self.showMessage(message: String(model.code))
                 
             }
             
             }, failure: { (error) in
-				self.showMessage(message: String(error.description))
+				self.showMessage(message: String(error.debugDescription)
         })
         
         
@@ -487,28 +487,28 @@ class ViewControllerLog: UIViewController,UITextFieldDelegate
 //        判断按钮状态
         if (self.connect.titleLabel?.text == "frag1_connect_state_2".localized) {
             self.connect.backgroundColor = getColor("A7D54C")
-			self.ClickbtnCancel(sender: "")
+			self.ClickbtnCancel(sender: "" as AnyObject)
             animationView.dismiss()
 			connect.setTitle("frag1_connect_state_1".localized, for:UIControlState(rawValue: UInt(0)))
 			connect.titleLabel?.font = UIFont.systemFont(ofSize: 14)
-            ManagerInstance.shareSingle().login = 0
+            ManagerInstance.shared.login = 0
 			connect.setBackgroundImage(UIImage.init(named:""), for: UIControlState(rawValue: UInt(0)))
-			animationView.transitionWithType("rippleEffect", WithSubtype:kCATransitionFromBottom, ForView: self.view)
+			animationView.transition(withType: "rippleEffect", withSubtype:kCATransitionFromBottom, for: self.view)
             return
             
         }
         
         if (self.connect.titleLabel?.text == "frag1_connect_state_3".localized)  {
-            ManagerInstance.shareSingle().login = 0
+            ManagerInstance.shared.login = 0
             self.connect.backgroundColor = getColor("A7D54C")
-			self.ClickbtnCancel(sender: "")
+			self.ClickbtnCancel(sender: "" as AnyObject)
             animationView.dismiss()
 			connect.setTitle("frag1_connect_state_1".localized, for:UIControlState(rawValue: UInt(0)))
 			connect.titleLabel?.font = UIFont.systemFont(ofSize: 14)
-            ManagerInstance.shareSingle().login = 0
+            ManagerInstance.shared.login = 0
 			connect.setBackgroundImage(UIImage.init(named:""), for: UIControlState(rawValue: UInt(0)))
             
-			animationView.transitionWithType("rippleEffect", WithSubtype:kCATransitionFromBottom, ForView: self.view)
+			animationView.transition(withType: "rippleEffect", withSubtype:kCATransitionFromBottom, for: self.view)
             return
         }
         
@@ -521,17 +521,17 @@ class ViewControllerLog: UIViewController,UITextFieldDelegate
         model.connectName = self.connectName.text
         model.userName = self.txtUserName.text
         
-        ManagerInstance.shareSingle().userName = self.txtUserName.text
+        ManagerInstance.shared.userName = self.txtUserName.text
         
-        ManagerInstance.shareSingle().IPAddress = self.txtAdress.text;
+        ManagerInstance.shared.IPAddress = self.txtAdress.text;
         model.password = self.txtPassword.text
 		let arrar = ZJFMDBHandle.manager().selectAllPerson(fromPersonTable: ZJModel.self)
         
-        if arrar.count == 0 {
+		if arrar?.count == 0 {
             ZJFMDBHandle.manager().insertPersonTable(model)
         }
         var  bool = true
-        for  person  in arrar {
+		for  person  in arrar! {
             
             
             let per = person as! NSDictionary
@@ -590,17 +590,17 @@ class ViewControllerLog: UIViewController,UITextFieldDelegate
                             let isIP = (source.address[j]).isIPAddress() as Bool
                             if(isIP == false) {
               
-                                doMains.addObject(source.address[j]);
+								doMains.add(source.address[j]);
                                 
                     }
                     }
                     }
-                    self.startLogin(doMains);
+					self.startLogin(doMains: doMains);
                     }
              
            
             }) { error in
-                self.showMessage(error.description)
+				self.showMessage(message: error.debugDescription)
  
             }
            
@@ -621,14 +621,14 @@ class ViewControllerLog: UIViewController,UITextFieldDelegate
                 self.startConnect();
                 }else{
                 
-                self.showMessage(String(model.code))
+					self.showMessage(message: String(model.code))
                 
                 return;
                 
             }
             
             }, failure: { (error) in
-				self.showMessage(message: error.description)
+				self.showMessage(message: error.debugDescription)
                 
         })
         
@@ -671,7 +671,7 @@ class ViewControllerLog: UIViewController,UITextFieldDelegate
             (action: UIAlertAction!) -> Void in
 			self.connect.setTitle("frag1_connect_state_1".localized, for:UIControlState(rawValue: UInt(0)))
 			self.connect.titleLabel?.font = UIFont.systemFont(ofSize: 14)
-            ManagerInstance.shareSingle().login = 0
+            ManagerInstance.shared.login = 0
              self.connect.backgroundColor = getColor("A7D54C")
 			self.connect.setBackgroundImage(UIImage.init(named:""), for: UIControlState(rawValue: UInt(0)))
            animationView.dismiss()
@@ -873,7 +873,7 @@ class ViewControllerLog: UIViewController,UITextFieldDelegate
                     
                    
 
-                    ManagerInstance.shareSingle().manager = self.manager
+                    ManagerInstance.shared.manager = self.manager
                    
                   
 //                    self.performSegueWithIdentifier("next", sender: self.manager)
@@ -1010,7 +1010,7 @@ class ViewControllerLog: UIViewController,UITextFieldDelegate
                                 if(responseString=="Active")//正常
                                 {
                                     
-                                    ManagerInstance.shareSingle().login = 1
+                                    ManagerInstance.shared.login = 1
 									print(String(NSDate().timeIntervalSince(self.timeStart))) //打印连接用时
                                     timer.invalidate()
                                  
@@ -1062,7 +1062,7 @@ class ViewControllerLog: UIViewController,UITextFieldDelegate
                                 
                                 
                                     self.connect.backgroundColor = getColor("FB6947")
-                                    ManagerInstance.shareSingle().manager = self.manager
+                                    ManagerInstance.shared.manager = self.manager
                                     
                                     
                                 }
@@ -1134,7 +1134,7 @@ class ViewControllerLog: UIViewController,UITextFieldDelegate
             animationView.dismiss()
 			connect.setTitle("frag1_connect_state_1".localized, for:UIControlState(rawValue: UInt(0)))
              self.connect.backgroundColor = getColor("A7D54C")
-            ManagerInstance.shareSingle().login = 0
+            ManagerInstance.shared.login = 0
 			connect.titleLabel?.font = UIFont.systemFont(ofSize: 14)
 			connect.setBackgroundImage(UIImage.init(named:""), for: UIControlState(rawValue: UInt(0)))
             
@@ -1195,7 +1195,7 @@ class ViewControllerLog: UIViewController,UITextFieldDelegate
 //    写入日志
     
     
-    func writeLog(string: NSString) -> Void{
+    func writeLog(string: String) -> Void{
         if  User.sharedInstanced().readFile() == nil {
             
 			User.sharedInstanced().write(toFile: string as String)
@@ -1261,7 +1261,7 @@ class ViewControllerLog: UIViewController,UITextFieldDelegate
                 
                 self.connect.backgroundColor = getColor("A7D54C")
 				self.connect.setTitle("frag1_connect_state_1".localized, for:UIControlState(rawValue: UInt(0)))
-                ManagerInstance.shareSingle().login = 0
+                ManagerInstance.shared.login = 0
 				self.connect.titleLabel?.font = UIFont.systemFont(ofSize: 14)
                 
 				self.connect.setBackgroundImage(UIImage.init(named:""), for: UIControlState(rawValue: UInt(0)))
