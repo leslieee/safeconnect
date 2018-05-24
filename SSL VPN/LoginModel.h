@@ -7,14 +7,14 @@
 
 #import <Foundation/Foundation.h>
 
-@class State, Data;
+@class State, ConflictData;
 
 @interface LoginModel : NSObject <NSCoding, NSCopying>
 
 @property (nonatomic, assign) double code;
 @property (nonatomic, strong) NSArray *messagePara;
 @property (nonatomic, strong) State *state;
-@property (nonatomic, strong) Data *data;
+@property (nonatomic, strong) ConflictData *data;
 @property (nonatomic, strong) NSString *message;
 
 + (instancetype)modelObjectWithDictionary:(NSDictionary *)dict;

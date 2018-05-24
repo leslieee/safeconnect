@@ -45,7 +45,7 @@ NSString *const kLoginModelMessage = @"message";
             self.code = [[self objectOrNilForKey:kLoginModelCode fromDictionary:dict] doubleValue];
             self.messagePara = [self objectOrNilForKey:kLoginModelMessagePara fromDictionary:dict];
             self.state = [State modelObjectWithDictionary:[dict objectForKey:kLoginModelState]];
-            self.data = [Data modelObjectWithDictionary:[dict objectForKey:kLoginModelData]];
+            self.data = [ConflictData modelObjectWithDictionary:[dict objectForKey:kLoginModelData]];
             self.message = [self objectOrNilForKey:kLoginModelMessage fromDictionary:dict];
 
     }

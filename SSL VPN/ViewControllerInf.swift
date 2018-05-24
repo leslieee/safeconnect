@@ -11,7 +11,7 @@ import UIKit
 import Foundation
 import NetworkExtension
 
-let SCEENWIGHT = (UIScreen.mainScreen().bounds.size.width)
+let SCEENWIGHT = (UIScreen.main.bounds.size.width)
 
 
 class ViewControllerInf: UITableViewController {
@@ -21,16 +21,16 @@ class ViewControllerInf: UITableViewController {
 var DNS1: UILabel!
     var manager:NEVPNManager?
     var session:NETunnelProviderSession?
-    var timer:NSTimer?=nil
+	var timer:Timer?=nil
     var timeCount:Int = 0
     let timeOut:Int=60
-    let dataIp="ip".dataUsingEncoding(NSUTF8StringEncoding)!
-    let dataTime="time".dataUsingEncoding(NSUTF8StringEncoding)!
-    let dataPacket="packet".dataUsingEncoding(NSUTF8StringEncoding)!
-    let dataDNS="DNS".dataUsingEncoding(NSUTF8StringEncoding)!
-    let dataDebug1="debug1".dataUsingEncoding(NSUTF8StringEncoding)!
-    let pingRestart="pingRestart".dataUsingEncoding(NSUTF8StringEncoding)!
-    let dataDebug2="debug2".dataUsingEncoding(NSUTF8StringEncoding)!
+	let dataIp="ip".data(using: String.Encoding.utf8)!
+	let dataTime="time".data(using: String.Encoding.utf8)!
+	let dataPacket="packet".data(using: String.Encoding.utf8)!
+	let dataDNS="DNS".data(using: String.Encoding.utf8)!
+	let dataDebug1="debug1".data(using: String.Encoding.utf8)!
+	let pingRestart="pingRestart".data(using: String.Encoding.utf8)!
+	let dataDebug2="debug2".data(using: String.Encoding.utf8)!
     var Controller = UIViewController()
     var logMessage:String = ""
 
@@ -42,10 +42,10 @@ var DNS1: UILabel!
      
      
         
-      let img = UIImage.init(named: "navigationBar736")?.resizableImageWithCapInsets(UIEdgeInsetsMake(0, 0, 190, 230))
+		let img = UIImage.init(named: "navigationBar736")?.resizableImage(withCapInsets: UIEdgeInsetsMake(0, 0, 190, 230))
         // 四个数值对应图片中距离上、左、下、右边界的不拉伸部分的范围宽度
         
-              self.navigationController?.navigationBar.setBackgroundImage(img, forBarMetrics:UIBarMetrics(rawValue: 0)!)
+		self.navigationController?.navigationBar.setBackgroundImage(img, for:UIBarMetrics(rawValue: 0)!)
         
         
 //              self.navigationController?.navigationBar.setBackgroundImage(UIImage.init(named: "navigationBar736"), forBarMetrics:UIBarMetrics(rawValue: 0)!)
@@ -70,21 +70,21 @@ var DNS1: UILabel!
         
         
         let headerView =   UIView()
-        headerView.frame = CGRectMake(0, 0, SCEENWIGHT, 120)
-        headerView.backgroundColor = UIColor .whiteColor()
+        headerView.frame = CGRect(x: 0, y: 0, width: SCEENWIGHT, height: 120)
+		headerView.backgroundColor = UIColor.white
         
        let titleView =   UILabel()
-       titleView.frame = CGRectMake(0, 0, SCEENWIGHT, 30)
+       titleView.frame = CGRect(x: 0, y: 0, width: SCEENWIGHT, height: 30)
        titleView.backgroundColor = getColor("BEDDF6")
      
     
         
         titleView.text = "frag2_connection_info".localized;
-        titleView.textColor = UIColor .whiteColor()
+        titleView.textColor = UIColor.white
         
         let ipLabel =   UILabel()
-        ipLabel.frame = CGRectMake(20, 40, SCEENWIGHT, 30)
-        ipLabel.backgroundColor = UIColor.whiteColor()
+		ipLabel.frame = CGRect(x: 20, y: 40, width: SCEENWIGHT, height: 30)
+        ipLabel.backgroundColor = UIColor.white
         
         
         ipLabel.text = "frag2_client_ip".localized
@@ -92,49 +92,49 @@ var DNS1: UILabel!
 
         
 
-        ipLabel.font =  UIFont.systemFontOfSize(14)
+		ipLabel.font =  UIFont.systemFont(ofSize: 14)
         ipAddress =   UILabel()
-        ipAddress.frame = CGRectMake(SCEENWIGHT-120,40, 100, 30)
-        ipAddress.backgroundColor = UIColor.clearColor()
+		ipAddress.frame = CGRect(x: SCEENWIGHT-120, y: 40, width: 100, height: 30)
+        ipAddress.backgroundColor = UIColor.clear
         ipAddress.text = ""
         
         
-        ipAddress.textAlignment  = .Right
-           ipAddress.font =  UIFont.systemFontOfSize(14)
+        ipAddress.textAlignment  = .right
+		ipAddress.font =  UIFont.systemFont(ofSize: 14)
         headerView.addSubview(ipLabel)
     
         headerView.addSubview(ipAddress)
           headerView.addSubview(titleView)
         
         let DNSLabel =   UILabel()
-        DNSLabel.frame = CGRectMake(20, 70, SCEENWIGHT, 30)
-        DNSLabel.backgroundColor = UIColor.whiteColor()
+		DNSLabel.frame = CGRect(x: 20, y: 70, width: SCEENWIGHT, height: 30)
+        DNSLabel.backgroundColor = UIColor.white
         DNSLabel.text = "frag2_dns_content".localized
-        DNSLabel.font =  UIFont.systemFontOfSize(14)
+		DNSLabel.font =  UIFont.systemFont(ofSize: 14)
         
    
         DNS =   UILabel()
-        DNS.frame = CGRectMake(SCEENWIGHT-170,70, 150, 30)
-        DNS.backgroundColor = UIColor.clearColor()
+		DNS.frame = CGRect(x: SCEENWIGHT-170, y: 70, width: 150, height: 30)
+        DNS.backgroundColor = UIColor.clear
         DNS.text = ""
-        DNS.textAlignment  = .Right
-        DNS.font =  UIFont.systemFontOfSize(14)
+        DNS.textAlignment  = .right
+		DNS.font =  UIFont.systemFont(ofSize: 14)
         
         
         
         DNS1 =   UILabel()
-        DNS1.frame = CGRectMake(SCEENWIGHT-170,90, 150, 30)
-        DNS1.backgroundColor = UIColor.clearColor()
+		DNS1.frame = CGRect(x: SCEENWIGHT-170, y: 90, width: 150, height: 30)
+        DNS1.backgroundColor = UIColor.clear
         DNS1.text = ""
-        DNS1.textAlignment  = .Right
-        DNS1.font =  UIFont.systemFontOfSize(14)
+        DNS1.textAlignment  = .right
+		DNS1.font =  UIFont.systemFont(ofSize: 14)
         headerView.addSubview(DNSLabel)
         headerView.addSubview(DNS)
            headerView.addSubview(DNS1)
         self.tableView.tableHeaderView = headerView
 
     }
-    override func viewWillDisappear(animated: Bool) {
+	override func viewWillDisappear(_ animated: Bool) {
         
   
         super.viewWillDisappear(animated);
@@ -147,7 +147,7 @@ var DNS1: UILabel!
         
     }
     
-    override func viewWillAppear(animated: Bool) {
+	override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated);
      
 //        let loginUrl  = String(format:"https://%@:10442/e/sslvpn/resource/Resource.getUserResourceList.json?userName=%@&loginType=%@",,"s1","ios")
@@ -161,7 +161,7 @@ var DNS1: UILabel!
         if ManagerInstance.shareSingle().login == 1 {
 
             
-            let loginUrl  = String(format:"https://%@:10442/e/sslvpn/resource/Resource.getUserResourceList.json?userName=%@&loginType=%@", ManagerInstance.shareSingle().IPAddress!,self.stringFomatTransfom(ManagerInstance.shareSingle().userName! as String),stringFomatTransfom("ios"))
+			let loginUrl  = String(format:"https://%@:10442/e/sslvpn/resource/Resource.getUserResourceList.json?userName=%@&loginType=%@", ManagerInstance.shareSingle().IPAddress!,self.stringFomatTransfom(string: ManagerInstance.shareSingle().userName! as String),stringFomatTransfom(string: "ios"))
             
             
             HttpRequest.sourceListpost(loginUrl, params: nil, success: { json in
@@ -175,24 +175,14 @@ var DNS1: UILabel!
                     )
                     
                     var sourceMessage: NSMutableArray  = []
-                    for( i = 0 ;i < self.sourceMessageArray.count ;i++){
-                        
-                        
-                        
-                        let sourceData =  ((self.sourceMessageArray[i]) as! SLData)
-                        
-                        if(((sourceData.type == "http" )||(sourceData.type == "https" )))  {
-                            
-                            sourceMessage.addObject(self.sourceMessageArray[i]);
-                         
-                           
-                        }
-                        
-                    }
-           
-                  
+					for i in 0..<self.sourceMessageArray.count {
+						let sourceData =  ((self.sourceMessageArray[i]) as! SLData)
+						if(((sourceData.type == "http" )||(sourceData.type == "https" )))  {
+							sourceMessage.add(self.sourceMessageArray[i]);
+						}
+					}
                      self.sourceMessageArray.removeAllObjects();
-                     self.sourceMessageArray.addObjectsFromArray(sourceMessage as [AnyObject])
+					self.sourceMessageArray.addObjects(from: sourceMessage as [AnyObject])
                    
                     
                     self.tableView.reloadData();
@@ -222,8 +212,8 @@ var DNS1: UILabel!
     func stringFomatTransfom(string:String)-> String{
         
         var string = string as String
-        string.insertContentsOf("%22".characters, at: string.startIndex)
-        string.insertContentsOf("%22".characters, at: string.endIndex)
+		string.insert(contentsOf: "%22".characters, at: string.startIndex)
+		string.insert(contentsOf: "%22".characters, at: string.endIndex)
         return string
         
     }
@@ -234,73 +224,73 @@ var DNS1: UILabel!
 
     // MARK: - Table view data source
 
-     func numberOfSections(in tableView: UITableView) -> Int {
+	override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
         return 2
     }
 
-    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+	override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
         return (self.sourceMessageArray).count
     }
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = UITableViewCell()
-        
-        cell.textLabel?.text = ((self.sourceMessageArray[indexPath.row]) as! SLData).name
-        cell.textLabel?.font =  UIFont.systemFontOfSize(14)
-        return cell
-    }
+	override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+		let cell = UITableViewCell()
+		
+		cell.textLabel?.text = ((self.sourceMessageArray[indexPath.row]) as! SLData).name
+		cell.textLabel?.font =  UIFont.systemFont(ofSize: 14)
+		return cell
+	}
     
 //    let urlString = "7.7.7.111:1000"
 //    let url = NSURL(string: urlString)
 //    UIApplication.sharedApplication().openURL(url!)
 //    
-   override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+	override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
     
     let sourceData =  ((self.sourceMessageArray[indexPath.row]) as! SLData)
    
-    let address = String((sourceData.address as Array)[0]).stringByAppendingString(":")
+	let address = String(describing: (sourceData.address as Array)[0]).appendingFormat(":")
     
-    let type =   String(sourceData.type).stringByAppendingString("://")
+		let type =   String(describing: sourceData.type).appendingFormat("://")
     
-    let port =   String(Int(sourceData.port)).stringByAppendingString("")
+		let port =   String(describing: Int(sourceData.port)).appendingFormat("")
     
-    let firstPath =   String(sourceData.firstPath)
+    let firstPath =   String(describing: sourceData.firstPath)
     
-    let urlString = type.stringByAppendingString(address).stringByAppendingString(port).stringByAppendingString(firstPath);
+    let urlString = type + address + port + firstPath;
 
     
     let url = NSURL(string: urlString)
-      UIApplication.sharedApplication().openURL(url!)
-       tableView .deselectRowAtIndexPath(indexPath, animated: true)
+		UIApplication.shared.openURL(url! as URL)
+		tableView .deselectRow(at: indexPath, animated: true)
     
     }
   
     
-    override func tableView(tableView:UITableView, heightForHeaderInSection section:Int) ->CGFloat{
+	override func tableView(_ tableView:UITableView, heightForHeaderInSection section:Int) ->CGFloat{
         return 30;
     }
-    override func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView?
+	override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView?
        {
         let titleView =   UILabel()
-        titleView.frame = CGRectMake(0, 20, SCEENWIGHT, 30)
+		titleView.frame = CGRect(x: 0, y: 20, width: SCEENWIGHT, height: 30)
         titleView.backgroundColor = getColor("BEDDF6")
         titleView.text = "frag2_resource_list".localized
-        titleView.textColor =  UIColor .whiteColor()
+        titleView.textColor =  UIColor .white
           return titleView;
       }
     
     
     
     //读取IPC信息
-    func getIpcMessage(data:NSData, callback: (String) -> Void)
+	func getIpcMessage(data:Data, callback: @escaping (String) -> Void)
     {
         do
         {
             try self.session!.sendProviderMessage(data)
             { response in
                 if (response != nil)
-                {   callback(NSString(data: response!, encoding: NSUTF8StringEncoding) as! String )    }
+				{   callback(NSString(data: response!, encoding: String.Encoding.utf8.rawValue)! as String )    }
                 else
                 {   callback("")   }
             }
@@ -312,7 +302,7 @@ var DNS1: UILabel!
     //显示连接信息
     func showConnectInf()
     {
-        getIpcMessage(dataIp)
+		getIpcMessage(data: dataIp)
         { (str) -> Void in
              self.ipAddress.text = ""
      
@@ -323,7 +313,7 @@ var DNS1: UILabel!
             self.ipAddress.text = str
         }
         
-        getIpcMessage(dataDNS)
+		getIpcMessage(data: dataDNS)
         { (str) -> Void in
            self.DNS1.text = ""
             self.DNS.text = ""
@@ -331,31 +321,27 @@ var DNS1: UILabel!
             if(str == "null"){
                 str = ""
             }
-            var arr =   str.componentsSeparatedByString(",") as NSArray
-            
-            if(arr.count == 2){
-                self.DNS.text = arr[0] as! String
-            }else if (arr.count == 3){
-                self.DNS.text = arr[0] as! String
-                self.DNS1.text = arr[1] as! String
-            }
-            
-            
-           
+			if let arr = str?.components(separatedBy: ",") {
+				if(arr.count == 2){
+					self.DNS.text = arr[0]
+				}else if (arr.count == 3){
+					self.DNS.text = arr[0]
+					self.DNS1.text = arr[1]
+				}
+			}
         }
-        
     }
     
 
     //传递参数
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?)
-    {
+	override func prepare(for segue: UIStoryboardSegue, sender: Any?) 
+	{
         if(timer != nil)
         {
             timer?.invalidate()
             timer=nil
         }
-        let controller = segue.destinationViewController as! ViewControllerLog
+		let controller = segue.destination as! ViewControllerLog
         controller.manager = sender as? NEVPNManager
     }
     
@@ -366,16 +352,16 @@ var DNS1: UILabel!
         self.ipAddress.text="frag1_connect_state_1".localized
 
         self.timeCount=1
-        if(self.manager?.connection.status != NEVPNStatus.Disconnected && manager?.connection.status != NEVPNStatus.Invalid)
+		if(self.manager?.connection.status != NEVPNStatus.disconnected && manager?.connection.status != NEVPNStatus.invalid)
         {   self.manager?.connection.stopVPNTunnel()    }
     }
     
     //断开连接
     @IBAction func ClickbtnDisconnect(sender: AnyObject)
     {
-        if(manager?.connection.status != NEVPNStatus.Disconnected && manager?.connection.status != NEVPNStatus.Invalid)
+		if(manager?.connection.status != NEVPNStatus.disconnected && manager?.connection.status != NEVPNStatus.invalid)
         {   self.manager?.connection.stopVPNTunnel()    }
-        self.performSegueWithIdentifier("back", sender: self.manager)
+		self.performSegue(withIdentifier: "back", sender: self.manager)
     }
     
     //取消连接
@@ -389,7 +375,7 @@ var DNS1: UILabel!
     }
     
 //     //时钟进程,用于数据显示和重新连接
-    func processTimer1(timer: NSTimer)
+	func processTimer1(timer: Timer)
     {
         if(timeCount<0)//不工作
         {   return  }
@@ -401,7 +387,7 @@ var DNS1: UILabel!
                 { response in
                     if (response != nil)
                     {
-                        let responseString = NSString(data: response!, encoding: NSUTF8StringEncoding) as? String
+						let responseString = NSString(data: response!, encoding: String.Encoding.utf8.rawValue)
                       
                   
                         print(responseString)
@@ -414,10 +400,10 @@ var DNS1: UILabel!
         }
         else//重新连接
         {
-            if(self.manager?.connection.status == NEVPNStatus.Connected)
+			if(self.manager?.connection.status == NEVPNStatus.connected)
             {
                 if let session = self.manager!.connection as? NETunnelProviderSession,
-                    message = "state".dataUsingEncoding(NSASCIIStringEncoding)
+					let message = "state".data(using: String.Encoding.ascii)
                 {
                     do
                     {
@@ -425,7 +411,7 @@ var DNS1: UILabel!
                         { response in
                             if (response != nil)
                             {
-                                let responseString = NSString(data: response!, encoding: NSASCIIStringEncoding) as? String
+								let responseString = NSString(data: response!, encoding: String.Encoding.ascii.rawValue)
                                 if(responseString=="Active")//正常
                                 {
                                     self.timeCount=0
@@ -441,9 +427,9 @@ var DNS1: UILabel!
 //                                    self.btnDisconnect.hidden=false
 //                                    self.viewLoad.hidden=true
                                     self.manager!.connection.stopVPNTunnel()
-                                    let alertController = UIAlertController(title: "general_remind".localized, message: "authentication_failed".localized, preferredStyle: UIAlertControllerStyle.Alert)
-                                    alertController.addAction(UIAlertAction(title: "general_ok".localized, style: UIAlertActionStyle.Default, handler: nil))
-                                    self.presentViewController(alertController , animated: true, completion: nil)
+									let alertController = UIAlertController(title: "general_remind".localized, message: "authentication_failed".localized, preferredStyle: UIAlertControllerStyle.alert)
+									alertController.addAction(UIAlertAction(title: "general_ok".localized, style: UIAlertActionStyle.default, handler: nil))
+									self.present(alertController , animated: true, completion: nil)
                                 }
                             }
                         }
@@ -452,7 +438,7 @@ var DNS1: UILabel!
                     catch {}
                 }
             }
-            else if(self.manager?.connection.status == NEVPNStatus.Disconnected)
+			else if(self.manager?.connection.status == NEVPNStatus.disconnected)
             {
                 do
                 {   try self.manager!.connection.startVPNTunnel()   }
@@ -462,20 +448,20 @@ var DNS1: UILabel!
                     timeCount=0
 //                    viewLoad.hidden=true
                     self.manager!.connection.stopVPNTunnel()
-                    let alertController = UIAlertController(title: "general_remind".localized, message: "VPNStartup_failed".localized, preferredStyle: UIAlertControllerStyle.Alert)
-                    alertController.addAction(UIAlertAction(title: "确定", style: UIAlertActionStyle.Default, handler: nil))
-                    self.presentViewController(alertController , animated: true, completion: nil)
+					let alertController = UIAlertController(title: "general_remind".localized, message: "VPNStartup_failed".localized, preferredStyle: UIAlertControllerStyle.alert)
+					alertController.addAction(UIAlertAction(title: "确定", style: UIAlertActionStyle.default, handler: nil))
+					self.present(alertController , animated: true, completion: nil)
                 }
             }
-            else if(self.manager?.connection.status == NEVPNStatus.Invalid)
+			else if(self.manager?.connection.status == NEVPNStatus.invalid)
             {
                 timer.invalidate()
                 timeCount=0
 //                viewLoad.hidden=true
                 self.manager!.connection.stopVPNTunnel()
-                let alertController = UIAlertController(title: "general_remind".localized, message: "Invalid_configuration".localized, preferredStyle: UIAlertControllerStyle.Alert)
-                alertController.addAction(UIAlertAction(title: "general_remind".localized, style: UIAlertActionStyle.Default, handler: nil))
-                self.presentViewController(alertController , animated: true, completion: nil)
+				let alertController = UIAlertController(title: "general_remind".localized, message: "Invalid_configuration".localized, preferredStyle: UIAlertControllerStyle.alert)
+				alertController.addAction(UIAlertAction(title: "general_remind".localized, style: UIAlertActionStyle.default, handler: nil))
+				self.present(alertController , animated: true, completion: nil)
             }
         }
         //
@@ -490,9 +476,9 @@ var DNS1: UILabel!
 //            self.txtCountSend.text="0"
 //            self.viewLoad.hidden=true
             self.manager?.connection.stopVPNTunnel()
-            let alertController = UIAlertController(title: "general_remind".localized, message: "service_timeout".localized, preferredStyle: UIAlertControllerStyle.Alert)
-            alertController.addAction(UIAlertAction(title: "general_ok".localized, style: UIAlertActionStyle.Default, handler: nil))
-            self.presentViewController(alertController , animated: true, completion: nil)
+			let alertController = UIAlertController(title: "general_remind".localized, message: "service_timeout".localized, preferredStyle: UIAlertControllerStyle.alert)
+			alertController.addAction(UIAlertAction(title: "general_ok".localized, style: UIAlertActionStyle.default, handler: nil))
+			self.present(alertController , animated: true, completion: nil)
         }
         
     }

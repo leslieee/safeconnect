@@ -13,13 +13,13 @@ NSString *const kDataOtpAuth = @"otp_auth";
 NSString *const kDataVerifyClient = @"verify_client";
 
 
-@interface Data ()
+@interface ConflictData ()
 
 - (id)objectOrNilForKey:(id)aKey fromDictionary:(NSDictionary *)dict;
 
 @end
 
-@implementation Data
+@implementation ConflictData
 
 @synthesize certificate = _certificate;
 @synthesize otpAuth = _otpAuth;

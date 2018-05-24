@@ -30,14 +30,14 @@ class ViewControllerLog: UIViewController,UITextFieldDelegate
     var timeOut:Double=20
 
 
-    var timer:NSTimer?=nil
-    var reConnectTimer:NSTimer?=nil
+	var timer:Timer?=nil
+	var reConnectTimer:Timer?=nil
     var conf:[String:AnyObject]=[:]
-    var timeStart=NSDate()
+    var timeStart=Date()
     var timeCount:Int = 0
     var certification:Bool = false //false 为单向 true为双向
-    let pingRestart="pingRestart".dataUsingEncoding(NSUTF8StringEncoding)!
-    let logMessage="debug2".dataUsingEncoding(NSUTF8StringEncoding)!
+	let pingRestart="pingRestart".data(using: String.Encoding.utf8)!
+	let logMessage="debug2".data(using: String.Encoding.utf8)!
     var reConnectTimeCount:Int = 0
     
     var sourceMessageArray: NSMutableArray  = []
@@ -50,26 +50,26 @@ class ViewControllerLog: UIViewController,UITextFieldDelegate
      
         //搜索按钮
         let button1 = UIButton(frame:CGRect(x:0, y:0, width:80, height:18))
-        button1.titleLabel!.font    = UIFont.systemFontOfSize(18);
-        button1.setTitle("证书列表", forState: UIControlState(rawValue: UInt(0)))
-        button1.addTarget(self,action:#selector(pfxShow),forControlEvents:UIControlEvents(rawValue: UInt(1)))
+		button1.titleLabel!.font    = UIFont.systemFont(ofSize: 18);
+		button1.setTitle("证书列表", for: UIControlState(rawValue: UInt(0)))
+		button1.addTarget(self,action:#selector(pfxShow),for:UIControlEvents(rawValue: UInt(1)))
         let barButton1 = UIBarButtonItem(customView: button1)
                //设置按钮（注意顺序）
         self.navigationItem.leftBarButtonItems = [barButton1]
-                let manger = AFNetworkReachabilityManager.sharedManager()
+		let manger = AFNetworkReachabilityManager.shared()
         
         manger.startMonitoring()
         
-        manger.setReachabilityStatusChangeBlock { (status) in
+		manger.setReachabilityStatusChange { (status) in
             
             switch ( status.rawValue) {
             case -1:
-                self.showMessage("未知网络")
+				self.showMessage(message: "未知网络")
                 break;
             case 0:
                 NSLog("没有网络");
                 
-               self.showMessage("当前网络异常")
+				self.showMessage(message: "当前网络异常")
              
                 break;
             case 1:
@@ -112,36 +112,36 @@ class ViewControllerLog: UIViewController,UITextFieldDelegate
         
        connect.showsTouchWhenHighlighted = true
          self.connect.backgroundColor = getColor("A7D54C")
-       connect.setTitle("frag1_connect_state_1".localized, forState:UIControlState(rawValue: UInt(0)))
+		connect.setTitle("frag1_connect_state_1".localized, for:UIControlState(rawValue: UInt(0)))
         ManagerInstance.shareSingle().login = 0
-          connect.titleLabel?.font = UIFont.systemFontOfSize(14)
-           connect.setBackgroundImage(UIImage.init(named:""), forState: UIControlState(rawValue: UInt(0)))
+		connect.titleLabel?.font = UIFont.systemFont(ofSize: 14)
+		connect.setBackgroundImage(UIImage.init(named:""), for: UIControlState(rawValue: UInt(0)))
         
         
-                let img = UIImage.init(named: "navigationBar736")?.resizableImageWithCapInsets(UIEdgeInsetsMake(0, 0, 190, 230))
+		let img = UIImage.init(named: "navigationBar736")?.resizableImage(withCapInsets: UIEdgeInsetsMake(0, 0, 190, 230))
         // 四个数值对应图片中距离上、左、下、右边界的不拉伸部分的范围宽度
         
-        self.navigationController?.navigationBar.setBackgroundImage(img, forBarMetrics:UIBarMetrics(rawValue: 0)!)
+		self.navigationController?.navigationBar.setBackgroundImage(img, for:UIBarMetrics(rawValue: 0)!)
                 self.txtPassword.delegate=self
         //读取配置信息
-        if(KeychainWrapper.hasValueForKey("Adress"))
-        {   self.txtAdress.text = KeychainWrapper.stringForKey("Adress")!   }
-        if(KeychainWrapper.hasValueForKey("UserName"))
-        {   self.txtUserName.text = KeychainWrapper.stringForKey("UserName")! }
-        if(KeychainWrapper.hasValueForKey("connectName"))
-        {   self.connectName.text = KeychainWrapper.stringForKey("connectName")! }
-        if(KeychainWrapper.hasValueForKey("Password"))
-        {   self.txtPassword.text = KeychainWrapper.stringForKey("Password")!  }
+		if(KeychainWrapper.hasValueForKey(keyName: "Adress"))
+		{   self.txtAdress.text = KeychainWrapper.stringForKey(keyName: "Adress")!   }
+		if(KeychainWrapper.hasValueForKey(keyName: "UserName"))
+		{   self.txtUserName.text = KeychainWrapper.stringForKey(keyName: "UserName")! }
+		if(KeychainWrapper.hasValueForKey(keyName: "connectName"))
+		{   self.connectName.text = KeychainWrapper.stringForKey(keyName: "connectName")! }
+		if(KeychainWrapper.hasValueForKey(keyName: "Password"))
+		{   self.txtPassword.text = KeychainWrapper.stringForKey(keyName: "Password")!  }
         //获得VpnManager
         getVpnManager()
         
                
-        self.view.userInteractionEnabled = true;
+		self.view.isUserInteractionEnabled = true;
         
         self.view.addGestureRecognizer(UITapGestureRecognizer.init(target: self, action:#selector(fingerTapped)));
         
         
-        performSelector(#selector(autoConnect), withObject: nil, afterDelay: 2)
+		perform(#selector(autoConnect), with: nil, afterDelay: 2)
       
         
         
@@ -173,7 +173,7 @@ class ViewControllerLog: UIViewController,UITextFieldDelegate
         
         if User.sharedInstanced().autoConnect == "autoConnect" {
 
-                self.ClickbtnConnect("")
+			self.ClickbtnConnect(sender: "")
         
         }
 //        print(User.sharedInstanced().autoConnect)
@@ -182,10 +182,10 @@ class ViewControllerLog: UIViewController,UITextFieldDelegate
 //    自动重连
     func autoReConnect(time: Int) -> Void{
         
-      let connectTime = NSTimeInterval(time)
+		let connectTime = TimeInterval(time)
 
         
-      performSelector(#selector(ReConnect), withObject: nil, afterDelay: connectTime)
+		perform(#selector(ReConnect), with: nil, afterDelay: connectTime)
         
     }
     func ReConnect(){
@@ -215,7 +215,7 @@ class ViewControllerLog: UIViewController,UITextFieldDelegate
                 testVc.selectConnectBlock = {  model   in
               
                     
-                   let model =  model  as Dictionary
+					let model =  (model  as Dictionary)!
                    let serverIP = model["serverIP"]
                     let userName = model["userName"]
                     let password = model["password"]
@@ -235,7 +235,7 @@ class ViewControllerLog: UIViewController,UITextFieldDelegate
             
             
         }
-    func getIpcMessage(data:NSData, callback: (String) -> Void)
+	func getIpcMessage(data:Data, callback: @escaping (String) -> Void)
         {
               self.session = self.manager!.connection as? NETunnelProviderSession
     
@@ -244,7 +244,7 @@ class ViewControllerLog: UIViewController,UITextFieldDelegate
                 try  self.session!.sendProviderMessage(data)
                 { response in
                     if (response != nil)
-                    {   callback(NSString(data: response!, encoding: NSUTF8StringEncoding) as! String )    }
+					{   callback(NSString(data: response!, encoding: String.Encoding.utf8.rawValue)! as String )    }
                     else
                     {   callback("")   }
                 }
@@ -257,8 +257,8 @@ class ViewControllerLog: UIViewController,UITextFieldDelegate
     {   super.didReceiveMemoryWarning()    }
     
     //传递参数
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?)
-    {
+	override func prepare(for segue: UIStoryboardSegue, sender: Any?) 
+	{
         if(timer != nil)
         {
             timer?.invalidate()
@@ -275,17 +275,17 @@ class ViewControllerLog: UIViewController,UITextFieldDelegate
     //点击填充区域进入输入区域
     @IBAction func ClickbtnAdress(sender: AnyObject)
     {
-        if(!txtAdress.isFirstResponder())
+		if(!txtAdress.isFirstResponder)
         {   txtAdress.becomeFirstResponder()    }
     }
     @IBAction func ClickbtnUserName(sender: AnyObject)
     {
-        if(!txtUserName.isFirstResponder())
-        {   txtUserName.becomeFirstResponder()  }
+		if(!txtUserName.isFirstResponder)
+		{   txtUserName.becomeFirstResponder()  }
     }
     @IBAction func ClickPassword(sender: AnyObject)
     {
-        if(!txtPassword.isFirstResponder())
+		if(!txtPassword.isFirstResponder)
         {   txtPassword.becomeFirstResponder()  }
     }
     
@@ -299,8 +299,8 @@ class ViewControllerLog: UIViewController,UITextFieldDelegate
     func stringFomatTransfom(string:String)-> String{
    
         var string = string as String
-        string.insertContentsOf("%22".characters, at: string.startIndex)
-        string.insertContentsOf("%22".characters, at: string.endIndex)
+		string.insert(contentsOf: "%22", at: string.startIndex)
+		string.insert(contentsOf: "%22", at: string.endIndex)
                return string
         
     }
@@ -312,7 +312,7 @@ class ViewControllerLog: UIViewController,UITextFieldDelegate
         
         
         
-        let loginUrl  = String(format:"https://%@:10442/e/sslvpn/LogInOut/LogInOut.login.json?username=%@&passwd=%@", self.txtAdress.text!,self.stringFomatTransfom(self.txtUserName.text!),stringFomatTransfom(self.txtPassword.text!))
+		let loginUrl  = String(format:"https://%@:10442/e/sslvpn/LogInOut/LogInOut.login.json?username=%@&passwd=%@", self.txtAdress.text!,self.stringFomatTransfom(string: self.txtUserName.text!),stringFomatTransfom(string: self.txtPassword.text!))
         
         
         
@@ -476,7 +476,7 @@ class ViewControllerLog: UIViewController,UITextFieldDelegate
             }
             
             }, failure: { (error) in
-                self.showMessage(String(error.description))
+				self.showMessage(message: String(error.description))
         })
         
         
@@ -487,13 +487,13 @@ class ViewControllerLog: UIViewController,UITextFieldDelegate
 //        判断按钮状态
         if (self.connect.titleLabel?.text == "frag1_connect_state_2".localized) {
             self.connect.backgroundColor = getColor("A7D54C")
-            self.ClickbtnCancel("")
+			self.ClickbtnCancel(sender: "")
             animationView.dismiss()
-            connect.setTitle("frag1_connect_state_1".localized, forState:UIControlState(rawValue: UInt(0)))
-            connect.titleLabel?.font = UIFont.systemFontOfSize(14)
+			connect.setTitle("frag1_connect_state_1".localized, for:UIControlState(rawValue: UInt(0)))
+			connect.titleLabel?.font = UIFont.systemFont(ofSize: 14)
             ManagerInstance.shareSingle().login = 0
-            connect.setBackgroundImage(UIImage.init(named:""), forState: UIControlState(rawValue: UInt(0)))
-            animationView.transitionWithType("rippleEffect", withSubtype:kCATransitionFromBottom, forView: self.view)
+			connect.setBackgroundImage(UIImage.init(named:""), for: UIControlState(rawValue: UInt(0)))
+			animationView.transitionWithType("rippleEffect", WithSubtype:kCATransitionFromBottom, ForView: self.view)
             return
             
         }
@@ -501,14 +501,14 @@ class ViewControllerLog: UIViewController,UITextFieldDelegate
         if (self.connect.titleLabel?.text == "frag1_connect_state_3".localized)  {
             ManagerInstance.shareSingle().login = 0
             self.connect.backgroundColor = getColor("A7D54C")
-            self.ClickbtnCancel("")
+			self.ClickbtnCancel(sender: "")
             animationView.dismiss()
-            connect.setTitle("frag1_connect_state_1".localized, forState:UIControlState(rawValue: UInt(0)))
-            connect.titleLabel?.font = UIFont.systemFontOfSize(14)
+			connect.setTitle("frag1_connect_state_1".localized, for:UIControlState(rawValue: UInt(0)))
+			connect.titleLabel?.font = UIFont.systemFont(ofSize: 14)
             ManagerInstance.shareSingle().login = 0
-            connect.setBackgroundImage(UIImage.init(named:""), forState: UIControlState(rawValue: UInt(0)))
+			connect.setBackgroundImage(UIImage.init(named:""), for: UIControlState(rawValue: UInt(0)))
             
-            animationView.transitionWithType("rippleEffect", withSubtype:kCATransitionFromBottom, forView: self.view)
+			animationView.transitionWithType("rippleEffect", WithSubtype:kCATransitionFromBottom, ForView: self.view)
             return
         }
         
@@ -525,7 +525,7 @@ class ViewControllerLog: UIViewController,UITextFieldDelegate
         
         ManagerInstance.shareSingle().IPAddress = self.txtAdress.text;
         model.password = self.txtPassword.text
-        let arrar = ZJFMDBHandle.manager().selectAllPersonFromPersonTable(ZJModel)
+		let arrar = ZJFMDBHandle.manager().selectAllPerson(fromPersonTable: ZJModel.self)
         
         if arrar.count == 0 {
             ZJFMDBHandle.manager().insertPersonTable(model)
@@ -548,13 +548,13 @@ class ViewControllerLog: UIViewController,UITextFieldDelegate
             ZJFMDBHandle.manager().insertPersonTable(model)
             
         }
-            if txtAdress.isFirstResponder() == true  {
+		if txtAdress.isFirstResponder == true  {
             txtAdress.resignFirstResponder()
         }
-            if txtUserName.isFirstResponder() == true  {
+		if txtUserName.isFirstResponder == true  {
             txtUserName.resignFirstResponder()
         }
-        if txtPassword.isFirstResponder() == true  {
+		if txtPassword.isFirstResponder == true  {
             txtPassword.resignFirstResponder()
         }
         //
@@ -564,7 +564,7 @@ class ViewControllerLog: UIViewController,UITextFieldDelegate
 //      获取域名
           let doMains: NSMutableArray  = [];
 
-          let loginUrl  = String(format:"https://%@:10442/e/sslvpn/resource/Resource.getUserResourceList.json?userName=%@&loginType=%@", self.txtAdress.text!,self.stringFomatTransfom((self.txtUserName.text! as String)),stringFomatTransfom("ios"))
+		let loginUrl  = String(format:"https://%@:10442/e/sslvpn/resource/Resource.getUserResourceList.json?userName=%@&loginType=%@", self.txtAdress.text!,self.stringFomatTransfom(string: (self.txtUserName.text! as String)),stringFomatTransfom(string: "ios"))
             HttpRequest.sourceListpost(loginUrl, params: nil, success: { json in
                 let model =    json as! SLSourceListModel;
                 if(model.code  ==  0){
@@ -628,33 +628,33 @@ class ViewControllerLog: UIViewController,UITextFieldDelegate
             }
             
             }, failure: { (error) in
-                 self.showMessage(error.description)
+				self.showMessage(message: error.description)
                 
         })
         
         
             }
     
-    func showMessage(message:NSString ){
+    func showMessage(message:String ){
   var mess = message
-        if message.componentsSeparatedByString("155073").count > 1  {
+		if message.components(separatedBy: "155073").count > 1  {
           mess = "E155073".localized
-        } else if(message.componentsSeparatedByString("155074").count > 1){
+		} else if(message.components(separatedBy: "155074").count > 1){
        mess = "E155074".localized
-        }else if(message.componentsSeparatedByString("159006").count > 1){
+		}else if(message.components(separatedBy: "159006").count > 1){
         mess = "E159006".localized
-        }else if(message.componentsSeparatedByString("101014").count > 1){
+		}else if(message.components(separatedBy: "101014").count > 1){
       mess = "E101014".localized
-        }else if(message.componentsSeparatedByString("-1001").count > 1){
+		}else if(message.components(separatedBy: "-1001").count > 1){
                       mess = "service_timeout".localized
             
-        }else if(message.componentsSeparatedByString("-1002").count > 1){
+		}else if(message.components(separatedBy: "-1002").count > 1){
             mess = "not_supportUrl".localized
-        }else if(message.componentsSeparatedByString("-1004").count > 1){
+		}else if(message.components(separatedBy: "-1004").count > 1){
             mess = "Failed_connect_server".localized
-        }else if(message.componentsSeparatedByString("-1005").count > 1){
+		}else if(message.components(separatedBy: "-1005").count > 1){
             mess = "Network_connection_interrupted".localized
-        }else if(message.componentsSeparatedByString("-1009").count > 1){
+		}else if(message.components(separatedBy: "-1009").count > 1){
             mess = "Network_connection_interrupted".localized
         }else{
             mess = "Negotiation_fails".localized
@@ -663,20 +663,20 @@ class ViewControllerLog: UIViewController,UITextFieldDelegate
         
         
       
-        let alertVC = UIAlertController(title: "general_remind".localized, message: mess as String, preferredStyle: UIAlertControllerStyle.Alert)
+		let alertVC = UIAlertController(title: "general_remind".localized, message: mess as String, preferredStyle: UIAlertControllerStyle.alert)
         
         
-        let acSure = UIAlertAction(title: "general_ok".localized, style: UIAlertActionStyle.Default) {
+		let acSure = UIAlertAction(title: "general_ok".localized, style: UIAlertActionStyle.default) {
             
             (action: UIAlertAction!) -> Void in
-            self.connect.setTitle("frag1_connect_state_1".localized, forState:UIControlState(rawValue: UInt(0)))
-            self.connect.titleLabel?.font = UIFont.systemFontOfSize(14)
+			self.connect.setTitle("frag1_connect_state_1".localized, for:UIControlState(rawValue: UInt(0)))
+			self.connect.titleLabel?.font = UIFont.systemFont(ofSize: 14)
             ManagerInstance.shareSingle().login = 0
              self.connect.backgroundColor = getColor("A7D54C")
-             self.connect.setBackgroundImage(UIImage.init(named:""), forState: UIControlState(rawValue: UInt(0)))
+			self.connect.setBackgroundImage(UIImage.init(named:""), for: UIControlState(rawValue: UInt(0)))
            animationView.dismiss()
             
-            self.ClickbtnCancel("")
+			self.ClickbtnCancel(sender: "" as AnyObject)
             
             //
         }
@@ -685,23 +685,23 @@ class ViewControllerLog: UIViewController,UITextFieldDelegate
    
         alertVC.addAction(acSure)
 
-        self.presentViewController(alertVC, animated: true, completion: nil)
+		self.present(alertVC, animated: true, completion: nil)
     }
       func startConnect(){
         
        
-        connect.setTitle("frag1_connect_state_2".localized, forState:UIControlState(rawValue: UInt(0)))
-        connect.titleLabel?.font = UIFont.systemFontOfSize(14)
-        connect.setBackgroundImage(UIImage.init(named:""), forState: UIControlState(rawValue: UInt(0)))
-        animationView.showInView(self.view)
+		connect.setTitle("frag1_connect_state_2".localized, for:UIControlState(rawValue: UInt(0)))
+		connect.titleLabel?.font = UIFont.systemFont(ofSize: 14)
+		connect.setBackgroundImage(UIImage.init(named:""), for: UIControlState(rawValue: UInt(0)))
+		animationView.show(in: self.view)
     startVPNTunnel
     { (isStart) -> Void in
     if(isStart)
     {
         
         
-    self.timeStart=NSDate()//统计开始连接时间
-    self.timer = NSTimer.scheduledTimerWithTimeInterval(0.1, target: self, selector:#selector(ViewControllerLog.processLogin(_:)), userInfo: nil, repeats: true)
+    self.timeStart=Date()//统计开始连接时间
+		self.timer = Timer.scheduledTimerWithTimeInterval(0.1, target: self, selector:#selector(ViewControllerLog.processLogin(_:)), userInfo: nil, repeats: true)
     self.timer!.fire()
     }
     else
@@ -736,13 +736,13 @@ class ViewControllerLog: UIViewController,UITextFieldDelegate
             txtPassword.becomeFirstResponder()
             return false
         }
-        if(connectName.isFirstResponder())
+		if(connectName.isFirstResponder)
         {connectName.resignFirstResponder();}
-        if(txtAdress.isFirstResponder())
+		if(txtAdress.isFirstResponder)
         {txtAdress.resignFirstResponder();}
-        if(txtUserName.isFirstResponder())
+		if(txtUserName.isFirstResponder)
         {txtUserName.resignFirstResponder();}
-        if(txtPassword.isFirstResponder())
+		if(txtPassword.isFirstResponder)
         {txtPassword.resignFirstResponder();}
         //
 //        self.viewLoad.hidden=false
@@ -754,8 +754,8 @@ class ViewControllerLog: UIViewController,UITextFieldDelegate
         { (isStart) -> Void in
             if(isStart)
             {
-                self.timeStart=NSDate()//统计开始连接时间
-              self.timer = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector:#selector(ViewControllerLog.processLogin(_:)), userInfo: nil, repeats: true)
+                self.timeStart=Date()//统计开始连接时间
+				self.timer = Timer.scheduledTimerWithTimeInterval(1, target: self, selector:#selector(ViewControllerLog.processLogin(_:)), userInfo: nil, repeats: true)
                 self.timer!.fire()
                 
             }
@@ -773,9 +773,9 @@ class ViewControllerLog: UIViewController,UITextFieldDelegate
         return  true
     }
     func showAlterView() {
-        let alertController = UIAlertController(title: "general_remind".localized, message: "authentication_failed".localized, preferredStyle: UIAlertControllerStyle.Alert)
-        alertController.addAction(UIAlertAction(title: "general_ok".localized, style: UIAlertActionStyle.Default, handler: nil))
-        self.presentViewController(alertController , animated: true, completion: nil)
+		let alertController = UIAlertController(title: "general_remind".localized, message: "authentication_failed".localized, preferredStyle: UIAlertControllerStyle.alert)
+		alertController.addAction(UIAlertAction(title: "general_ok".localized, style: UIAlertActionStyle.default, handler: nil))
+		self.present(alertController , animated: true, completion: nil)
     }
     //取消连接
     func ClickbtnCancel(sender: AnyObject)
@@ -806,9 +806,9 @@ class ViewControllerLog: UIViewController,UITextFieldDelegate
         if(self.connectName.text=="")
         {
             let alertController = UIAlertController(title: "general_remind".localized,
-                message: "frag1_filltxt".localized, preferredStyle: UIAlertControllerStyle.Alert)
-            alertController.addAction(UIAlertAction(title: "general_ok".localized, style: UIAlertActionStyle.Default, handler: nil))
-            self.presentViewController(alertController , animated: true, completion: nil)
+													message: "frag1_filltxt".localized, preferredStyle: UIAlertControllerStyle.alert)
+			alertController.addAction(UIAlertAction(title: "general_ok".localized, style: UIAlertActionStyle.default, handler: nil))
+			self.present(alertController , animated: true, completion: nil)
             return false
         }
 
@@ -821,36 +821,36 @@ class ViewControllerLog: UIViewController,UITextFieldDelegate
             
             
             let alertController = UIAlertController(title: "general_remind".localized,
-                                                    message: "frag1_filltxt".localized, preferredStyle: UIAlertControllerStyle.Alert)
-            alertController.addAction(UIAlertAction(title: "general_ok".localized, style: UIAlertActionStyle.Default, handler: nil))
-            self.presentViewController(alertController , animated: true, completion: nil)
+													message: "frag1_filltxt".localized, preferredStyle: UIAlertControllerStyle.alert)
+			alertController.addAction(UIAlertAction(title: "general_ok".localized, style: UIAlertActionStyle.default, handler: nil))
+			self.present(alertController , animated: true, completion: nil)
             return false
         }
         if(self.txtUserName.text=="")
         {
             let alertController = UIAlertController(title: "general_remind".localized,
-                                                    message: "frag1_filltxt".localized, preferredStyle: UIAlertControllerStyle.Alert)
-            alertController.addAction(UIAlertAction(title: "general_ok".localized, style: UIAlertActionStyle.Default, handler: nil))
-            self.presentViewController(alertController , animated: true, completion: nil)
+													message: "frag1_filltxt".localized, preferredStyle: UIAlertControllerStyle.alert)
+			alertController.addAction(UIAlertAction(title: "general_ok".localized, style: UIAlertActionStyle.default, handler: nil))
+			self.present(alertController , animated: true, completion: nil)
             return false
         }
         if(self.txtPassword.text=="")
         {
             let alertController = UIAlertController(title: "general_remind".localized,
-                                                    message: "frag1_filltxt".localized, preferredStyle: UIAlertControllerStyle.Alert)
-            alertController.addAction(UIAlertAction(title: "general_ok".localized, style: UIAlertActionStyle.Default, handler: nil))
-            self.presentViewController(alertController , animated: true, completion: nil)
+													message: "frag1_filltxt".localized, preferredStyle: UIAlertControllerStyle.alert)
+			alertController.addAction(UIAlertAction(title: "general_ok".localized, style: UIAlertActionStyle.default, handler: nil))
+			self.present(alertController , animated: true, completion: nil)
             return false
         }
         //保存
-        KeychainWrapper.setString(self.txtAdress.text!, forKey: "Adress")
-        KeychainWrapper.setString(self.txtUserName.text!, forKey: "UserName")
-        KeychainWrapper.setString(self.txtPassword.text!, forKey: "Password")
-        KeychainWrapper.setString(self.connectName.text!, forKey: "connectName")
-         connect.setTitle("frag1_connect_state_2".localized, forState:UIControlState(rawValue: UInt(0)))
-        connect.titleLabel?.font = UIFont.systemFontOfSize(14)
-           connect.setBackgroundImage(UIImage.init(named:""), forState: UIControlState(rawValue: UInt(0)))
-         animationView.showInView(self.view)
+		KeychainWrapper.setString(value: self.txtAdress.text!, forKey: "Adress")
+		KeychainWrapper.setString(value: self.txtUserName.text!, forKey: "UserName")
+		KeychainWrapper.setString(value: self.txtPassword.text!, forKey: "Password")
+		KeychainWrapper.setString(value: self.connectName.text!, forKey: "connectName")
+		connect.setTitle("frag1_connect_state_2".localized, for:UIControlState(rawValue: UInt(0)))
+		connect.titleLabel?.font = UIFont.systemFont(ofSize: 14)
+		connect.setBackgroundImage(UIImage.init(named:""), for: UIControlState(rawValue: UInt(0)))
+		animationView.show(in: self.view)
       
         return true
     }
@@ -860,7 +860,7 @@ class ViewControllerLog: UIViewController,UITextFieldDelegate
     {
         if(self.manager != nil)
         {return}
-        NETunnelProviderManager.loadAllFromPreferencesWithCompletionHandler()
+		NETunnelProviderManager.loadAllFromPreferences()
         {   newManagers, error in
             guard let vpnManagers = newManagers else { return }
             if(vpnManagers.count==1)
@@ -868,7 +868,7 @@ class ViewControllerLog: UIViewController,UITextFieldDelegate
                 
               
                 self.manager=vpnManagers[0]
-                if(self.manager!.connection.status == NEVPNStatus.Connected)
+				if(self.manager!.connection.status == NEVPNStatus.connected)
                 {
                     
                    
@@ -879,7 +879,7 @@ class ViewControllerLog: UIViewController,UITextFieldDelegate
 //                    self.performSegueWithIdentifier("next", sender: self.manager)
                 
                 }
-                else if(self.manager!.connection.status == NEVPNStatus.Connecting)
+				else if(self.manager!.connection.status == NEVPNStatus.connecting)
                 {   self.manager!.connection.stopVPNTunnel()
                 
                 
@@ -889,7 +889,7 @@ class ViewControllerLog: UIViewController,UITextFieldDelegate
             {
                 self.manager=vpnManagers[0]
                 for i in 1 ..< vpnManagers.count
-                {   vpnManagers[i].removeFromPreferencesWithCompletionHandler({ error -> Void in} )    }
+				{   vpnManagers[i].removeFromPreferences(completionHandler: { error -> Void in} )    }
             }
             else
             {
@@ -898,18 +898,18 @@ class ViewControllerLog: UIViewController,UITextFieldDelegate
                 providerProtocol.providerConfiguration = self.conf
                 providerProtocol.serverAddress = self.txtAdress.text!
                 providerProtocol.username=self.txtUserName.text
-                providerProtocol.passwordReference=self.txtPassword.text!.dataUsingEncoding(NSASCIIStringEncoding)
+				providerProtocol.passwordReference=self.txtPassword.text!.data(using: String.Encoding.ascii)
                 self.manager = NETunnelProviderManager()
                 self.manager!.protocolConfiguration = providerProtocol
-                self.manager!.enabled=true
-                self.manager!.saveToPreferencesWithCompletionHandler(
-                { (error) -> Void in
+				self.manager!.isEnabled=true
+				self.manager!.saveToPreferences(
+					completionHandler: { (error) -> Void in
                     if(error==nil)
                     {
                         
                    
                         
-                        NETunnelProviderManager.loadAllFromPreferencesWithCompletionHandler()
+						NETunnelProviderManager.loadAllFromPreferences()
                         {   newManagers, error in
                             guard let vpnManagers = newManagers else { return }
                             self.manager=vpnManagers[0]
@@ -931,7 +931,7 @@ class ViewControllerLog: UIViewController,UITextFieldDelegate
     }
     
     //启动VPN隧道
-    func startVPNTunnel(callback: (Bool) -> Void)
+	func startVPNTunnel(callback: @escaping (Bool) -> Void)
     {
         
         //写入系统
@@ -941,10 +941,10 @@ class ViewControllerLog: UIViewController,UITextFieldDelegate
         providerProtocol.providerConfiguration = self.conf
         providerProtocol.serverAddress = self.txtAdress.text!
         providerProtocol.username=self.txtUserName.text
-        providerProtocol.passwordReference=self.txtPassword.text!.dataUsingEncoding(NSASCIIStringEncoding)
+		providerProtocol.passwordReference=self.txtPassword.text!.data(using: String.Encoding.ascii)
         self.manager!.protocolConfiguration = providerProtocol
-        self.manager!.enabled=true
-        self.manager!.saveToPreferencesWithCompletionHandler
+		self.manager!.isEnabled=true
+		self.manager!.saveToPreferences
         { (error) -> Void in
             if(error != nil)
             {   callback(false)   }
@@ -962,16 +962,16 @@ class ViewControllerLog: UIViewController,UITextFieldDelegate
     }
 
     //登录进度
-    func processLogin(timer: NSTimer)
+	func processLogin(timer: Timer)
     {
         
         
         if User.sharedInstanced().recodeLog == "recodeLog"{
             
-            self.getIpcMessage(self.logMessage, callback: { (string) in
+			self.getIpcMessage(data: self.logMessage, callback: { (string) in
                 //            日志写入文件
                 
-                self.writeLog(string)
+				self.writeLog(string: string)
                 
                 
             })
@@ -979,12 +979,12 @@ class ViewControllerLog: UIViewController,UITextFieldDelegate
             
         }
 
-        if(self.manager?.connection.status == NEVPNStatus.Reasserting){
+		if(self.manager?.connection.status == NEVPNStatus.reasserting){
             
             
             
         }
-        if(self.manager?.connection.status == NEVPNStatus.Disconnecting){
+		if(self.manager?.connection.status == NEVPNStatus.disconnecting){
             
             
 //            self.showMessage(String("Negotiation_fails".localized))
@@ -994,10 +994,10 @@ class ViewControllerLog: UIViewController,UITextFieldDelegate
         }
 
         //状态检测
-        if(self.manager?.connection.status == NEVPNStatus.Connected)
+		if(self.manager?.connection.status == NEVPNStatus.connected)
         {
             if let session = self.manager!.connection as? NETunnelProviderSession,
-              let  message = "state".dataUsingEncoding(NSASCIIStringEncoding)
+				let  message = "state".data(using: String.Encoding.ascii)
             {
                 do
                 {
@@ -1005,24 +1005,24 @@ class ViewControllerLog: UIViewController,UITextFieldDelegate
                         { response in
                             if (response != nil)
                             {
-                                let responseString = NSString(data: response!, encoding: NSASCIIStringEncoding) as? String
+								let responseString = NSString(data: response!, encoding: String.Encoding.ascii.rawValue) as String?
                                 //print(responseString)
                                 if(responseString=="Active")//正常
                                 {
                                     
                                     ManagerInstance.shareSingle().login = 1
-                                    print(String(NSDate().timeIntervalSinceDate(self.timeStart))) //打印连接用时
+									print(String(NSDate().timeIntervalSince(self.timeStart))) //打印连接用时
                                     timer.invalidate()
                                  
-                                    self.reConnectTimer = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector:#selector(self.processTimer(_:)), userInfo: nil, repeats: true)
+									self.reConnectTimer = Timer.scheduledTimerWithTimeInterval(1, target: self, selector:#selector(self.processTimer(_:)), userInfo: nil, repeats: true)
                                     self.reConnectTimer!.fire()
 
-                                 self.connect.setTitle("frag1_connect_state_3".localized, forState:UIControlState(rawValue: UInt(0)))
+									self.connect.setTitle("frag1_connect_state_3".localized, for:UIControlState(rawValue: UInt(0)))
                                     
                                     
                                     
-                                    self.connect.titleLabel?.font = UIFont.systemFontOfSize(14)
-                                    self.connect.setBackgroundImage(UIImage.init(named:""), forState: UIControlState(rawValue: UInt(0)))
+									self.connect.titleLabel?.font = UIFont.systemFont(ofSize: 14)
+									self.connect.setBackgroundImage(UIImage.init(named:""), for: UIControlState(rawValue: UInt(0)))
                                
 //                                    if User.sharedInstanced().reConnect == "reConnect" {
 //                                        
@@ -1044,10 +1044,10 @@ class ViewControllerLog: UIViewController,UITextFieldDelegate
                                     
                                     if User.sharedInstanced().recodeLog == "recodeLog"{
       
-        self.getIpcMessage(self.logMessage, callback: { (string) in
+										self.getIpcMessage(data: self.logMessage, callback: { (string) in
           //            日志写入文件
             
-            self.writeLog(string)
+											self.writeLog(string: string)
           
             
         })
@@ -1058,7 +1058,7 @@ class ViewControllerLog: UIViewController,UITextFieldDelegate
                                     animationView.dismiss()
                                     
                                   
-                                    animationView.transitionWithType("rippleEffect", withSubtype:kCATransitionFromBottom, forView: self.view)
+									animationView.transition(withType: "rippleEffect", withSubtype:kCATransitionFromBottom, for: self.view)
                                 
                                 
                                     self.connect.backgroundColor = getColor("FB6947")
@@ -1071,9 +1071,9 @@ class ViewControllerLog: UIViewController,UITextFieldDelegate
                                     timer.invalidate()
 
                                     self.manager!.connection.stopVPNTunnel()
-                                    let alertController = UIAlertController(title: "general_remind".localized, message: "authentication_failed".localized, preferredStyle: UIAlertControllerStyle.Alert)
-                                    alertController.addAction(UIAlertAction(title: "general_ok".localized, style: UIAlertActionStyle.Default, handler: nil))
-                                    self.presentViewController(alertController , animated: true, completion: nil)
+									let alertController = UIAlertController(title: "general_remind".localized, message: "authentication_failed".localized, preferredStyle: UIAlertControllerStyle.alert)
+									alertController.addAction(UIAlertAction(title: "general_ok".localized, style: UIAlertActionStyle.default, handler: nil))
+									self.present(alertController , animated: true, completion: nil)
                                 }
                             }
                     }
@@ -1081,7 +1081,7 @@ class ViewControllerLog: UIViewController,UITextFieldDelegate
                 catch {}
             }
         }
-        else if(self.manager?.connection.status == NEVPNStatus.Disconnected)
+		else if(self.manager?.connection.status == NEVPNStatus.disconnected)
         {
             
 //            /*! @const NEVPNStatusInvalid The VPN is not configured. */
@@ -1109,34 +1109,34 @@ class ViewControllerLog: UIViewController,UITextFieldDelegate
                 timer.invalidate()
 //                viewLoad.hidden=true
                 self.manager!.connection.stopVPNTunnel()
-                let alertController = UIAlertController(title: "general_remind".localized , message: "VPNStartup_failed".localized, preferredStyle: UIAlertControllerStyle.Alert)
-                alertController.addAction(UIAlertAction(title: "确定", style: UIAlertActionStyle.Default, handler: nil))
-                self.presentViewController(alertController , animated: true, completion: nil)
+				let alertController = UIAlertController(title: "general_remind".localized , message: "VPNStartup_failed".localized, preferredStyle: UIAlertControllerStyle.alert)
+				alertController.addAction(UIAlertAction(title: "确定", style: UIAlertActionStyle.default, handler: nil))
+				self.present(alertController , animated: true, completion: nil)
             }
         }
-        else if(self.manager?.connection.status == NEVPNStatus.Invalid)
+		else if(self.manager?.connection.status == NEVPNStatus.invalid)
         {
             timer.invalidate()
 //            viewLoad.hidden=true
             self.manager!.connection.stopVPNTunnel()
-            let alertController = UIAlertController(title: "general_remind".localized, message: "authentication_failed".localized, preferredStyle: UIAlertControllerStyle.Alert)
-            alertController.addAction(UIAlertAction(title: "general_ok".localized, style: UIAlertActionStyle.Default, handler: nil))
-            self.presentViewController(alertController , animated: true, completion: nil)
+			let alertController = UIAlertController(title: "general_remind".localized, message: "authentication_failed".localized, preferredStyle: UIAlertControllerStyle.alert)
+			alertController.addAction(UIAlertAction(title: "general_ok".localized, style: UIAlertActionStyle.default, handler: nil))
+			self.present(alertController , animated: true, completion: nil)
         }
         //超时
-        if(NSDate().timeIntervalSinceDate(timeStart)>timeOut)
+		if(NSDate().timeIntervalSince(timeStart)>timeOut)
         {
 
     
-            NSUserDefaults.standardUserDefaults().removeObjectForKey("caPassWord")
+			UserDefaults.standard.removeObject(forKey: "caPassWord")
 
             
             animationView.dismiss()
-            connect.setTitle("frag1_connect_state_1".localized, forState:UIControlState(rawValue: UInt(0)))
+			connect.setTitle("frag1_connect_state_1".localized, for:UIControlState(rawValue: UInt(0)))
              self.connect.backgroundColor = getColor("A7D54C")
             ManagerInstance.shareSingle().login = 0
-            connect.titleLabel?.font = UIFont.systemFontOfSize(14)
-connect.setBackgroundImage(UIImage.init(named:""), forState: UIControlState(rawValue: UInt(0)))
+			connect.titleLabel?.font = UIFont.systemFont(ofSize: 14)
+			connect.setBackgroundImage(UIImage.init(named:""), for: UIControlState(rawValue: UInt(0)))
             
             timer.invalidate()
 //            viewLoad.hidden=true
@@ -1173,16 +1173,16 @@ connect.setBackgroundImage(UIImage.init(named:""), forState: UIControlState(rawV
 //            }
             
             
-            animationView.transitionWithType("rippleEffect", withSubtype:kCATransitionFromBottom, forView: self.view)
+			animationView.transition(withType: "rippleEffect", withSubtype:kCATransitionFromBottom, for: self.view)
 
             if(self.conf["ca"] == nil){
-                let alertController = UIAlertController(title: "general_remind".localized, message: "service_timeout".localized, preferredStyle: UIAlertControllerStyle.Alert)
-                alertController.addAction(UIAlertAction(title: "general_ok".localized, style: UIAlertActionStyle.Default, handler: nil))
-                self.presentViewController(alertController , animated: true, completion: nil)
+				let alertController = UIAlertController(title: "general_remind".localized, message: "service_timeout".localized, preferredStyle: UIAlertControllerStyle.alert)
+				alertController.addAction(UIAlertAction(title: "general_ok".localized, style: UIAlertActionStyle.default, handler: nil))
+				self.present(alertController , animated: true, completion: nil)
             }else{
-                let alertController = UIAlertController(title: "general_remind".localized, message: "service_timeout2".localized, preferredStyle: UIAlertControllerStyle.Alert)
-                alertController.addAction(UIAlertAction(title: "general_ok".localized, style: UIAlertActionStyle.Default, handler: nil))
-                self.presentViewController(alertController , animated: true, completion: nil)
+				let alertController = UIAlertController(title: "general_remind".localized, message: "service_timeout2".localized, preferredStyle: UIAlertControllerStyle.alert)
+				alertController.addAction(UIAlertAction(title: "general_ok".localized, style: UIAlertActionStyle.default, handler: nil))
+				self.present(alertController , animated: true, completion: nil)
             }
             
             
@@ -1198,11 +1198,11 @@ connect.setBackgroundImage(UIImage.init(named:""), forState: UIControlState(rawV
     func writeLog(string: NSString) -> Void{
         if  User.sharedInstanced().readFile() == nil {
             
-            User.sharedInstanced().writeToFile(string as String)
+			User.sharedInstanced().write(toFile: string as String)
         } else {
             
             if User.sharedInstanced().cancelContent() {
-                User.sharedInstanced().writeToFile(string as String)
+				User.sharedInstanced().write(toFile: string as String)
                
                 
             }
@@ -1211,14 +1211,14 @@ connect.setBackgroundImage(UIImage.init(named:""), forState: UIControlState(rawV
         }
     
     //时钟进程,用于数据显示和重新连接
-    func processTimer(timer: NSTimer)
+	func processTimer(timer: Timer)
                 //重新连接
         {
             
-            if(self.manager?.connection.status == NEVPNStatus.Connected)
+			if(self.manager?.connection.status == NEVPNStatus.connected)
             {
                 if let session = self.manager!.connection as? NETunnelProviderSession,
-                    message = "state".dataUsingEncoding(NSASCIIStringEncoding)
+					let message = "state".data(using: String.Encoding.ascii)
                 {
                     do
                     {
@@ -1226,7 +1226,7 @@ connect.setBackgroundImage(UIImage.init(named:""), forState: UIControlState(rawV
                         { response in
                             if (response != nil)
                             {
-                                let responseString = NSString(data: response!, encoding: NSASCIIStringEncoding) as? String
+								let responseString = NSString(data: response!, encoding: String.Encoding.ascii.rawValue) as String?
                                 if(responseString=="Active")//正常
                                 {
                                     self.timeCount=0
@@ -1242,9 +1242,9 @@ connect.setBackgroundImage(UIImage.init(named:""), forState: UIControlState(rawV
                                     //                                    self.btnDisconnect.hidden=false
                                     //                                    self.viewLoad.hidden=true
                                     self.manager!.connection.stopVPNTunnel()
-                                    let alertController = UIAlertController(title: "general_remind".localized, message: "vpn_timeout".localized, preferredStyle: UIAlertControllerStyle.Alert)
-                                    alertController.addAction(UIAlertAction(title: "general_ok".localized, style: UIAlertActionStyle.Default, handler: nil))
-                                    self.presentViewController(alertController , animated: true, completion: nil)
+									let alertController = UIAlertController(title: "general_remind".localized, message: "vpn_timeout".localized, preferredStyle: UIAlertControllerStyle.alert)
+									alertController.addAction(UIAlertAction(title: "general_ok".localized, style: UIAlertActionStyle.default, handler: nil))
+									self.present(alertController , animated: true, completion: nil)
                                 }
                             }
                         }
@@ -1254,17 +1254,17 @@ connect.setBackgroundImage(UIImage.init(named:""), forState: UIControlState(rawV
                 }
             }
             
-            if(self.manager?.connection.status == NEVPNStatus.Disconnected)
+			if(self.manager?.connection.status == NEVPNStatus.disconnected)
             {
                 
                 
                 
                 self.connect.backgroundColor = getColor("A7D54C")
-                self.connect.setTitle("frag1_connect_state_1".localized, forState:UIControlState(rawValue: UInt(0)))
+				self.connect.setTitle("frag1_connect_state_1".localized, for:UIControlState(rawValue: UInt(0)))
                 ManagerInstance.shareSingle().login = 0
-                self.connect.titleLabel?.font = UIFont.systemFontOfSize(14)
+				self.connect.titleLabel?.font = UIFont.systemFont(ofSize: 14)
                 
-                self.connect.setBackgroundImage(UIImage.init(named:""), forState: UIControlState(rawValue: UInt(0)))
+				self.connect.setBackgroundImage(UIImage.init(named:""), for: UIControlState(rawValue: UInt(0)))
                 animationView.dismiss()
             
                 if self.reConnectTimer != nil {

@@ -9,7 +9,7 @@
 
 
 
-@interface Data : NSObject <NSCoding, NSCopying>
+@interface ConflictData : NSObject <NSCoding, NSCopying>
 
 @property (nonatomic, strong) NSString *certificate;
 @property (nonatomic, strong) NSString *otpAuth;

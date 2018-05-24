@@ -10,8 +10,8 @@ import NetworkExtension
 class ManagerInstance: NSObject {
     var manager:NEVPNManager?
       var login:NSInteger?
-    var IPAddress:NSString?
-     var userName:NSString?
+    var IPAddress:String?
+     var userName:String?
     var timeOutTime:NSInteger?
     //单例
     class func shareSingle()->ManagerInstance{

@@ -56,7 +56,7 @@ public class KeychainWrapper {
     public class var serviceName: String {
         get {
             if internalVars.serviceName.isEmpty {
-                internalVars.serviceName = NSBundle.mainBundle().bundleIdentifier ?? "SwiftKeychainWrapper"
+				internalVars.serviceName = Bundle.main.bundleIdentifier ?? "SwiftKeychainWrapper"
             }
             return internalVars.serviceName
         }
@@ -86,7 +86,7 @@ public class KeychainWrapper {
     /// - parameter keyName: The key to check for.
     /// - returns: True if a value exists for the key. False otherwise.
     public class func hasValueForKey(keyName: String) -> Bool {
-        let keychainData: NSData? = self.dataForKey(keyName)
+		let keychainData: NSData? = self.dataForKey(keyName: keyName)
         if let _ = keychainData {
             return true
         } else {
@@ -99,10 +99,10 @@ public class KeychainWrapper {
     /// - parameter keyName: The key to lookup data for.
     /// - returns: The String associated with the key if it exists. If no data exists, or the data found cannot be encoded as a string, returns nil.
     public class func stringForKey(keyName: String) -> String? {
-        let keychainData: NSData? = self.dataForKey(keyName)
+		let keychainData: NSData? = self.dataForKey(keyName: keyName)
         var stringValue: String?
-        if let data = keychainData {
-            stringValue = NSString(data: data, encoding: NSUTF8StringEncoding) as String?
+        if keychainData != nil {
+			stringValue = NSString(data: keychainData! as Data, encoding: String.Encoding.utf8.rawValue) as String?
         }
 
         return stringValue
@@ -114,7 +114,7 @@ public class KeychainWrapper {
     /// - parameter keyName: The key to lookup data for.
     /// - returns: The decoded object associated with the key if it exists. If no data exists, or the data found cannot be decoded, returns nil.
     public class func objectForKey(keyName: String) -> NSCoding? {
-        let dataValue: NSData? = self.dataForKey(keyName)
+		let dataValue: NSData? = self.dataForKey(keyName: keyName)
 
         var objectValue: NSCoding?
 
@@ -131,7 +131,7 @@ public class KeychainWrapper {
     /// - parameter keyName: The key to lookup data for.
     /// - returns: The NSData object associated with the key if it exists. If no data exists, returns nil.
     public class func dataForKey(keyName: String) -> NSData? {
-        var keychainQueryDictionary = self.setupKeychainQueryDictionaryForKey(keyName)
+		var keychainQueryDictionary = self.setupKeychainQueryDictionaryForKey(keyName: keyName)
         var result: AnyObject?
 
         // Limit search results to one
@@ -154,8 +154,8 @@ public class KeychainWrapper {
     /// - parameter forKey: The key to save the String under.
     /// - returns: True if the save was successful, false otherwise.
     public class func setString(value: String, forKey keyName: String) -> Bool {
-        if let data = value.dataUsingEncoding(NSUTF8StringEncoding) {
-            return self.setData(data, forKey: keyName)
+		if let data = value.data(using: String.Encoding.utf8) {
+			return self.setData(value: data, forKey: keyName)
         } else {
             return false
         }
@@ -167,9 +167,9 @@ public class KeychainWrapper {
     /// - parameter forKey: The key to save the object under.
     /// - returns: True if the save was successful, false otherwise.
     public class func setObject(value: NSCoding, forKey keyName: String) -> Bool {
-        let data = NSKeyedArchiver.archivedDataWithRootObject(value)
+		let data = NSKeyedArchiver.archivedData(withRootObject: value)
 
-        return self.setData(data, forKey: keyName)
+		return self.setData(value: data, forKey: keyName)
     }
 
     /// Save a NSData object to the keychain associated with a specified key. If data already exists for the given keyname, the data will be overwritten with the new value.
@@ -177,8 +177,8 @@ public class KeychainWrapper {
     /// - parameter value: The NSData object to save.
     /// - parameter forKey: The key to save the object under.
     /// - returns: True if the save was successful, false otherwise.
-    public class func setData(value: NSData, forKey keyName: String) -> Bool {
-        var keychainQueryDictionary: [String:AnyObject] = self.setupKeychainQueryDictionaryForKey(keyName)
+    public class func setData(value: Data, forKey keyName: String) -> Bool {
+		var keychainQueryDictionary: [String:AnyObject] = self.setupKeychainQueryDictionaryForKey(keyName: keyName)
 
         keychainQueryDictionary[SecValueData] = value
 
@@ -190,7 +190,7 @@ public class KeychainWrapper {
         if status == errSecSuccess {
             return true
         } else if status == errSecDuplicateItem {
-            return self.updateData(value, forKey: keyName)
+			return self.updateData(value: value, forKey: keyName)
         } else {
             return false
         }
@@ -201,7 +201,7 @@ public class KeychainWrapper {
     /// - parameter keyName: The key value to remove data for.
     /// - returns: True if successful, false otherwise.
     public class func removeObjectForKey(keyName: String) -> Bool {
-        let keychainQueryDictionary: [String:AnyObject] = self.setupKeychainQueryDictionaryForKey(keyName)
+		let keychainQueryDictionary: [String:AnyObject] = self.setupKeychainQueryDictionaryForKey(keyName: keyName)
 
         // Delete
         let status: OSStatus =  SecItemDelete(keychainQueryDictionary);
@@ -216,8 +216,8 @@ public class KeychainWrapper {
     // MARK: Private Methods
     
     /// Update existing data associated with a specified key name. The existing data will be overwritten by the new data
-    private class func updateData(value: NSData, forKey keyName: String) -> Bool {
-        let keychainQueryDictionary: [String:AnyObject] = self.setupKeychainQueryDictionaryForKey(keyName)
+    private class func updateData(value: Data, forKey keyName: String) -> Bool {
+		let keychainQueryDictionary: [String:AnyObject] = self.setupKeychainQueryDictionaryForKey(keyName: keyName)
         let updateDictionary = [SecValueData:value]
 
         // Update
