@@ -86,7 +86,7 @@ NSString *const kDataVerifyClient = @"verify_client";
 }
 
 - (id)copyWithZone:(NSZone *)zone {
-    Data *copy = [[Data alloc] init];
+    ConflictData *copy = [[ConflictData alloc] init];
     
     
     

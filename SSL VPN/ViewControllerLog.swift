@@ -215,18 +215,16 @@ class ViewControllerLog: UIViewController,UITextFieldDelegate
                 testVc.selectConnectBlock = {  model   in
               
                     
-					let model =  (model  as Dictionary)!
-                   let serverIP = model["serverIP"]
-                    let userName = model["userName"]
-                    let password = model["password"]
-                    let connectName = model["connectName"]
-                    self.txtAdress.text  = serverIP as? String
-                    self.txtUserName.text = userName as? String
-                    self.txtPassword.text = password as? String
-                   self.connectName.text = connectName as? String
-
-                    
-                    
+					if let model = model as NSDictionary? as! [String:Any]? {
+						let serverIP = model["serverIP"]
+						let userName = model["userName"]
+						let password = model["password"]
+						let connectName = model["connectName"]
+						self.txtAdress.text  = serverIP as? String
+						self.txtUserName.text = userName as? String
+						self.txtPassword.text = password as? String
+						self.connectName.text = connectName as? String
+					}
                 }
             
                 self.navigationController?.pushViewController(testVc, animated: true)
@@ -477,7 +475,7 @@ class ViewControllerLog: UIViewController,UITextFieldDelegate
             
             }, failure: { (error) in
 				self.showMessage(message: String(error.debugDescription)
-        })
+        )})
         
         
 
@@ -535,7 +533,8 @@ class ViewControllerLog: UIViewController,UITextFieldDelegate
             
             
             let per = person as! NSDictionary
-            if ((per["connectName"]?.isEqual(model.connectName)) == true)   {
+			let connectName = per["connectName"] as! String
+            if ((connectName.isEqual(model.connectName)) == true)   {
                 ZJFMDBHandle.manager().deleteModel(model.connectName)
                 ZJFMDBHandle.manager().insertPersonTable(model)
                 bool = false
@@ -573,28 +572,27 @@ class ViewControllerLog: UIViewController,UITextFieldDelegate
                     var  q = 0;
                    
                     var sourceMessage: NSMutableArray  = []
-                    for( i = 0 ;i < model.data.count ;i++){
-                        let sourceData =  ((model.data[i]) as! SLData)
-                        if(((sourceData.type == "http" )||(sourceData.type == "https" )))  {
-                            sourceMessage.addObject(model.data[i]);
-                  
-                        }
-                    }
+					for i in 0..<model.data.count {
+						let sourceData =  ((model.data[i]) as! SLData)
+						if(((sourceData.type == "http" )||(sourceData.type == "https" )))  {
+							sourceMessage.add(model.data[i]);
+							
+						}
+					}
          
                   
-
-                    for( q = 0 ;q < sourceMessage.count ;q++)
-                    {
-                        let source =  (  sourceMessage[q]  as! SLData)
-                        for( j = 0 ;j < source.address.count ;j++){
-                            let isIP = (source.address[j]).isIPAddress() as Bool
-                            if(isIP == false) {
-              
+					for q in 0..<sourceMessage.count{
+						let source =  (  sourceMessage[q]  as! SLData)
+						for j in 0..<source.address.count {
+							let address = source.address[j] as! String
+							let isIP = address.isIPAddress() as Bool
+							if(isIP == false) {
+								
 								doMains.add(source.address[j]);
-                                
-                    }
-                    }
-                    }
+								
+							}
+						}
+					}
 					self.startLogin(doMains: doMains);
                     }
              
@@ -701,7 +699,7 @@ class ViewControllerLog: UIViewController,UITextFieldDelegate
         
         
     self.timeStart=Date()//统计开始连接时间
-		self.timer = Timer.scheduledTimerWithTimeInterval(0.1, target: self, selector:#selector(ViewControllerLog.processLogin(_:)), userInfo: nil, repeats: true)
+		self.timer = Timer.scheduledTimer(timeInterval: 0.1, target: self, selector:#selector(ViewControllerLog.processLogin(timer:)), userInfo: nil, repeats: true)
     self.timer!.fire()
     }
     else
@@ -755,7 +753,7 @@ class ViewControllerLog: UIViewController,UITextFieldDelegate
             if(isStart)
             {
                 self.timeStart=Date()//统计开始连接时间
-				self.timer = Timer.scheduledTimerWithTimeInterval(1, target: self, selector:#selector(ViewControllerLog.processLogin(_:)), userInfo: nil, repeats: true)
+				self.timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector:#selector(ViewControllerLog.processLogin(timer:)), userInfo: nil, repeats: true)
                 self.timer!.fire()
                 
             }
@@ -1014,7 +1012,7 @@ class ViewControllerLog: UIViewController,UITextFieldDelegate
 									print(String(NSDate().timeIntervalSince(self.timeStart))) //打印连接用时
                                     timer.invalidate()
                                  
-									self.reConnectTimer = Timer.scheduledTimerWithTimeInterval(1, target: self, selector:#selector(self.processTimer(_:)), userInfo: nil, repeats: true)
+									self.reConnectTimer = Timer.scheduledTimer(timeInterval: 1, target: self, selector:#selector(self.processTimer(timer:)), userInfo: nil, repeats: true)
                                     self.reConnectTimer!.fire()
 
 									self.connect.setTitle("frag1_connect_state_3".localized, for:UIControlState(rawValue: UInt(0)))
